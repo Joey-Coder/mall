@@ -1,6 +1,6 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <q-header elevated class="row bg-white text-black items-center">
+  <q-layout view="hhh lpR fff">
+    <q-header class="row bg-white text-black items-center">
       <q-toolbar class="row justify-between items-center">
         <div class="toolbar-left col-4 row justify-between items-end">
           <q-avatar size="76px"> <img src="../assets/logo.png" /> </q-avatar>
