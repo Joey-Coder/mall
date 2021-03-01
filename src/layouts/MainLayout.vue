@@ -93,7 +93,7 @@ export default {
 <style scoped lang="scss">
 .q-layout {
   .q-header {
-    height: 128px;
+    height: 100px;
     padding: 0 64px;
     .q-toolbar {
       .toolbar-left,
