@@ -1,10 +1,12 @@
 <template>
   <q-img
-    :class="['lazy', className, 'lazy-img']"
+    :class="[className, 'lazy-img']"
     :src="defaultImg"
     :data-src="url"
     :data-srcset="`${url} 1x`"
     alt="fordeal"
+    transition="scale"
+    ref="lazyImgRef"
   />
 </template>
 <script>
@@ -13,7 +15,11 @@ export default {
   data() {
     return {}
   },
-  methods: {},
+  methods: {
+    reload() {
+      this.$refs.lazyImgRef.src = this.url
+    }
+  },
   components: {},
   props: {
     url: {

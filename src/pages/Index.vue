@@ -1,8 +1,9 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page>
     <!-- 商品海报区 -->
     <div class="postcard">
       <!-- 轮播图 -->
+
       <q-carousel
         animated
         v-model="slide"
@@ -46,50 +47,17 @@
       </q-carousel>
       <!-- 轮播图描述 -->
 
-      <!-- 海报图1 -->
-      <div
-        class="postcard-item row justify-between items-center q-pa-xl q-gutter-x-lg no-wrap"
-      >
-        <!-- <q-img
-          data-src="../assets/3*3-1.jpg"
-          class="col-4"
-          src="../assets/zzf.jpeg"
-        /> -->
-        <lazy-img className="image col-4" url="../assets/3*3-1.jpg" />
-        <!-- <q-skeleton square class="col-4" height="30vw" v-else></q-skeleton> -->
-        <q-img
-          src="../assets/zzf.jpeg"
-          data-src="../assets/3*3-2.jpg"
-          class="col-4"
-        />
-        <div class="col-3 column items-start">
-          <p class="text-h3">Best shirts for this summer</p>
-          <p>
-            Nam at dui lacus . Sed porttitor , metus idtristique maximus ,nisl
-            ligula ultrices
-          </p>
-          <q-btn color="black" label="BUY NOW" outline></q-btn>
-        </div>
-      </div>
+      <div class="row">
+        <!-- 海报图1 -->
+        <div
+          class="col-12 postcard-item row justify-between items-center q-pa-xl q-gutter-x-lg no-wrap"
+        >
+          <q-img class="col-4" src="../assets/3*3-1.jpg" />
 
-      <!-- 海报图2 -->
-      <div class="postcard-item q-pa-xl">
-        <q-img src="../assets/TheBestChoice.jpg" class="q-mr-xl">
-          <div
-            class="text-h2 text-black flex flex-center absolute-full bg-transparent column"
-          >
-            <p>THE BEST CHOICE</p>
-            <q-btn label="ShOW NOW->" outline color="black"></q-btn>
-          </div>
-        </q-img>
-      </div>
-      <!-- 海报图3 -->
-      <div
-        class="postcard-item row justify-around q-pa-xl q-gutter-x-xl items-center"
-      >
-        <q-img src="../assets/2*2-1.jpg" class="col-5"></q-img>
-        <div class="column justify-center col-5 q-gutter-y-xl items-center">
-          <div class="column items-start col-3">
+          <!-- <lazy-img className="image col-4" url="/3*3-1.jpg" key="fsdf" /> -->
+          <!-- <q-skeleton square class="col-4" height="30vw" v-else></q-skeleton> -->
+          <q-img src="../assets/3*3-2.jpg" class="col-4" />
+          <div class="col-3 column items-start">
             <p class="text-h3">Best shirts for this summer</p>
             <p>
               Nam at dui lacus . Sed porttitor , metus idtristique maximus ,nisl
@@ -97,7 +65,34 @@
             </p>
             <q-btn color="black" label="BUY NOW" outline></q-btn>
           </div>
-          <q-img src="../assets/2*2-2.jpg"></q-img>
+        </div>
+        <!-- 海报图2 -->
+        <div class="col-12 postcard-item q-pa-xl">
+          <q-img src="../assets/TheBestChoice.jpg" class="q-mr-xl">
+            <div
+              class="text-h2 text-black flex flex-center absolute-full bg-transparent column"
+            >
+              <p>THE BEST CHOICE</p>
+              <q-btn label="ShOW NOW->" outline color="black"></q-btn>
+            </div>
+          </q-img>
+        </div>
+        <!-- 海报图3 -->
+        <div
+          class="col-12 postcard-item row justify-around q-pa-xl q-gutter-x-xl items-center"
+        >
+          <q-img src="../assets/2*2-1.jpg" class="col-5"></q-img>
+          <div class="column justify-center col-5 q-gutter-y-xl items-center">
+            <div class="column items-start col-3">
+              <p class="text-h3">Best shirts for this summer</p>
+              <p>
+                Nam at dui lacus . Sed porttitor , metus idtristique maximus
+                ,nisl ligula ultrices
+              </p>
+              <q-btn color="black" label="BUY NOW" outline></q-btn>
+            </div>
+            <q-img src="../assets/2*2-2.jpg"></q-img>
+          </div>
         </div>
       </div>
     </div>
@@ -105,43 +100,33 @@
 </template>
 
 <script>
-import LazyImg from '../components/LazyImg'
+// import LazyImg from '../components/LazyImg'
+import ScrollReveal from 'scrollreveal'
 export default {
   name: 'PageIndex',
   data() {
     return {
       slide: 1,
       autoplay: false,
-      imgNum: 0,
-      imgArray: [],
-      n: 0
+      scrollReveal: ScrollReveal()
     }
   },
-  methods: {
-    lazyload() {
-      // 监听页面滚动事件
-      var seeHeight = document.documentElement.clientHeight // 可见区域高度
-      var scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop // 滚动条距离顶部高度
-      for (var i = this.n; i < this.imgNum; i++) {
-        if (this.imgArray[i].offsetTop < seeHeight + scrollTop) {
-          console.log(this.imgArray[i].getAttribute('src'))
-          if (this.imgArray[i].getAttribute('src') === '../assets/zzf.jpeg') {
-            this.imgArray[i].src = this.imgArray[i].getAttribute('data-src')
-          }
-          this.n = i + 1
-        }
-      }
-    }
-  },
-  components: { LazyImg },
+  methods: {},
+  components: {},
   mounted() {
-    // this.imgNum = document.getElementsByTagName('img').length
-    // console.log(this.imgNum)
-    // this.imgArray = document.getElementsByTagName('img')
-    // console.log(this.imgArray)
-    // // this.lazyload()
-    // window.addEventListener('scroll', this.lazyload)
+    const scrollOptions = {
+      duration: 1000,
+      delay: 500,
+      origin: 'bottom',
+      // reset: true,
+      distance: '10rem',
+      easing: 'ease-in-out'
+      // interval: 2000
+    }
+    // const foo = document.querySelector('.postcard-item')
+    this.scrollReveal.reveal('.postcard-item', {
+      ...scrollOptions
+    })
   }
 }
 </script>
@@ -163,6 +148,16 @@ export default {
         background-repeat: no-repeat;
       }
     }
+    //   .postcard-item {
+    //     height: 30vw;
+    //     width: auto;
+    //     .q-img__image {
+    //       height: 10vw;
+    //       background-position: top center;
+    //       background-size: 20% 20%;
+    //       background-repeat: no-repeat;
+    //     }
+    // }
   }
 }
 </style>
