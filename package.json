@@ -2,7 +2,7 @@
   "name": "mall",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "productName": "Mall",
   "author": "Joey-Coder <joey950326@gmail.com>",
   "private": true,
   "scripts": {
