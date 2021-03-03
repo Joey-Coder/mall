@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <!-- 轮播图 -->
-    <q-carousel
+    <!-- <q-carousel
       animated
       v-model="slide"
       navigation
@@ -41,26 +41,16 @@
           padding="md"
         ></q-btn>
       </q-carousel-slide>
-    </q-carousel>
+    </q-carousel> -->
 
     <!-- 商品海报区 -->
     <section class="postcard">
-      <!-- 轮播图描述 -->
-
       <!-- 海报图1 -->
-      <div
-        class="postcard-item row justify-between items-center q-pa-xl q-gutter-x-lg no-wrap"
-      >
-        <q-img class="col-4" src="../assets/3*3-1.jpg" />
-
-        <!-- <lazy-img className="image col-4" url="/3*3-1.jpg" key="fsdf" /> -->
-        <!-- <q-skeleton square class="col-4" height="30vw" v-else></q-skeleton> -->
-        <q-img
-          src="../assets/3*3-2.jpg"
-          class="col-4"
-          style="height: 800px; object-fit: cover; object-positon: top center "
-        />
-        <div class="col-3 column items-start">
+      <!-- <div class="postcard-item-1 q-pa-xl">
+        <div class="image-wrapper-1">
+          <img src="../assets/2*2-1.jpg" alt="" />
+        </div>
+        <div class="title">
           <p class="text-h3">Best shirts for this summer</p>
           <p>
             Nam at dui lacus . Sed porttitor , metus idtristique maximus ,nisl
@@ -68,31 +58,30 @@
           </p>
           <q-btn color="black" label="BUY NOW" outline></q-btn>
         </div>
-      </div>
-      <!-- 海报图2 -->
-      <div
-        class="postcard-item row justify-around q-pa-xl q-gutter-x-xl items-center"
-      >
-        <q-img
-          src="../assets/2*2-1.jpg"
-          class="col-5"
-          style="height: 700px; object-fit: cover; object-positon: top center"
-        ></q-img>
-        <div class="column justify-center col-5 q-gutter-y-xl items-center">
-          <div class="column items-start col-3">
-            <p class="text-h3">Best shirts for this summer</p>
-            <p>
-              Nam at dui lacus . Sed porttitor , metus idtristique maximus ,nisl
-              ligula ultrices
-            </p>
-            <q-btn color="black" label="BUY NOW" outline></q-btn>
-          </div>
-          <q-img src="../assets/2*2-2.jpg" ></q-img>
+        <div class="image-wrapper-2">
+          <img src="../assets/2*2-2.jpg" alt="" />
         </div>
-      </div>
+      </div> -->
+      <!-- 海报图2 -->
+      <!-- <div class="postcard-item-2 q-pa-xl">
+        <div class="image-wrapper-1">
+          <img src="../assets/3*3-1.jpg" alt="" />
+        </div>
+        <div class="image-wrapper-2">
+          <img src="../assets/3*3-2.jpg" alt="" />
+        </div>
+        <div class="title">
+          <p class="text-h3">Best shirts for this summer</p>
+          <p>
+            Nam at dui lacus . Sed porttitor , metus idtristique maximus ,nisl
+            ligula ultrices
+          </p>
+          <q-btn color="black" label="BUY NOW" outline></q-btn>
+        </div>
+      </div> -->
 
       <!-- 海报图3 -->
-      <div class="postcard-item q-pa-xl">
+      <!-- <div class="postcard-item-3 q-pa-xl">
         <q-img
           src="../assets/TheBestChoice.jpg"
           style="height: 480px"
@@ -102,7 +91,40 @@
             class="text-h2 text-black flex flex-center absolute-full bg-transparent column"
           >
             <p>THE BEST CHOICE</p>
-            <q-btn label="ShOW NOW->" outline color="black"></q-btn>
+            <q-btn label="Shop this fabri->" outline color="black"></q-btn>
+          </div>
+        </q-img>
+      </div> -->
+      <!-- 海报图1 -->
+      <div class="postcard-item">
+        <q-img src="../assets/postcard1.jpg" class="q-mr-xl">
+          <div class="flex flex-center absolute-full bg-transparent column">
+            <h4>THE BEST CHOICE</h4>
+            <q-btn label="Shop this fabri->" color="black"></q-btn>
+          </div>
+        </q-img>
+      </div>
+      <div class="postcard-item">
+        <q-img src="../assets/postcard2.jpg" class="q-mr-xl">
+          <div class="flex flex-center absolute-full bg-transparent column">
+            <h4>THE BEST CHOICE</h4>
+            <q-btn label="Shop this fabri->" color="black"></q-btn>
+          </div>
+        </q-img>
+      </div>
+      <div class="postcard-item">
+        <q-img src="../assets/postcard1.jpg" class="q-mr-xl">
+          <div class="flex flex-center absolute-full bg-transparent column">
+            <h4>THE BEST CHOICE</h4>
+            <q-btn label="Shop this fabri->" color="black"></q-btn>
+          </div>
+        </q-img>
+      </div>
+      <div class="postcard-item">
+        <q-img src="../assets/postcard2.jpg" class="q-mr-xl">
+          <div class="flex flex-center absolute-full bg-transparent column">
+            <h4>THE BEST CHOICE</h4>
+            <q-btn label="Shop this fabri->" color="black"></q-btn>
           </div>
         </q-img>
       </div>
@@ -293,7 +315,7 @@ export default {
   components: {},
   mounted() {
     const scrollOptions = {
-      duration: 2000,
+      duration: 1500,
       delay: 500,
       origin: 'bottom',
       reset: true,
@@ -338,12 +360,94 @@ export default {
     width: auto;
     height: auto;
     .postcard-item {
-      overflow: hidden;
-      object-fit: cover;
-      ::v-deep .q-img__image {
-        background-position: top center !important;
+      padding: 2rem 0;
+      .q-img {
+        width: 100%;
+        height: 65vw;
+        ::v-deep .q-img__image {
+          background-position: top center !important;
+          background-size: cover;
+        }
+        h4 {
+          font-weight: 600;
+          font-size: 4rem;
+          color: #000;
+          margin-bottom: 2.5rem;
+        }
+        .q-btn {
+          width: 12rem;
+          height: 3rem;
+        }
       }
     }
+    // .postcard-item-1 {
+    //   display: grid;
+    //   grid-template-areas: 'pic1 title' 'pic1 pic2';
+    //   grid-template-columns: 1fr 1fr;
+    //   grid-template-rows: 220px 1fr;
+    //   gap: 80px;
+
+    //   .image-wrapper-1 {
+    //     grid-area: pic1;
+    //     overflow: hidden;
+    //     place-self: end end;
+    //     img {
+    //       width: 100%;
+    //       height: 700px;
+    //       object-fit: cover;
+    //       object-position: top center;
+    //     }
+    //   }
+    //   .image-wrapper-2 {
+    //     grid-area: pic2;
+    //     overflow: hidden;
+    //     place-self: start start;
+    //     img {
+    //       width: 100%;
+    //       height: 500px;
+    //       object-fit: cover;
+    //       object-position: top center;
+    //     }
+    //   }
+    //   .title {
+    //     width: 75%;
+    //     grid-area: title;
+    //     place-self: center start;
+    //     text-align: center;
+    //   }
+    //   ::v-deep .q-img__image {
+    //     background-position: top center !important;
+    //   }
+    // }
+    // .postcard-item-2 {
+    //   display: grid;
+    //   grid-template-columns: 1fr 1fr 1fr;
+    //   gap: 80px;
+    //   align-items: center;
+    //   .image-wrapper-1 {
+    //     overflow: hidden;
+    //     // place-self: center end;
+    //     img {
+    //       width: 100%;
+    //       height: 510px;
+    //       object-fit: cover;
+    //       object-position: top center;
+    //     }
+    //   }
+    //   .image-wrapper-2 {
+    //     overflow: hidden;
+    //     // place-self: center center;
+    //     img {
+    //       width: 100%;
+    //       height: 880px;
+    //       object-fit: cover;
+    //       object-position: top center;
+    //     }
+    //   }
+    //   .title {
+    //     // place-self: end start;
+    //   }
+    // }
   }
   .products {
     display: grid;
