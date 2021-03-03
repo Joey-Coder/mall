@@ -29,13 +29,21 @@
           </nav>
         </div>
         <div class="header-right">
-          <button class="lang" @click="langShow = true">USD</button>
-          <q-dialog v-model="langShow" persistent>
+          <button class="lang" @click="langVisiable = true">USD</button>
+          <!-- 语言切换dialog -->
+          <q-dialog v-model="langVisiable" persistent>
             <q-card style="max-width:60vw">
               <q-card-section class="row items-center justify-between">
                 <div class="text-h6">Select Your Language</div>
                 <q-space />
-                <q-btn icon="close" flat round dense v-close-popup />
+                <q-btn
+                  icon="close"
+                  flat
+                  round
+                  dense
+                  v-close-popup
+                  @click="selectedLang = lang"
+                />
               </q-card-section>
               <q-separator />
               <q-card-section class="dialog-content col q-py-lg">
@@ -107,7 +115,69 @@
               </q-card-actions>
             </q-card>
           </q-dialog>
-          <a href="#"><i class="iconfont icon-user1"></i></a>
+          <!-- 个人中心浮窗 -->
+          <a
+            href="#"
+            class="user"
+            @mouseover="popUpVisiable = true"
+            @mouseleave="mouseLeave()"
+            ><i class="iconfont icon-user1"></i>
+            <q-popup-proxy
+              no-parent-event
+              target=".user"
+              v-model="popUpVisiable"
+              @mouseover="inPopUp = true"
+            >
+              <!-- @mouseleave="
+                inPopUp = false
+                popUpVisiable = false
+              " -->
+              <q-form @submit="onSubmit" class="user-form q-pa-lg">
+                <q-input
+                  class="q-my-sm"
+                  filled
+                  v-model="email"
+                  label="Your Email Address"
+                  lazy-rules
+                  :rules="[
+                    val => (val && val.length > 0) || 'Please type something'
+                  ]"
+                />
+
+                <q-input
+                  class="q-my-sm"
+                  filled
+                  v-model="password"
+                  label="Your Password"
+                  lazy-rules
+                  :rules="[
+                    val => (val && val.length > 0) || 'Please type something'
+                  ]"
+                />
+
+                <div>
+                  <q-btn
+                    label="Sign In"
+                    type="submit"
+                    color="dark"
+                    text-color="white"
+                    style="width: 100%"
+                    class="q-mb-sm"
+                    unelevated
+                  />
+                  <q-btn
+                    label="Join Free"
+                    class="q-my-sm"
+                    text-color="dark"
+                    color="white"
+                    outline
+                    style="width: 100%"
+                  />
+                  <a href="#" class="text-grey-8 text-right q-my-sm" style="display: block">Forget your password?</a>
+                </div>
+              </q-form>
+            </q-popup-proxy></a
+          >
           <a href="#"><i class="iconfont icon-shopcart-o-fws"></i></a>
         </div>
       </q-toolbar>
@@ -183,11 +253,26 @@
 export default {
   data() {
     return {
-      langShow: false,
-      selectedLang: 'us'
+      langVisiable: false,
+      selectedLang: 'us',
+      lang: 'us',
+      popUpVisiable: true,
+      inPopUp: true,
+      email: null,
+      password: null
     }
   },
-  methods: {}
+  methods: {
+    changeLanguage() {
+      this.lang = this.selectedLang
+      // send axios
+    },
+    mouseLeave() {
+      setTimeout(() => {
+        this.popUpVisiable = this.inPopUp
+      }, 500)
+    }
+  }
 }
 </script>
 
