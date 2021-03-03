@@ -1,6 +1,8 @@
 <template>
   <q-layout view="hhh lpR fff">
-    <q-header class="row bg-white text-black items-center">
+    <q-header class="row bg-white text-black items-center" id="header">
+      <!-- <a href="#top-bar" data-scroll></a> -->
+
       <q-toolbar class="row justify-between items-center">
         <div class="header-left">
           <a href="#"><img src="../assets/logo.png" alt=""/></a>
@@ -173,7 +175,12 @@
                     outline
                     style="width: 100%"
                   />
-                  <a href="#" class="text-grey-8 text-right q-my-sm" style="display: block">Forget your password?</a>
+                  <a
+                    href="#"
+                    class="text-grey-8 text-right q-my-sm"
+                    style="display: block"
+                    >Forget your password?</a
+                  >
                 </div>
               </q-form>
             </q-popup-proxy></a
@@ -185,6 +192,29 @@
 
     <q-page-container>
       <router-view />
+      <div class="tool-btn-group">
+        <div class="tool-btn">
+          <a href="javascript:void(0);"><i class="iconfont icon-whats-app"></i></a>
+        </div>
+        <div class="tool-btn">
+          <a href="javascript:void(0);"><i class="iconfont icon-we-chat"></i></a>
+        </div>
+        <div class="tool-btn">
+          <a href="javascript:void(0);"><i class="iconfont icon-email"></i></a>
+        </div>
+        <div class="tool-btn" id="top-bar" v-to-top>
+          <a
+            href="#header"
+            v-smooth-scroll="{
+              duration: 2000,
+              updateHistory: false,
+              offset: -50
+            }"
+          >
+            <i class="iconfont icon-up"></i>
+          </a>
+        </div>
+      </div>
     </q-page-container>
 
     <q-footer elevated class="bg-grey-8 text-white">
@@ -256,12 +286,13 @@ export default {
       langVisiable: false,
       selectedLang: 'us',
       lang: 'us',
-      popUpVisiable: true,
-      inPopUp: true,
+      popUpVisiable: false,
+      inPopUp: false,
       email: null,
       password: null
     }
   },
+
   methods: {
     changeLanguage() {
       this.lang = this.selectedLang
@@ -271,8 +302,11 @@ export default {
       setTimeout(() => {
         this.popUpVisiable = this.inPopUp
       }, 500)
-    }
-  }
+    },
+    onSubmit() {}
+  },
+  mounted() {},
+  destroyed() {}
 }
 </script>
 
@@ -342,7 +376,38 @@ export default {
       }
     }
   }
+  .q-page-container {
+    .tool-btn-group {
+      position: fixed;
+      bottom: 8vw;
+      right: 3vw;
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+      row-gap: 0.5rem;
+      .tool-btn {
+        // display: none;
+        &:last-child {
+          display: none;
+        }
+        width: 3rem;
+        height: 3rem;
+        background-color: $grey-6;
+        border-radius: 1.5rem;
+        // justify-content: center;
+        // align-items: center;
+        z-index: 500;
+        text-align: center;
+        line-height: 3rem;
+        .iconfont {
+          font-size: 1.5rem;
+          color: white;
+        }
+      }
+    }
+  }
+
   .q-footer {
+    z-index: 200;
     padding: 46px 64px;
     .partners {
       .partners-item {

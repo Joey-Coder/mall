@@ -96,7 +96,7 @@
         </q-img>
       </div> -->
       <!-- 海报图1 -->
-      <div class="postcard-item">
+      <div class="postcard-item col-12">
         <q-img src="../assets/postcard1.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
@@ -357,14 +357,16 @@ export default {
   }
   .postcard {
     // position: relative;
-    width: auto;
-    height: auto;
+    // width: auto;
+    // height: auto;
     .postcard-item {
       padding: 2rem 0;
+      width: 100%;
       .q-img {
         width: 100%;
         height: 65vw;
         ::v-deep .q-img__image {
+          width: 100%;
           background-position: top center !important;
           background-size: cover;
         }
