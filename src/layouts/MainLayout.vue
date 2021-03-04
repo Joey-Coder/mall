@@ -185,7 +185,87 @@
               </q-form>
             </q-popup-proxy></a
           >
-          <a href="#"><i class="iconfont icon-shopcart-o-fws"></i></a>
+          <!-- 购物车按钮 -->
+          <a href="#" @click="shopCarVisiable = true"
+            ><i class="iconfont icon-shopcart-o-fws"></i
+          ></a>
+          <q-dialog
+            v-model="shopCarVisiable"
+            position="right"
+            maximized
+            persistent
+          >
+            <q-card
+              style="width: 23vw; height: 100vh"
+              class="bg-dark cart q-pa-md"
+            >
+              <q-card-section class="row items-start justify-between no-wrap">
+                <div class="text-h6 text-white">Your Cart</div>
+                <q-space />
+                <q-btn
+                  icon="close"
+                  flat
+                  round
+                  dense
+                  v-close-popup
+                  text-color="white"
+                />
+              </q-card-section>
+              <q-card-section class="column">
+                <div class="cart-item text-white q-pb-lg">
+                  <div class="cart-image">
+                    <!-- <img src="/zzf.jpeg" alt="" /> -->
+                  </div>
+                  <a href="javascript:void(0)" class="cart-title ellips "
+                    >modelo de lichi de Color sólido bufanda bolsa hombro
+                    Diagonal bolso</a
+                  >
+                  <div class="cart-num row justify-between">
+                    <div class="num-btn">btn</div>
+                    <div class="price text-weight-bold">$27.99</div>
+                  </div>
+                </div>
+                <div class="cart-item text-white q-pb-lg">
+                  <div class="cart-image">
+                    <!-- <img src="/zzf.jpeg" alt="" /> -->
+                  </div>
+                  <a href="javascript:void(0)" class="cart-title ellips"
+                    >modelo de lichi de Color sólido bufanda bolsa hombro
+                    Diagonal bolso</a
+                  >
+                  <div class="cart-num row justify-between">
+                    <div class="num-btn">btn</div>
+                    <div class="price">$27.99</div>
+                  </div>
+                </div>
+                <div class="cart-item text-white q-pb-lg">
+                  <div class="cart-image">
+                    <!-- <img src="/zzf.jpeg" alt="" /> -->
+                  </div>
+                  <a href="javascript:void(0)" class="cart-title ellips"
+                    >modelo de lichi de Color sólido bufanda bolsa hombro
+                    Diagonal bolso</a
+                  >
+                  <div class="cart-num row justify-between">
+                    <div class="num-btn">btn</div>
+                    <div class="price">$27.99</div>
+                  </div>
+                </div>
+              </q-card-section>
+              <q-card-section class="text-white total">
+                <div class="row justify-between items-center">
+                  <p class="total-title text-weight-bold">Total</p>
+                  <p class="total-price text-weight-bold ">$50.00</p>
+                </div>
+                <p class="total-tip text-grey-5 text-weight-bold">
+                  Taxes and shipping calculated at checkout
+                </p>
+                <div class="checkout-btn text-h6">
+                  CHECK OUT->
+                </div>
+              </q-card-section>
+            </q-card>
+          </q-dialog>
         </div>
       </q-toolbar>
     </q-header>
@@ -194,10 +274,14 @@
       <router-view />
       <div class="tool-btn-group">
         <div class="tool-btn">
-          <a href="javascript:void(0);"><i class="iconfont icon-whats-app"></i></a>
+          <a href="javascript:void(0);"
+            ><i class="iconfont icon-whats-app"></i
+          ></a>
         </div>
         <div class="tool-btn">
-          <a href="javascript:void(0);"><i class="iconfont icon-we-chat"></i></a>
+          <a href="javascript:void(0);"
+            ><i class="iconfont icon-we-chat"></i
+          ></a>
         </div>
         <div class="tool-btn">
           <a href="javascript:void(0);"><i class="iconfont icon-email"></i></a>
@@ -289,7 +373,8 @@ export default {
       popUpVisiable: false,
       inPopUp: false,
       email: null,
-      password: null
+      password: null,
+      shopCarVisiable: false
     }
   },
 
@@ -384,6 +469,7 @@ export default {
       display: grid;
       grid-template-rows: repeat(4, 1fr);
       row-gap: 0.5rem;
+      z-index: 500;
       .tool-btn {
         // display: none;
         &:last-child {
@@ -395,7 +481,6 @@ export default {
         border-radius: 1.5rem;
         // justify-content: center;
         // align-items: center;
-        z-index: 500;
         text-align: center;
         line-height: 3rem;
         .iconfont {
