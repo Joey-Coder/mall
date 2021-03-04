@@ -216,25 +216,38 @@
                   <div class="cart-image">
                     <!-- <img src="/zzf.jpeg" alt="" /> -->
                   </div>
-                  <a href="javascript:void(0)" class="cart-title ellips "
-                    >modelo de lichi de Color sólido bufanda bolsa hombro
-                    Diagonal bolso</a
-                  >
-                  <div class="cart-num row justify-between">
-                    <div class="num-btn">btn</div>
-                    <div class="price text-weight-bold">$27.99</div>
-                  </div>
-                </div>
-                <div class="cart-item text-white q-pb-lg">
-                  <div class="cart-image">
-                    <!-- <img src="/zzf.jpeg" alt="" /> -->
-                  </div>
                   <a href="javascript:void(0)" class="cart-title ellips"
                     >modelo de lichi de Color sólido bufanda bolsa hombro
                     Diagonal bolso</a
                   >
                   <div class="cart-num row justify-between">
-                    <div class="num-btn">btn</div>
+                    <div class="num-btn row">
+                      <q-btn
+                        icon="remove"
+                        unelevated
+                        dense
+                        size="sm"
+                        class="remove-btn"
+                        @click="
+                          if (cartItemNum > 0) {
+                            cartItemNum--
+                          }
+                        "
+                      ></q-btn>
+                      <input
+                        type="text"
+                        class="num-input"
+                        v-model="cartItemNum"
+                      />
+                      <q-btn
+                        icon="add"
+                        unelevated
+                        dense
+                        size="sm"
+                        class="add-btn"
+                        @click="cartItemNum++"
+                      ></q-btn>
+                    </div>
                     <div class="price">$27.99</div>
                   </div>
                 </div>
@@ -247,7 +260,72 @@
                     Diagonal bolso</a
                   >
                   <div class="cart-num row justify-between">
-                    <div class="num-btn">btn</div>
+                    <div class="num-btn row">
+                      <q-btn
+                        icon="remove"
+                        unelevated
+                        dense
+                        size="sm"
+                        class="remove-btn"
+                        @click="
+                          if (cartItemNum > 0) {
+                            cartItemNum--
+                          }
+                        "
+                      ></q-btn>
+                      <input
+                        type="text"
+                        class="num-input"
+                        v-model="cartItemNum"
+                      />
+                      <q-btn
+                        icon="add"
+                        unelevated
+                        dense
+                        size="sm"
+                        class="add-btn"
+                        @click="cartItemNum++"
+                      ></q-btn>
+                    </div>
+                    <div class="price">$27.99</div>
+                  </div>
+                </div>
+                <div class="cart-item text-white q-pb-lg">
+                  <div class="cart-image">
+                    <!-- <img src="/zzf.jpeg" alt="" /> -->
+                  </div>
+                  <a href="javascript:void(0)" class="cart-title ellips"
+                    >modelo de lichi de Color sólido bufanda bolsa hombro
+                    Diagonal bolso</a
+                  >
+                  <div class="cart-num row justify-between">
+                    <div class="num-btn row">
+                      <q-btn
+                        icon="remove"
+                        unelevated
+                        dense
+                        size="sm"
+                        class="remove-btn"
+                        @click="
+                          if (cartItemNum > 0) {
+                            cartItemNum--
+                          }
+                        "
+                      ></q-btn>
+                      <input
+                        type="text"
+                        class="num-input"
+                        v-model="cartItemNum"
+                      />
+                      <q-btn
+                        icon="add"
+                        unelevated
+                        dense
+                        size="sm"
+                        class="add-btn"
+                        @click="cartItemNum++"
+                      ></q-btn>
+                    </div>
                     <div class="price">$27.99</div>
                   </div>
                 </div>
@@ -374,7 +452,8 @@ export default {
       inPopUp: false,
       email: null,
       password: null,
-      shopCarVisiable: false
+      shopCarVisiable: false,
+      cartItemNum: 1
     }
   },
 
@@ -479,8 +558,6 @@ export default {
         height: 3rem;
         background-color: $grey-6;
         border-radius: 1.5rem;
-        // justify-content: center;
-        // align-items: center;
         text-align: center;
         line-height: 3rem;
         .iconfont {
@@ -497,7 +574,6 @@ export default {
     .partners {
       .partners-item {
         background-color: #eee;
-        // color: skyblue;
         padding: 0.3rem 1.4rem;
         border-radius: 0.5rem;
       }
