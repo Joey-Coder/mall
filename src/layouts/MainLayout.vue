@@ -129,11 +129,11 @@
               target=".user"
               v-model="popUpVisiable"
               @mouseover="inPopUp = true"
-            >
-              <!-- @mouseleave="
+              @mouseleave="
                 inPopUp = false
                 popUpVisiable = false
-              " -->
+              "
+            >
               <q-form @submit="onSubmit" class="user-form q-pa-lg">
                 <q-input
                   class="q-my-sm"
@@ -212,14 +212,17 @@
                 />
               </q-card-section>
               <q-card-section class="column">
-                <div class="cart-item text-white q-pb-lg">
+                <div
+                  class="cart-item text-white q-pb-lg"
+                  v-for="item in getCart"
+                  :key="item.productID"
+                >
                   <div class="cart-image">
                     <!-- <img src="/zzf.jpeg" alt="" /> -->
                   </div>
-                  <a href="javascript:void(0)" class="cart-title ellips"
-                    >modelo de lichi de Color sólido bufanda bolsa hombro
-                    Diagonal bolso</a
-                  >
+                  <a href="javascript:void(0)" class="cart-title ellips">{{
+                    item.productName
+                  }}</a>
                   <div class="cart-num row justify-between">
                     <div class="num-btn row">
                       <q-btn
@@ -228,112 +231,30 @@
                         dense
                         size="sm"
                         class="remove-btn"
-                        @click="
-                          if (cartItemNum > 0) {
-                            cartItemNum--
-                          }
-                        "
+                        @click="removeCartNum(item.productID)"
                       ></q-btn>
-                      <input
-                        type="text"
-                        class="num-input"
-                        v-model="cartItemNum"
-                      />
+                      <input type="text" class="num-input" v-model="item.num" />
                       <q-btn
                         icon="add"
                         unelevated
                         dense
                         size="sm"
                         class="add-btn"
-                        @click="cartItemNum++"
+                        @click="addCartNum(item.productID)"
                       ></q-btn>
                     </div>
-                    <div class="price">$27.99</div>
-                  </div>
-                </div>
-                <div class="cart-item text-white q-pb-lg">
-                  <div class="cart-image">
-                    <!-- <img src="/zzf.jpeg" alt="" /> -->
-                  </div>
-                  <a href="javascript:void(0)" class="cart-title ellips"
-                    >modelo de lichi de Color sólido bufanda bolsa hombro
-                    Diagonal bolso</a
-                  >
-                  <div class="cart-num row justify-between">
-                    <div class="num-btn row">
-                      <q-btn
-                        icon="remove"
-                        unelevated
-                        dense
-                        size="sm"
-                        class="remove-btn"
-                        @click="
-                          if (cartItemNum > 0) {
-                            cartItemNum--
-                          }
-                        "
-                      ></q-btn>
-                      <input
-                        type="text"
-                        class="num-input"
-                        v-model="cartItemNum"
-                      />
-                      <q-btn
-                        icon="add"
-                        unelevated
-                        dense
-                        size="sm"
-                        class="add-btn"
-                        @click="cartItemNum++"
-                      ></q-btn>
+                    <div class="price">
+                      ${{ (item.price * item.num).toFixed(2) }}
                     </div>
-                    <div class="price">$27.99</div>
-                  </div>
-                </div>
-                <div class="cart-item text-white q-pb-lg">
-                  <div class="cart-image">
-                    <!-- <img src="/zzf.jpeg" alt="" /> -->
-                  </div>
-                  <a href="javascript:void(0)" class="cart-title ellips"
-                    >modelo de lichi de Color sólido bufanda bolsa hombro
-                    Diagonal bolso</a
-                  >
-                  <div class="cart-num row justify-between">
-                    <div class="num-btn row">
-                      <q-btn
-                        icon="remove"
-                        unelevated
-                        dense
-                        size="sm"
-                        class="remove-btn"
-                        @click="
-                          if (cartItemNum > 0) {
-                            cartItemNum--
-                          }
-                        "
-                      ></q-btn>
-                      <input
-                        type="text"
-                        class="num-input"
-                        v-model="cartItemNum"
-                      />
-                      <q-btn
-                        icon="add"
-                        unelevated
-                        dense
-                        size="sm"
-                        class="add-btn"
-                        @click="cartItemNum++"
-                      ></q-btn>
-                    </div>
-                    <div class="price">$27.99</div>
                   </div>
                 </div>
               </q-card-section>
               <q-card-section class="text-white total">
                 <div class="row justify-between items-center">
                   <p class="total-title text-weight-bold">Total</p>
-                  <p class="total-price text-weight-bold ">$50.00</p>
+                  <p class="total-price text-weight-bold ">
+                    ${{ getTotalPrice.toFixed(2) }}
+                  </p>
                 </div>
                 <p class="total-tip text-grey-5 text-weight-bold">
                   Taxes and shipping calculated at checkout
@@ -400,48 +321,69 @@
       </div>
       <!-- 合作伙伴 -->
       <div class="partners row justify-center q-gutter-x-lg q-py-xl">
-        <div class="partners-item text-primary">Paypal</div>
-        <div class="partners-item text-primary">FedEx</div>
-        <div class="partners-item text-primary">DHL</div>
-        <div class="partners-item text-primary">UPS</div>
-        <div class="partners-item text-primary">EMS</div>
+        <a href="javascript:void(0)" class="partners-item text-primary">
+          <img src="../assets/paypal.png" alt="" />
+        </a>
+        <a href="javascript:void(0)" class="partners-item text-primary">
+          <img src="../assets/fedex.png" alt="" />
+        </a>
+        <a href="javascript:void(0)" class="partners-item text-primary">
+          <img src="../assets/dhl.png" alt="" />
+        </a>
+        <a href="javascript:void(0)" class="partners-item text-primary">
+          <img src="../assets/ups.png" alt="" />
+        </a>
+        <a href="javascript:void(0)" class="partners-item text-primary">
+          <img src="../assets/ems.png" alt="" />
+        </a>
       </div>
       <!-- 联系方式和付款方式 -->
       <div class="contact row justify-between">
         <div class="follow-us row col-2 justify-between">
-          <div class="iconfont icon-4CEBA48D845888E06C868951A5E1A875"></div>
-          <div class="iconfont icon-google"></div>
-          <div class="iconfont icon-inss"></div>
-          <div class="iconfont icon-we-chat"></div>
-          <div class="iconfont icon-whats-app"></div>
+          <a href="javascript:void(0)" class="follow-image">
+            <img src="../assets/ic_facebook.png" alt="" />
+          </a>
+          <a href="javascript:void(0)" class="follow-image">
+            <img src="../assets/ic_ins.png" alt="" />
+          </a>
+          <a href="javascript:void(0)" class="follow-image">
+            <img src="../assets/ic_whatsapp.png" alt="" />
+          </a>
+          <a href="javascript:void(0)" class="follow-image">
+            <img src="../assets/ic_g.png" alt="" />
+          </a>
+          <a href="javascript:void(0)" class="follow-image">
+            <img src="../assets/ic_wechat.png" alt="" />
+          </a>
         </div>
         <div class="payment row col-2 justify-between">
-          <div class="payment-item">
-            <img src="../assets/icon_Paypal.png" />
-          </div>
-          <div class="payment-item">
-            <img src="../assets/icon_Visa.png" />
-          </div>
-          <div class="payment-item">
-            <img src="../assets/icon_Jcb.png" />
-          </div>
-          <div class="payment-item">
-            <img src="../assets/icon_Mastercard.png" />
-          </div>
-          <div class="payment-item">
-            <img src="../assets/icon_Maestro.png" />
-          </div>
+          <a href="javascript:void(0)" class="payment-item">
+            <img src="../assets/icon_paypal.png" />
+          </a>
+          <a href="javascript:void(0)" class="payment-item">
+            <img src="../assets/icon_visa.png" />
+          </a>
+          <a href="javascript:void(0)" class="payment-item">
+            <img src="../assets/icon_jcb.png" />
+          </a>
+          <a href="javascript:void(0)" class="payment-item">
+            <img src="../assets/icon_wanshida.png" />
+          </a>
+          <a href="javascript:void(0)" class="payment-item">
+            <img src="../assets/icon_diners.png" />
+          </a>
         </div>
       </div>
       <!-- copyright -->
       <div class="copyright q-py-lg">
-        Copyright © 2007-2020 All Rights Reserved. POWERED BY UEESHOP
+        版权所有©2020-2020保留所有权利
       </div>
     </q-footer>
   </q-layout>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -456,8 +398,12 @@ export default {
       cartItemNum: 1
     }
   },
+  computed: {
+    ...mapGetters(['getCart', 'getTotalPrice'])
+  },
 
   methods: {
+    ...mapMutations(['addCartNum', 'removeCartNum']),
     changeLanguage() {
       this.lang = this.selectedLang
       // send axios
@@ -469,7 +415,9 @@ export default {
     },
     onSubmit() {}
   },
-  mounted() {},
+  mounted() {
+    // console.log(this.getCarts)
+  },
   destroyed() {}
 }
 </script>
@@ -573,9 +521,13 @@ export default {
     padding: 46px 64px;
     .partners {
       .partners-item {
-        background-color: #eee;
-        padding: 0.3rem 1.4rem;
-        border-radius: 0.5rem;
+        // background-color: #eee;
+        // padding: 0.3rem 1.4rem;
+        // border-radius: 0.5rem;
+        overflow: hidden;
+        img {
+          height: 33px;
+        }
       }
     }
     .contact {
@@ -583,11 +535,22 @@ export default {
         .iconfont {
           font-size: 1.5rem;
         }
+        .follow-image {
+          overflow: hidden;
+          img {
+            width: 26px;
+            height: 26px;
+          }
+        }
       }
       .payment {
-        .payment-item img {
-          height: 24px;
-          width: 36px;
+        .payment-item {
+          display: block;
+          overflow: hidden;
+          img {
+            height: 24px;
+            width: 36px;
+          }
         }
       }
     }
