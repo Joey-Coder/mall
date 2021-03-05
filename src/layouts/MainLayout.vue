@@ -5,6 +5,230 @@
 
       <q-toolbar class="row justify-between items-center">
         <div class="header-left">
+          <!-- 抽屉按钮 -->
+          <q-btn
+            flat
+            @click="drawerVisiable = true"
+            round
+            dense
+            icon="menu"
+            class="drawer-icon"
+            size="lg"
+          />
+          <!-- 抽屉菜单 -->
+          <q-dialog v-model="drawerVisiable" position="left" maximized>
+            <q-card class="bg-white drawer q-pa-md">
+              <q-list separator>
+                <!-- 注册或登录 -->
+                <q-item clickable v-ripple class="menu bg-grey-2">
+                  <q-item-section avatar>
+                    <q-icon
+                      name="account_circle"
+                      class="text-grey-8"
+                      size="xl"
+                    />
+                  </q-item-section>
+                  <q-item-section class="text-dark text-subtitle1">
+                    Sign in or Join Free
+                  </q-item-section>
+                </q-item>
+                <!-- 首页 -->
+                <q-item clickable v-ripple class="menu">
+                  <q-item-section class="text-dark text-subtitle1">
+                    Home
+                  </q-item-section>
+                </q-item>
+                <!-- 商品菜单 -->
+                <q-item
+                  clickable
+                  v-ripple
+                  class="menu"
+                  @click="productSubMenuVisiable = true"
+                >
+                  <q-item-section class="text-dark text-subtitle1">
+                    Product
+                  </q-item-section>
+                  <q-item-section side>
+                    <q-icon name="keyboard_arrow_right" size="lg" />
+                  </q-item-section>
+                  <!-- 商品子分类菜单 -->
+                  <q-dialog
+                    v-model="productSubMenuVisiable"
+                    position="left"
+                    maximized
+                  >
+                    <q-card class="bg-white drawer q-pa-md">
+                      <q-card-section
+                        class="row items-start justify-between no-wrap"
+                        v-close-popup
+                      >
+                        <div class="text-h6 text-dark">Product</div>
+                        <q-space />
+                        <q-btn
+                          icon="navigate_before"
+                          flat
+                          round
+                          dense
+                          text-color="dark"
+                        />
+                      </q-card-section>
+                      <q-list separator>
+                        <q-item clickable v-ripple class="menu">
+                          <q-item-section class="text-dark text-subtitle1">
+                            Category
+                          </q-item-section>
+                        </q-item>
+                        <q-item clickable v-ripple class="menu">
+                          <q-item-section class="text-dark text-subtitle1">
+                            Category
+                          </q-item-section>
+                        </q-item>
+                        <q-item clickable v-ripple class="menu">
+                          <q-item-section class="text-dark text-subtitle1">
+                            Category
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-card>
+                  </q-dialog>
+                </q-item>
+                <!-- 关于 -->
+                <q-item clickable v-ripple class="menu">
+                  <q-item-section class="text-dark text-subtitle1">
+                    About
+                  </q-item-section>
+                </q-item>
+                <q-separator size="8px" />
+                <!-- 语言 -->
+                <q-item
+                  clickable
+                  v-ripple
+                  class="menu"
+                  @click="languageSubMenuVisiable = true"
+                >
+                  <q-item-section avatar style="font-size: 1.5rem">
+                    <svg class="icon" aria-hidden="true">
+                      <use
+                        xlink:href="#icon-meiguo"
+                        v-if="lang === 'United States'"
+                      ></use>
+                      <use
+                        xlink:href="#icon-eluosi"
+                        v-if="lang === 'Россия'"
+                      ></use>
+                      <use
+                        xlink:href="#icon-tuerqi"
+                        v-if="lang === 'Türkiye'"
+                      ></use>
+                      <use
+                        xlink:href="#icon-alabolianheqiuchangguo"
+                        v-if="lang === 'لغة عربية'"
+                      ></use>
+                    </svg>
+                  </q-item-section>
+                  <q-item-section class="text-dark text-subtitle1">
+                    {{ lang }}
+                  </q-item-section>
+
+                  <q-item-section side>
+                    <q-icon name="keyboard_arrow_right" size="lg" />
+                  </q-item-section>
+                  <!-- 语言选择子菜单 -->
+                  <q-dialog
+                    v-model="languageSubMenuVisiable"
+                    position="left"
+                    maximized
+                  >
+                    <q-card class="bg-white drawer q-pa-md">
+                      <q-card-section
+                        class="row items-start justify-between no-wrap"
+                        v-close-popup
+                      >
+                        <div class="text-h6 text-dark">{{ lang }}</div>
+                        <q-space />
+                        <q-btn
+                          icon="navigate_before"
+                          flat
+                          round
+                          dense
+                          text-color="dark"
+                        />
+                      </q-card-section>
+                      <q-list separator>
+                        <q-item
+                          clickable
+                          v-ripple
+                          class="menu"
+                          @click="lang = 'United States'"
+                          v-close-popup
+                        >
+                          <q-item-section avatar style="font-size: 1.5rem">
+                            <svg class="icon" aria-hidden="true">
+                              <use xlink:href="#icon-meiguo"></use>
+                            </svg>
+                          </q-item-section>
+                          <q-item-section class="text-dark text-subtitle1">
+                            United States
+                          </q-item-section>
+                        </q-item>
+                        <q-item
+                          clickable
+                          v-ripple
+                          class="menu"
+                          @click="lang = 'Россия'"
+                          v-close-popup
+                        >
+                          <q-item-section avatar style="font-size: 1.5rem">
+                            <svg class="icon q-mr-sm" aria-hidden="true">
+                              <use xlink:href="#icon-eluosi"></use>
+                            </svg>
+                          </q-item-section>
+                          <q-item-section class="text-dark text-subtitle1">
+                            Россия
+                          </q-item-section>
+                        </q-item>
+                        <q-item
+                          clickable
+                          v-ripple
+                          class="menu"
+                          @click="lang = 'Türkiye'"
+                          v-close-popup
+                        >
+                          <q-item-section avatar style="font-size: 1.5rem">
+                            <svg class="icon q-mr-sm" aria-hidden="true">
+                              <use xlink:href="#icon-tuerqi"></use>
+                            </svg>
+                          </q-item-section>
+                          <q-item-section class="text-dark text-subtitle1">
+                            Türkiye
+                          </q-item-section>
+                        </q-item>
+                        <q-item
+                          clickable
+                          v-ripple
+                          class="menu"
+                          @click="lang = 'لغة عربية'"
+                          v-close-popup
+                        >
+                          <q-item-section avatar style="font-size: 1.5rem">
+                            <svg class="icon q-mr-sm" aria-hidden="true">
+                              <use
+                                xlink:href="#icon-alabolianheqiuchangguo"
+                              ></use>
+                            </svg>
+                          </q-item-section>
+                          <q-item-section class="text-dark text-subtitle1">
+                            لغة عربية
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-card>
+                  </q-dialog>
+                </q-item>
+                <q-separator />
+              </q-list>
+            </q-card>
+          </q-dialog>
           <a href="#"><img src="../assets/logo.png" alt=""/></a>
           <nav>
             <a href="">Home</a>
@@ -30,8 +254,12 @@
             <a href="">About</a>
           </nav>
         </div>
+
+        <a href="#" class="logo"><img src="../assets/logo.png" alt=""/></a>
         <div class="header-right">
-          <button class="lang" @click="langVisiable = true">USD</button>
+          <button class="lang" @click="langVisiable = true">
+            {{ lang }}
+          </button>
           <!-- 语言切换dialog -->
           <q-dialog v-model="langVisiable" persistent>
             <q-card style="max-width:60vw">
@@ -49,13 +277,16 @@
               </q-card-section>
               <q-separator />
               <q-card-section class="dialog-content col q-py-lg">
+                <!-- 英语 -->
                 <q-btn
                   class="col-3 q-mx-sm q-my-lg"
                   style="width: 12rem"
                   unelevated
-                  :color="selectedLang === 'us' ? 'grey-4' : 'grey-2'"
+                  :color="
+                    selectedLang === 'United States' ? 'grey-4' : 'grey-2'
+                  "
                   text-color="dark"
-                  @click="selectedLang = 'us'"
+                  @click="selectedLang = 'United States'"
                 >
                   <!-- <q-icon left size="3em" name="map" /> -->
                   <div class="q-mr-sm">
@@ -65,12 +296,13 @@
                   </div>
                   <div>United States</div>
                 </q-btn>
+                <!-- 俄语 -->
                 <q-btn
                   class="col-3 q-mx-sm q-my-lg"
                   style="width: 12rem"
                   unelevated
-                  @click="selectedLang = 'els'"
-                  :color="selectedLang === 'els' ? 'grey-4' : 'grey-2'"
+                  @click="selectedLang = 'Россия'"
+                  :color="selectedLang === 'Россия' ? 'grey-4' : 'grey-2'"
                   text-color="dark"
                 >
                   <svg class="icon q-mr-sm" aria-hidden="true">
@@ -78,12 +310,13 @@
                   </svg>
                   <div>Россия</div>
                 </q-btn>
+                <!-- 土耳其 -->
                 <q-btn
                   class="col-3 q-mx-sm q-my-lg"
                   style="width: 12rem"
                   unelevated
-                  @click="selectedLang = 'teq'"
-                  :color="selectedLang === 'teq' ? 'grey-4' : 'grey-2'"
+                  @click="selectedLang = 'Türkiye'"
+                  :color="selectedLang === 'Türkiye' ? 'grey-4' : 'grey-2'"
                   text-color="dark"
                 >
                   <svg class="icon q-mr-sm" aria-hidden="true">
@@ -91,12 +324,13 @@
                   </svg>
                   <div>Türkiye</div>
                 </q-btn>
+                <!-- 阿拉伯 -->
                 <q-btn
                   class="col-3 q-mx-sm q-my-lg"
                   style="width: 12rem"
                   unelevated
-                  @click="selectedLang = 'alb'"
-                  :color="selectedLang === 'alb' ? 'grey-4' : 'grey-2'"
+                  @click="selectedLang = 'لغة عربية'"
+                  :color="selectedLang === 'لغة عربية' ? 'grey-4' : 'grey-2'"
                   text-color="dark"
                 >
                   <svg class="icon q-mr-sm" aria-hidden="true">
@@ -113,6 +347,7 @@
                   color="dark"
                   unelevated
                   v-close-popup
+                  @click="changeLanguage"
                 />
               </q-card-actions>
             </q-card>
@@ -120,13 +355,13 @@
           <!-- 个人中心浮窗 -->
           <a
             href="#"
-            class="user"
+            class="user-icon"
             @mouseover="popUpVisiable = true"
             @mouseleave="mouseLeave()"
             ><i class="iconfont icon-user1"></i>
             <q-popup-proxy
               no-parent-event
-              target=".user"
+              target=".user-icon"
               v-model="popUpVisiable"
               @mouseover="inPopUp = true"
               @mouseleave="
@@ -186,9 +421,10 @@
             </q-popup-proxy></a
           >
           <!-- 购物车按钮 -->
-          <a href="#" @click="shopCarVisiable = true"
-            ><i class="iconfont icon-shopcart-o-fws"></i
-          ></a>
+          <a href="#" @click="shopCarVisiable = true" class="cart-icon"
+            ><i class="iconfont icon-iconfontcart-copy"></i>
+            <span>{{ getTotalPrice.toFixed(2) }}</span>
+          </a>
           <q-dialog
             v-model="shopCarVisiable"
             position="right"
@@ -199,7 +435,7 @@
               style="width: 23vw; height: 100vh"
               class="bg-dark cart q-pa-md"
             >
-              <q-card-section class="row items-start justify-between no-wrap">
+              <q-card-section class="cart-title row items-start justify-between no-wrap">
                 <div class="text-h6 text-white">Your Cart</div>
                 <q-space />
                 <q-btn
@@ -388,14 +624,16 @@ export default {
   data() {
     return {
       langVisiable: false,
-      selectedLang: 'us',
-      lang: 'us',
+      selectedLang: 'United States',
+      lang: 'United States',
       popUpVisiable: false,
       inPopUp: false,
       email: null,
       password: null,
       shopCarVisiable: false,
-      cartItemNum: 1
+      drawerVisiable: false,
+      productSubMenuVisiable: false,
+      languageSubMenuVisiable: false
     }
   },
   computed: {
@@ -454,12 +692,16 @@ export default {
             }
           }
         }
+        .drawer-icon {
+          display: none;
+        }
       }
       .header-right {
         justify-self: end;
         display: flex;
         .lang {
           margin-right: 2rem;
+          width: 9rem;
           padding: 0;
           border: 1px solid transparent;
           outline: none;
@@ -468,6 +710,7 @@ export default {
           font-size: 1.2rem;
           font-weight: 500;
           cursor: pointer;
+          text-align: end;
         }
         a {
           display: block;
@@ -485,6 +728,16 @@ export default {
           color: #000;
           font-size: 2rem;
         }
+        .cart-icon {
+          display: flex;
+          justify-content: center;
+          span {
+            margin-left: 5px;
+          }
+        }
+      }
+      .logo {
+        display: none;
       }
     }
   }
@@ -550,6 +803,77 @@ export default {
           img {
             height: 24px;
             width: 36px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .q-layout {
+    .q-header {
+      height: 100px;
+      padding: 0 1rem;
+      .q-toolbar {
+        // display: flex;
+        // justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        .logo {
+          display: block;
+          justify-self: center;
+        }
+        .header-left {
+          justify-self: start;
+          nav,
+          img {
+            display: none;
+          }
+
+          .drawer-icon {
+            display: block;
+          }
+        }
+        .header-right {
+          justify-self: end;
+          .lang {
+            display: none;
+          }
+          .cart-icon {
+            font-size: 1rem;
+            margin: 0 1rem;
+            span {
+              display: none;
+            }
+          }
+          .user-icon {
+            font-size: 1rem;
+            margin: 0 1rem;
+          }
+        }
+      }
+    }
+    .q-page-container {
+      .tool-btn-group {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .q-layout {
+    .q-header {
+      height: 80px;
+      padding: 0;
+      .q-toolbar {
+        .header-right {
+          .cart-icon,
+          .user-icon {
+            font-size: 0.8rem;
+            margin: 0 0.5rem;
           }
         }
       }
