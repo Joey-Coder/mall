@@ -625,7 +625,7 @@
         </a>
       </div>
       <!-- 联系方式和付款方式 -->
-      <div class="contact row justify-between">
+      <div class="contact">
         <div class="follow-us row col-2 justify-between">
           <a href="javascript:void(0)" class="follow-image">
             <img src="../assets/ic_facebook.png" alt="" />
@@ -874,12 +874,18 @@ export default {
       }
     }
     .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
       .follow-us {
+        justify-self: flex-start;
         .iconfont {
           font-size: 1.5rem;
         }
         .follow-image {
+          display: block;
           overflow: hidden;
+          margin-right: 1.2rem;
           img {
             width: 26px;
             height: 26px;
@@ -887,9 +893,12 @@ export default {
         }
       }
       .payment {
+        justify-self: flex-end;
+
         .payment-item {
           display: block;
           overflow: hidden;
+          margin-right: 1.2rem;
           img {
             height: 24px;
             width: 36px;
@@ -988,6 +997,24 @@ export default {
       }
       .partners {
         justify-content: flex-start;
+        padding: 1rem 0;
+      }
+      .contact {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        justify-items: flex-start;
+        align-content: center;
+        .follow-us {
+          justify-self: flex-start;
+          align-self: center;
+          margin-bottom: 10px;
+        }
+        .payment {
+          justify-self: flex-start;
+          align-self: center;
+        }
+      }
+      .copyright {
         padding: 1rem 0;
       }
     }
