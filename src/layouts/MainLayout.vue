@@ -78,22 +78,18 @@
                         />
                       </q-card-section>
                       <q-list separator>
-                        <q-item clickable v-ripple class="menu">
+                        <q-item
+                          clickable
+                          v-ripple
+                          class="menu"
+                          v-for="i in 3"
+                          :key="i"
+                        >
                           <q-item-section
                             class="text-dark text-subtitle1"
-                            @click="goTo('products','category1')"
+                            @click="goTo('products', `category${i}`)"
                           >
-                            Category
-                          </q-item-section>
-                        </q-item>
-                        <q-item clickable v-ripple class="menu">
-                          <q-item-section class="text-dark text-subtitle1">
-                            Category
-                          </q-item-section>
-                        </q-item>
-                        <q-item clickable v-ripple class="menu">
-                          <q-item-section class="text-dark text-subtitle1">
-                            Category
+                            Category{{ i }}
                           </q-item-section>
                         </q-item>
                       </q-list>
@@ -253,19 +249,10 @@
               >Product
               <q-menu>
                 <q-list style="min-width: 100px">
-                  <q-item clickable v-close-popup>
-                    <q-item-section @click="goTo('products', 'category1')"
-                      >category1</q-item-section
+                  <q-item clickable v-close-popup v-for="i in 3" :key="i">
+                    <q-item-section @click="goTo('products', `category${i}`)"
+                      >category{{ i }}</q-item-section
                     >
-                  </q-item>
-                  <q-item clickable v-close-popup>
-                    <q-item-section>category</q-item-section>
-                  </q-item>
-                  <q-item clickable v-close-popup>
-                    <q-item-section>category</q-item-section>
-                  </q-item>
-                  <q-item clickable v-close-popup>
-                    <q-item-section>category</q-item-section>
                   </q-item>
                 </q-list>
               </q-menu>
