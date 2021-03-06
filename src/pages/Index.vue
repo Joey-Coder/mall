@@ -252,7 +252,7 @@
 // import LazyImg from '../components/LazyImg'
 import ScrollReveal from 'scrollreveal'
 export default {
-  name: 'PageIndex',
+  name: 'Index',
   data() {
     return {
       slide: 1,

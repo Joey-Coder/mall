@@ -33,7 +33,12 @@
                   </q-item-section>
                 </q-item>
                 <!-- 首页 -->
-                <q-item clickable v-ripple class="menu">
+                <q-item
+                  clickable
+                  v-ripple
+                  class="menu"
+                  @click="goTo('index', '')"
+                >
                   <q-item-section class="text-dark text-subtitle1">
                     Home
                   </q-item-section>
@@ -74,7 +79,10 @@
                       </q-card-section>
                       <q-list separator>
                         <q-item clickable v-ripple class="menu">
-                          <q-item-section class="text-dark text-subtitle1">
+                          <q-item-section
+                            class="text-dark text-subtitle1"
+                            @click="goTo('products','category1')"
+                          >
                             Category
                           </q-item-section>
                         </q-item>
@@ -94,7 +102,10 @@
                 </q-item>
                 <!-- 关于 -->
                 <q-item clickable v-ripple class="menu">
-                  <q-item-section class="text-dark text-subtitle1">
+                  <q-item-section
+                    class="text-dark text-subtitle1"
+                    @click="goTo('about', '')"
+                  >
                     About
                   </q-item-section>
                 </q-item>
@@ -231,13 +242,19 @@
           </q-dialog>
           <a href="#"><img src="../assets/logo.png" alt=""/></a>
           <nav>
-            <a href="">Home</a>
+            <a
+              href="javascript:void(0)"
+              clickable
+              v-close-popup
+              @click="goTo('index', '')"
+              >Home</a
+            >
             <a href="javascript:void(0);"
               >Product
               <q-menu>
                 <q-list style="min-width: 100px">
                   <q-item clickable v-close-popup>
-                    <q-item-section @click="goTo('category1')"
+                    <q-item-section @click="goTo('products', 'category1')"
                       >category1</q-item-section
                     >
                   </q-item>
@@ -253,7 +270,7 @@
                 </q-list>
               </q-menu>
             </a>
-            <a href="">About</a>
+            <a href="javascript:void(0)" @click="goTo('about', '')">About</a>
           </nav>
         </div>
 
@@ -708,8 +725,8 @@ export default {
       }, 500)
     },
     onSubmit() {},
-    goTo(id) {
-      this.$router.push({ name: 'products', params: { id } })
+    goTo(name, id) {
+      this.$router.push({ name: name, params: { id } })
     }
   },
   mounted() {
