@@ -46,7 +46,7 @@
     <!-- 商品海报区 -->
     <section class="postcard">
       <div class="postcard-item col-12">
-        <q-img src="../assets/postcard1.jpg" class="q-mr-xl">
+        <q-img src="../assets/bu1.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
             <q-btn color="black">Shop this fabri-></q-btn>
@@ -54,7 +54,7 @@
         </q-img>
       </div>
       <div class="postcard-item col-12">
-        <q-img src="../assets/postcard2.jpg" class="q-mr-xl">
+        <q-img src="../assets/bu2.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
             <q-btn label="Shop this fabri->" color="black"></q-btn>
@@ -62,7 +62,7 @@
         </q-img>
       </div>
       <div class="postcard-item col-12">
-        <q-img src="../assets/postcard1.jpg" class="q-mr-xl">
+        <q-img src="../assets/bu3.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
             <q-btn label="Shop this fabri->" color="black"></q-btn>
@@ -70,7 +70,7 @@
         </q-img>
       </div>
       <div class="postcard-item col-12">
-        <q-img src="../assets/postcard2.jpg" class="q-mr-xl">
+        <q-img src="../assets/bu4.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
             <q-btn label="Shop this fabri->" color="black"></q-btn>
@@ -82,7 +82,7 @@
     <section class="products q-pa-xl">
       <div class="product">
         <div class="product-image">
-          <a href="#"><img src="../assets/product.jpg" alt="product"/></a>
+          <a href="#"><img src="../assets/bu1.jpg" alt="product"/></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
               <i class="iconfont icon-gouwudai"></i>
@@ -105,7 +105,7 @@
       </div>
       <div class="product">
         <div class="product-image">
-          <a href="#"><img src="../assets/product.jpg" alt="product"/></a>
+          <a href="#"><img src="../assets/bu2.jpg" alt="product"/></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
               <i class="iconfont icon-gouwudai"></i>
@@ -128,7 +128,7 @@
       </div>
       <div class="product">
         <div class="product-image">
-          <a href="#"><img src="../assets/product.jpg" alt="product"/></a>
+          <a href="#"><img src="../assets/bu3.jpg" alt="product"/></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
               <i class="iconfont icon-gouwudai"></i>
@@ -151,7 +151,7 @@
       </div>
       <div class="product">
         <div class="product-image">
-          <a href="#"><img src="../assets/product.jpg" alt="product"/></a>
+          <a href="#"><img src="../assets/bu4.jpg" alt="product"/></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
               <i class="iconfont icon-gouwudai"></i>
@@ -174,7 +174,7 @@
       </div>
       <div class="product">
         <div class="product-image">
-          <a href="#"><img src="../assets/product.jpg" alt="product"/></a>
+          <a href="#"><img src="../assets/bu5.jpg" alt="product"/></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
               <i class="iconfont icon-gouwudai"></i>
@@ -197,7 +197,7 @@
       </div>
       <div class="product">
         <div class="product-image">
-          <a href="#"><img src="../assets/product.jpg" alt="product"/></a>
+          <a href="#"><img src="../assets/bu1.jpg" alt="product"/></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
               <i class="iconfont icon-gouwudai"></i>
