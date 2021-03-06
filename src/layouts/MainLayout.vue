@@ -237,7 +237,9 @@
               <q-menu>
                 <q-list style="min-width: 100px">
                   <q-item clickable v-close-popup>
-                    <q-item-section>category</q-item-section>
+                    <q-item-section @click="goTo('category1')"
+                      >category1</q-item-section
+                    >
                   </q-item>
                   <q-item clickable v-close-popup>
                     <q-item-section>category</q-item-section>
@@ -705,7 +707,10 @@ export default {
         this.popUpVisiable = this.inPopUp
       }, 500)
     },
-    onSubmit() {}
+    onSubmit() {},
+    goTo(id) {
+      this.$router.push({ name: 'products', params: { id } })
+    }
   },
   mounted() {
     // console.log(this.getCarts)
@@ -1069,7 +1074,7 @@ export default {
             font-size: 1.5rem;
           }
           // 选择从0到3的子节点
-          &:nth-child(-n+3) {
+          &:nth-child(-n + 3) {
             display: none;
           }
         }
