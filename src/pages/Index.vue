@@ -516,6 +516,9 @@ export default {
             height: 90vw;
           }
         }
+        .product-desc {
+          font-size: 1rem;
+        }
       }
     }
     .contact-info {
