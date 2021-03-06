@@ -532,21 +532,78 @@
 
     <q-footer elevated class="bg-grey-8 text-white">
       <!-- 底部菜单栏 -->
-      <div class="footer-menu row justify-between q-pb-xl">
-        <div class="member q-gutter-lg">
-          <div class="footer-title text-h6">Member</div>
-          <div>Order Tracking</div>
-          <div>Create an Account</div>
+      <div class="footer-menu" v-if="$q.screen.lt.lg">
+        <div class="member">
+          <div
+            class="member-title text-h6 row justify-between items-center"
+            @click="memberVisiable = !memberVisiable"
+          >
+            <div>Member</div>
+            <q-btn icon="add" flat dense v-if="!memberVisiable"></q-btn>
+            <q-btn icon="remove" flat dense v-else></q-btn>
+          </div>
+          <div class="member-text" v-if="memberVisiable">
+            <div class="q-pt-md">Order Tracking</div>
+            <div>Create an Account</div>
+          </div>
         </div>
-        <div class="overview q-gutter-lg">
-          <div class="text-h6">Overview</div>
-          <div>Payment Methods</div>
-          <div>Shipping & Returns</div>
+        <div class="overview ">
+          <div
+            class="overview-title text-h6 row justify-between items-center"
+            @click="overviewVisiable = !overviewVisiable"
+          >
+            <div>Overview</div>
+            <q-btn icon="add" flat dense v-if="!overviewVisiable"></q-btn>
+            <q-btn icon="remove" flat dense v-else></q-btn>
+          </div>
+          <div class="overview-text" v-if="overviewVisiable">
+            <div class="q-pt-md">Payment Methods</div>
+            <div>Shipping & Returns</div>
+          </div>
         </div>
-        <div class="help q-gutter-lg">
-          <div class="text-h6">FAQ & Help</div>
-          <div>FAQ</div>
-          <div>Buyer Protection</div>
+        <div class="help ">
+          <div
+            class="text-h6 help-title row justify-between items-center"
+            @click="helpVisiable = !helpVisiable"
+          >
+            <div>FAQ & Help</div>
+            <q-btn icon="add" flat dense v-if="!helpVisiable"></q-btn>
+            <q-btn icon="remove" flat dense v-else></q-btn>
+          </div>
+          <div class="help-text" v-if="helpVisiable">
+            <div class="q-pt-md">FAQ</div>
+            <div>Buyer Protection</div>
+          </div>
+        </div>
+      </div>
+      <!-- 底部菜单栏 -->
+      <div class="footer-menu" v-else>
+        <div class="member">
+          <div class="member-title text-h6 ">
+            Member
+          </div>
+          <div class="member-text">
+            <div class="q-pt-md">Order Tracking</div>
+            <div>Create an Account</div>
+          </div>
+        </div>
+        <div class="overview ">
+          <div class="overview-title text-h6">
+            Overview
+          </div>
+          <div class="overview-text">
+            <div class="q-pt-md">Payment Methods</div>
+            <div>Shipping & Returns</div>
+          </div>
+        </div>
+        <div class="help ">
+          <div class="text-h6 help-title ">
+            FAQ & Help
+          </div>
+          <div class="help-text">
+            <div class="q-pt-md">FAQ</div>
+            <div>Buyer Protection</div>
+          </div>
         </div>
       </div>
       <!-- 合作伙伴 -->
@@ -627,7 +684,10 @@ export default {
       shopCarVisiable: false,
       drawerVisiable: false,
       productSubMenuVisiable: false,
-      languageSubMenuVisiable: false
+      languageSubMenuVisiable: false,
+      memberVisiable: false,
+      overviewVisiable: false,
+      helpVisiable: false
     }
   },
   computed: {
@@ -649,6 +709,7 @@ export default {
   },
   mounted() {
     // console.log(this.getCarts)
+    this.$q.screen.setSizes({ sm: 599, md: 700, lg: 998, xl: 110 })
   },
   destroyed() {}
 }
@@ -766,11 +827,46 @@ export default {
   .q-footer {
     z-index: 200;
     padding: 46px 64px;
+    .footer-menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+      justify-content: center;
+      .member {
+        justify-self: flex-start;
+        .member-title {
+          padding-bottom: 10px;
+        }
+        .member-text {
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          row-gap: 15px;
+        }
+      }
+      .help {
+        justify-self: flex-end;
+        .help-title {
+          padding-bottom: 10px;
+        }
+        .help-text {
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          row-gap: 15px;
+        }
+      }
+      .overview {
+        .overview-title {
+          padding-bottom: 10px;
+        }
+        .overview-text {
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          row-gap: 15px;
+        }
+      }
+    }
     .partners {
       .partners-item {
-        // background-color: #eee;
-        // padding: 0.3rem 1.4rem;
-        // border-radius: 0.5rem;
         overflow: hidden;
         img {
           height: 33px;
@@ -858,6 +954,42 @@ export default {
   }
 }
 
+@media (max-width: 998px) {
+  .q-layout {
+    .q-footer {
+      .footer-menu {
+        display: flex;
+        flex-direction: column;
+        // grid-template-columns: 1fr;
+        // grid-template-rows: repeat(3, 1fr);
+        // justify-items: flex-start;
+        .member {
+          width: 100%;
+          padding-bottom: 15px;
+          cursor: pointer;
+          .member-text {
+          }
+        }
+        .overview {
+          width: 100%;
+          padding-bottom: 15px;
+          cursor: pointer;
+          .overview-text {
+          }
+        }
+        .help {
+          width: 100%;
+          padding-bottom: 15px;
+          // justify-self: flex-start;
+          cursor: pointer;
+          .help-text {
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 700px) {
   .q-layout {
     .q-header {
@@ -869,6 +1001,50 @@ export default {
           .user-icon {
             font-size: 0.8rem;
             margin: 0 0.5rem;
+          }
+        }
+      }
+    }
+    .q-footer {
+      padding: 2rem;
+      .footer-menu {
+        .member {
+          .member-title {
+            div {
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .q-layout {
+    .q-header {
+    }
+    .q-footer {
+      .member {
+        .member-title {
+          div {
+            font-size: 1.1rem;
+            font-weight: 700;
+          }
+        }
+      }
+      .overview {
+        .overview-title {
+          div {
+            font-size: 1.1rem;
+            font-weight: 700;
+          }
+        }
+      }
+      .help {
+        .help-title {
+          div {
+            font-size: 1.1rem;
+            font-weight: 700;
           }
         }
       }

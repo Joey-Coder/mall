@@ -411,8 +411,10 @@ export default {
     column-gap: 5vw;
     .info {
       display: grid;
+      grid-template-rows: 50px 1fr 2fr;
       justify-items: center;
       text-align: center;
+      row-gap: 8px;
       .icon {
         // background-color: #eee;
         height: 50px;
@@ -479,6 +481,11 @@ export default {
         }
       }
     }
+    .concact-info {
+      .info {
+        row-gap: 5px;
+      }
+    }
   }
 }
 @media (max-width: 700px) {
@@ -508,6 +515,22 @@ export default {
           img {
             height: 90vw;
           }
+        }
+      }
+    }
+    .contact-info {
+      padding: 15px !important;
+      .info {
+        display: grid;
+        grid-template-rows: 50px 1fr 2fr;
+        row-gap: 5px;
+        .title {
+          font-size: 1.5rem;
+          // font-weight: 600;
+        }
+        .text {
+          width: 80%;
+          font-size: 1px;
         }
       }
     }
@@ -541,6 +564,7 @@ export default {
       .info {
         display: grid;
         grid-template-rows: 50px 1fr 2fr;
+        row-gap: 5px;
         .title {
           font-size: 1.2rem;
           // font-weight: 600;
