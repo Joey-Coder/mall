@@ -531,7 +531,7 @@
     </q-page-container>
 
     <q-footer elevated class="bg-grey-8 text-white">
-      <!-- 底部菜单栏 -->
+      <!-- 底部菜单栏 移动端版本-->
       <div class="footer-menu" v-if="$q.screen.lt.lg">
         <div class="member">
           <div
@@ -985,6 +985,10 @@ export default {
           .help-text {
           }
         }
+      }
+      .partners {
+        justify-content: flex-start;
+        padding: 1rem 0;
       }
     }
   }
