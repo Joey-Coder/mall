@@ -356,8 +356,8 @@
           <a
             href="#"
             class="user-icon"
-            @mouseover="popUpVisiable = true"
             @mouseleave="mouseLeave()"
+            @mouseover="popUpVisiable = true"
             ><i class="iconfont icon-user1"></i>
             <q-popup-proxy
               no-parent-event
@@ -369,7 +369,7 @@
                 popUpVisiable = false
               "
             >
-              <q-form @submit="onSubmit" class="user-form q-pa-lg">
+              <q-form @submit="onSubmit" class="user-form q-pa-lg bg-white">
                 <q-input
                   class="q-my-sm"
                   filled
@@ -425,17 +425,11 @@
             ><i class="iconfont icon-iconfontcart-copy"></i>
             <span>{{ getTotalPrice.toFixed(2) }}</span>
           </a>
-          <q-dialog
-            v-model="shopCarVisiable"
-            position="right"
-            maximized
-            persistent
-          >
-            <q-card
-              style="width: 23vw; height: 100vh"
-              class="bg-dark cart q-pa-md"
-            >
-              <q-card-section class="cart-title row items-start justify-between no-wrap">
+          <q-dialog v-model="shopCarVisiable" position="right" maximized>
+            <q-card class="bg-dark cart q-pa-md">
+              <q-card-section
+                class="cart-title row items-start justify-between no-wrap"
+              >
                 <div class="text-h6 text-white">Your Cart</div>
                 <q-space />
                 <q-btn
@@ -849,6 +843,7 @@ export default {
             }
           }
           .user-icon {
+            display: none;
             font-size: 1rem;
             margin: 0 1rem;
           }

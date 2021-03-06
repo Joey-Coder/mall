@@ -45,57 +45,22 @@
 
     <!-- 商品海报区 -->
     <section class="postcard">
-      <!-- 海报图1 -->
-      <!-- <div class="postcard-item-1 q-pa-xl">
-        <div class="image-wrapper-1">
-          <img src="../assets/2*2-1.jpg" alt="" />
-        </div>
-        <div class="title">
-          <p class="text-h3">Best shirts for this summer</p>
-          <p>
-            Nam at dui lacus . Sed porttitor , metus idtristique maximus ,nisl
-            ligula ultrices
-          </p>
-          <q-btn color="black" label="BUY NOW" outline></q-btn>
-        </div>
-        <div class="image-wrapper-2">
-          <img src="../assets/2*2-2.jpg" alt="" />
-        </div>
-      </div> -->
-      <!-- 海报图2 -->
-      <!-- <div class="postcard-item-2 q-pa-xl">
-        <div class="image-wrapper-1">
-          <img src="../assets/3*3-1.jpg" alt="" />
-        </div>
-        <div class="image-wrapper-2">
-          <img src="../assets/3*3-2.jpg" alt="" />
-        </div>
-        <div class="title">
-          <p class="text-h3">Best shirts for this summer</p>
-          <p>
-            Nam at dui lacus . Sed porttitor , metus idtristique maximus ,nisl
-            ligula ultrices
-          </p>
-          <q-btn color="black" label="BUY NOW" outline></q-btn>
-        </div>
-      </div> -->
-
-      <!-- 海报图3 -->
-      <!-- <div class="postcard-item-3 q-pa-xl">
-        <q-img
-          src="../assets/TheBestChoice.jpg"
-          style="height: 480px"
-          class="q-mr-xl"
-        >
-          <div
-            class="text-h2 text-black flex flex-center absolute-full bg-transparent column"
-          >
-            <p>THE BEST CHOICE</p>
-            <q-btn label="Shop this fabri->" outline color="black"></q-btn>
+      <div class="postcard-item col-12">
+        <q-img src="../assets/postcard1.jpg" class="q-mr-xl">
+          <div class="flex flex-center absolute-full bg-transparent column">
+            <h4>THE BEST CHOICE</h4>
+            <q-btn color="black">Shop this fabri-></q-btn>
           </div>
         </q-img>
-      </div> -->
-      <!-- 海报图1 -->
+      </div>
+      <div class="postcard-item col-12">
+        <q-img src="../assets/postcard2.jpg" class="q-mr-xl">
+          <div class="flex flex-center absolute-full bg-transparent column">
+            <h4>THE BEST CHOICE</h4>
+            <q-btn label="Shop this fabri->" color="black"></q-btn>
+          </div>
+        </q-img>
+      </div>
       <div class="postcard-item col-12">
         <q-img src="../assets/postcard1.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
@@ -104,23 +69,7 @@
           </div>
         </q-img>
       </div>
-      <div class="postcard-item">
-        <q-img src="../assets/postcard2.jpg" class="q-mr-xl">
-          <div class="flex flex-center absolute-full bg-transparent column">
-            <h4>THE BEST CHOICE</h4>
-            <q-btn label="Shop this fabri->" color="black"></q-btn>
-          </div>
-        </q-img>
-      </div>
-      <div class="postcard-item">
-        <q-img src="../assets/postcard1.jpg" class="q-mr-xl">
-          <div class="flex flex-center absolute-full bg-transparent column">
-            <h4>THE BEST CHOICE</h4>
-            <q-btn label="Shop this fabri->" color="black"></q-btn>
-          </div>
-        </q-img>
-      </div>
-      <div class="postcard-item">
+      <div class="postcard-item col-12">
         <q-img src="../assets/postcard2.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
@@ -292,7 +241,7 @@
         </div>
         <h5 class="title">address</h5>
         <p class="text">
-          美國華盛頓哥倫比亞特區西北區賓夕法尼亞大道1600號美國華盛頓哥倫比亞特區西北區賓夕法尼亞大道1600號
+          美國華盛頓哥倫比亞特區西北區賓夕法尼亞大道1600號
         </p>
       </div>
     </section>
@@ -382,74 +331,6 @@ export default {
         }
       }
     }
-    // .postcard-item-1 {
-    //   display: grid;
-    //   grid-template-areas: 'pic1 title' 'pic1 pic2';
-    //   grid-template-columns: 1fr 1fr;
-    //   grid-template-rows: 220px 1fr;
-    //   gap: 80px;
-
-    //   .image-wrapper-1 {
-    //     grid-area: pic1;
-    //     overflow: hidden;
-    //     place-self: end end;
-    //     img {
-    //       width: 100%;
-    //       height: 700px;
-    //       object-fit: cover;
-    //       object-position: top center;
-    //     }
-    //   }
-    //   .image-wrapper-2 {
-    //     grid-area: pic2;
-    //     overflow: hidden;
-    //     place-self: start start;
-    //     img {
-    //       width: 100%;
-    //       height: 500px;
-    //       object-fit: cover;
-    //       object-position: top center;
-    //     }
-    //   }
-    //   .title {
-    //     width: 75%;
-    //     grid-area: title;
-    //     place-self: center start;
-    //     text-align: center;
-    //   }
-    //   ::v-deep .q-img__image {
-    //     background-position: top center !important;
-    //   }
-    // }
-    // .postcard-item-2 {
-    //   display: grid;
-    //   grid-template-columns: 1fr 1fr 1fr;
-    //   gap: 80px;
-    //   align-items: center;
-    //   .image-wrapper-1 {
-    //     overflow: hidden;
-    //     // place-self: center end;
-    //     img {
-    //       width: 100%;
-    //       height: 510px;
-    //       object-fit: cover;
-    //       object-position: top center;
-    //     }
-    //   }
-    //   .image-wrapper-2 {
-    //     overflow: hidden;
-    //     // place-self: center center;
-    //     img {
-    //       width: 100%;
-    //       height: 880px;
-    //       object-fit: cover;
-    //       object-position: top center;
-    //     }
-    //   }
-    //   .title {
-    //     // place-self: end start;
-    //   }
-    // }
   }
   .products {
     display: grid;
@@ -526,6 +407,7 @@ export default {
   .contact-info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
     column-gap: 5vw;
     .info {
       display: grid;
@@ -545,12 +427,128 @@ export default {
       }
       .text {
         /* 多行文本省略 */
-        display: -webkit-box;
+        // display: -webkit-box;
         width: 50%;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // -webkit-box-orient: vertical;
+        // -webkit-line-clamp: 2;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .q-page {
+    .products {
+      .product {
+        .product-image {
+          img {
+            height: 23rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 998px) {
+  .q-page {
+    .postcard {
+      .postcard-item {
+        padding: 1.5rem 0 !important;
+        h4 {
+          font-weight: 600;
+          font-size: 3rem !important;
+          color: #000;
+          margin-bottom: 2rem;
+        }
+        .q-btn {
+          width: 10rem !important;
+          height: 3rem !important;
+          font-size: 0.8rem;
+        }
+      }
+    }
+    .products {
+      grid-template-columns: repeat(2, 1fr);
+      .product {
+        .product-image {
+          img {
+            height: 40vw;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  .q-page {
+    .postcard {
+      .postcard-item {
+        padding: 1.5rem 0 !important;
+        h4 {
+          font-weight: 600 !important;
+          font-size: 2.5rem !important;
+          color: #000;
+          margin-bottom: 0.8rem !important;
+        }
+        .q-btn {
+          width: 10rem !important;
+          height: 2.5rem !important;
+          font-size: 0.5rem;
+        }
+      }
+    }
+    .products {
+      padding: 1rem;
+      grid-template-columns: 1fr;
+      row-gap: 1.5rem;
+      .product {
+        .product-image {
+          img {
+            height: 90vw;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 599px) {
+  .q-page {
+    .postcard {
+      .postcard-item {
+        padding: 1.5rem 0 !important;
+        h4 {
+          font-weight: 600 !important;
+          font-size: 1.5rem !important;
+          color: #000;
+          margin-bottom: 0.8rem !important;
+        }
+        .q-btn {
+          width: 10rem !important;
+          height: 2rem !important;
+          .q-btn__wrapper {
+            padding: 0px !important;
+            .q-btn__content {
+              font-size: 0.5rem !important;
+            }
+          }
+        }
+      }
+    }
+    .contact-info {
+      padding: 10px !important;
+      .info {
+        display: grid;
+        grid-template-rows: 50px 1fr 2fr;
+        .title {
+          font-size: 1.2rem;
+          // font-weight: 600;
+        }
+        .text {
+          width: 90%;
+          font-size: 1px;
+        }
       }
     }
   }

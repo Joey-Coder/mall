@@ -23,16 +23,6 @@ export default {
       },
       {
         id: '', // 购物车id
-        productID: '2', // 商品id
-        productName:
-          'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-        productImg: '', // 商品图片
-        price: '28.00', // 商品价格
-        num: '3', // 商品数量
-        maxNum: '100' // 商品限购数量
-      },
-      {
-        id: '', // 购物车id
         productID: '3', // 商品id
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
@@ -44,6 +34,16 @@ export default {
       {
         id: '', // 购物车id
         productID: '4', // 商品id
+        productName:
+          'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
+        productImg: '', // 商品图片
+        price: '28.00', // 商品价格
+        num: '3', // 商品数量
+        maxNum: '100' // 商品限购数量
+      },
+      {
+        id: '', // 购物车id
+        productID: '5', // 商品id
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
         productImg: '', // 商品图片
