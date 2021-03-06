@@ -957,7 +957,7 @@ export default {
     }
     .q-page-container {
       .tool-btn-group {
-        display: none;
+        // display: none;
       }
     }
   }
@@ -1053,6 +1053,27 @@ export default {
 @media (max-width: 599px) {
   .q-layout {
     .q-header {
+    }
+    .q-page-container {
+      .tool-btn-group {
+        right: 7vw;
+        bottom: 1vw;
+        // display: none;
+        .tool-btn {
+          background-color: rgba($color: $grey-6, $alpha: 0.6);
+          width: 2.6rem;
+          height: 2.6rem;
+          border-radius: 1.3rem;
+          line-height: 2.6rem;
+          .iconfont {
+            font-size: 1.5rem;
+          }
+          // 选择从0到3的子节点
+          &:nth-child(-n+3) {
+            display: none;
+          }
+        }
+      }
     }
     .q-footer {
       .member {
