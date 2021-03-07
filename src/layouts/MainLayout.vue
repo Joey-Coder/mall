@@ -456,7 +456,7 @@
                   <div class="cart-image">
                     <!-- <img src="/zzf.jpeg" alt="" /> -->
                   </div>
-                  <a href="javascript:void(0)" class="cart-title ellips">{{
+                  <a href="javascript:void(0)" class="cart-title q-pa-none ellips">{{
                     item.productName
                   }}</a>
                   <div class="cart-num row justify-between">

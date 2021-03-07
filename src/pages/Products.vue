@@ -6,10 +6,12 @@
     <section class="products">
       <div class="product" v-for="i in 20" :key="i">
         <div class="product-image">
-          <a href="#"><img src="../assets/productImg.jpg" alt="product"/></a>
+          <a href="javascript:void(0)" @click="goTo('detail', i)"
+            ><img src="../assets/productImg.jpg" alt="product"
+          /></a>
         </div>
         <h5 class="product-desc">
-          <a href="#"
+          <a href="javascript:void(0)" @click="goTo('detail', i)"
             >modelo de lichi de Color sólido bufanda bolsa hombro Diagonal
             bolso</a
           >
@@ -65,7 +67,11 @@ export default {
       showPage: 4
     }
   },
-  methods: {},
+  methods: {
+    goTo(name, id) {
+      this.$router.push({ name: name, params: { id } })
+    }
+  },
   components: {},
   props: {},
   created() {},

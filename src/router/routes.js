@@ -14,6 +14,12 @@ const routes = [
         path: '/about',
         name: 'about',
         component: () => import('pages/About.vue')
+      },
+      {
+        path: '/detail/:id',
+        name: 'detail',
+        component: () => import('pages/Detail.vue'),
+        props: true
       }
     ]
   },
