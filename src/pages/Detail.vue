@@ -40,7 +40,7 @@
             dense
             standout
           />
-          <h4 class="price">$25.00</h4>
+          <h4 class="price">${{ (product.price * product.num).toFixed(2) }}</h4>
         </div>
         <div class="quantity">
           <p>QUANTITY</p>
@@ -49,17 +49,17 @@
               icon="remove"
               size="md"
               class="remove-btn"
-              @click="num--"
+              @click="removeCartNum(product.productID)"
               unelevated
-              :disable="num <= 0"
+              :disable="product.num <= 0"
             ></q-btn>
-            <input type="text" class="num-input" v-model="num" />
+            <input type="text" class="num-input" v-model="product.num" />
             <q-btn
               icon="add"
               size="md"
               unelevated
               class="add-btn"
-              @click="num++"
+              @click="addCartNum(product.productID)"
             ></q-btn>
           </div>
         </div>
@@ -87,18 +87,39 @@
         </div>
       </div>
     </section>
-    <section class="desc"></section>
+    <section class="desc">
+      <div class="title">
+        <h4>Descripiton</h4>
+      </div>
+      <div class="detail-wrapper">
+        <h4 class="product-title">
+          2018 Hot New Tropical Print Button Front Belted Romper
+        </h4>
+        <h4 class="description">Descripiton</h4>
+        <div class="desc-content">
+          <p>Is In Size S Model</p>
+          <p>Height: 175cm ,Bust: 81cm</p>
+          <p>Waist: 62cm ,Hips: 88cm . Item Measurements:</p>
+        </div>
+        <div
+          class="detail-img"
+          v-for="(item, index) in carouselOption"
+          :key="index"
+        >
+          <img :src="item" alt="" />
+        </div>
+      </div>
+    </section>
   </q-page>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Detail',
   data() {
     return {
       slide: 1,
-      //   options: ['Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'],
-      //   currentCurrency: 'USD',
       num: 1,
       currentImg: 0,
       carouselOption: [
@@ -115,13 +136,42 @@ export default {
   methods: {
     goTo(name, id) {
       this.$router.push({ name: name, params: { id } })
-    }
+    },
+    ...mapMutations(['addCartNum', 'removeCartNum', 'inCart', 'insertProduct'])
   },
   components: {},
-  props: {},
+  props: {
+    id: {
+      type: [Number, String]
+    }
+  },
   created() {},
   mounted() {},
-  computed: {},
+  computed: {
+    ...mapGetters(['getCart']),
+    /**
+     * 根据id获取商品数量
+     */
+    product() {
+      for (let i = 0; i < this.getCart.length; i++) {
+        if (this.getCart[i].productID === this.id.toString()) {
+          return this.getCart[i]
+        }
+      }
+      const p = {
+        id: '', // 购物车id
+        productID: this.id.toString(), // 商品id
+        productName:
+          'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
+        productImg: '', // 商品图片
+        price: '23.00', // 商品价格
+        num: '1', // 商品数量
+        maxNum: '100' // 商品限购数量
+      }
+      this.insertProduct(p)
+      return p
+    }
+  },
   watched: {}
 }
 </script>
@@ -139,8 +189,11 @@ export default {
   .postcard {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 3vw;
+    column-gap: 4vw;
+    justify-content: center;
+    margin-bottom: 4rem;
     .carousel {
+      max-width: 600px;
       .carousel-image {
         overflow: hidden;
         display: flex;
@@ -153,7 +206,7 @@ export default {
           padding: 0px;
           object-fit: cover;
           object-position: top center;
-          width: 30rem;
+          width: 32rem;
           height: 30rem;
           animation: 1s fade-in ease-out forwards;
         }
@@ -162,26 +215,27 @@ export default {
         }
       }
       .overview {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         justify-items: center;
         a {
           display: block;
           img {
             object-fit: cover;
             object-position: top center;
-            width: 5rem;
-            height: 5rem;
+            width: 5.2rem;
+            height: 5.2rem;
           }
         }
       }
     }
     .buy {
+      max-width: 600px;
       display: grid;
-      grid-template-rows: repeat(7, 1fr);
+      grid-template-rows: repeat(6, 1fr);
       align-items: center;
+      //   justify-self: flex-start;
       .title {
         font-size: 1.2rem;
         font-weight: 700;
@@ -233,6 +287,126 @@ export default {
         a {
           //   display: block;
           margin-right: 1rem;
+        }
+      }
+    }
+  }
+  .desc {
+    .title {
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      border: 1px solid $grey-4;
+      h4 {
+        font-size: 1.2rem;
+      }
+      margin-bottom: 1.5rem;
+    }
+    .detail-wrapper {
+      .product-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 1rem;
+      }
+      .description {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 5px;
+      }
+      .desc-content {
+        margin-bottom: 5rem;
+      }
+      .detail-img {
+        margin: 1rem 0;
+        overflow: hidden;
+        img {
+          object-fit: cover;
+          width: 31rem;
+          height: 31rem;
+          object-position: top center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .q-page {
+    padding: 5vw 10vw;
+  }
+}
+
+@media (max-width: 1100px) {
+  .q-page {
+    padding: 5vw 3vw;
+  }
+}
+
+@media (max-width: 998px) {
+  .q-page {
+    .postcard {
+      grid-template-columns: 1fr;
+      grid-template-rows: 630px 1fr;
+      justify-items: center;
+      margin-bottom: 5px;
+      .carousel {
+        .carousel-image {
+          img {
+            width: 600px;
+            height: 600px;
+          }
+        }
+        .overview {
+          display: none !important;
+        }
+      }
+      .buy {
+        display: block;
+        margin-bottom: 2rem;
+        .title,
+        .price-wrapper,
+        .quantity,
+        .tool-btn,
+        .contact {
+          margin: 1.2rem 0;
+        }
+        .tool-btn {
+          height: 50px;
+        }
+        .contact {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .q-page {
+    .postcard {
+      grid-template-rows: 100vw 1fr;
+      .carousel {
+        .carousel-image {
+          width: 98vw;
+          height: 98vw;
+        }
+      }
+      .buy {
+        margin-bottom: 10px;
+      }
+    }
+    .desc {
+      .detail-wrapper {
+        .title {
+          padding-left: 1rem;
+        }
+        .detail-img {
+          display: flex;
+          width: 90vw;
+          height: 90vw;
+          justify-content: center;
+          overflow: hidden;
         }
       }
     }

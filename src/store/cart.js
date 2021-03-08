@@ -65,6 +65,14 @@ export default {
       }
       return totalPrice
     }
+    // getProductById(state, productID) {
+    //   for (let i = 0; i < state.shoppingCart.length; i++) {
+    //     if (state.shoppingCart[i].productID === productID) {
+    //       // console.log(state.shoppingCart[i])
+    //       return state.shoppingCart[i]
+    //     }
+    //   }
+    // }
   },
   mutations: {
     addCartNum(state, productID) {
@@ -84,6 +92,14 @@ export default {
           temp.num--
         }
       }
+    },
+    /**
+     * 往购物车添加新商品
+     * @param {*} state
+     * @param {*} product
+     */
+    insertProduct(state, product) {
+      state.shoppingCart.push(product)
     }
   }
 }
