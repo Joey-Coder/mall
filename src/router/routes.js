@@ -20,6 +20,11 @@ const routes = [
         name: 'detail',
         component: () => import('pages/Detail.vue'),
         props: true
+      },
+      {
+        path: '/sign',
+        name: 'sign',
+        component: () => import('pages/Sign.vue')
       }
     ]
   },

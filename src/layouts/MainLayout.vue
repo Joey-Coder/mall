@@ -236,7 +236,12 @@
               </q-list>
             </q-card>
           </q-dialog>
-          <a href="#"><img src="../assets/logo.png" alt=""/></a>
+          <a href="#"
+            ><img
+              src="../assets/logo.png"
+              style="width: 4rem; height: 4rem"
+              alt=""
+          /></a>
           <nav>
             <a
               href="javascript:void(0)"
@@ -261,7 +266,13 @@
           </nav>
         </div>
 
-        <a href="#" class="logo"><img src="../assets/logo.png" alt=""/></a>
+        <a href="#" class="logo"
+          ><img
+            src="../assets/logo.png"
+            alt=""
+            style="width: 4rem; height: 4rem"
+        /></a>
+
         <div class="header-right">
           <button class="lang" @click="langVisiable = true">
             {{ lang }}
@@ -407,7 +418,36 @@
                     style="width: 100%"
                     class="q-mb-sm"
                     unelevated
-                  />
+                  /><q-btn
+                    type="submit"
+                    color="white"
+                    text-color="dark"
+                    style="width: 100%"
+                    class="q-mb-sm row justify-start"
+                    outline
+                    unelevated
+                    align="between"
+                  >
+                    <img src="../assets/ic_facebook.png" alt="" />
+                    <div>Facebook with login</div>
+                    <div></div>
+                  </q-btn>
+                  <q-btn
+                    type="submit"
+                    color="white"
+                    text-color="dark"
+                    style="width: 100%"
+                    class="q-mb-sm row justify-start"
+                    outline
+                    unelevated
+                    align="between"
+                  >
+                    <img src="../assets/ic_g.png" alt="" />
+                    <div>Google with login</div>
+                    <div></div>
+                  </q-btn>
+
+                  <q-separator class="q-my-xs" />
                   <q-btn
                     label="Join Free"
                     class="q-my-sm"
@@ -415,6 +455,7 @@
                     color="white"
                     outline
                     style="width: 100%"
+                    @click="goTo('sign', '')"
                   />
                   <a
                     href="#"
@@ -456,9 +497,11 @@
                   <div class="cart-image">
                     <!-- <img src="/zzf.jpeg" alt="" /> -->
                   </div>
-                  <a href="javascript:void(0)" class="cart-title q-pa-none ellips">{{
-                    item.productName
-                  }}</a>
+                  <a
+                    href="javascript:void(0)"
+                    class="cart-title q-pa-none ellips"
+                    >{{ item.productName }}</a
+                  >
                   <div class="cart-num row justify-between">
                     <div class="num-btn row">
                       <q-btn
@@ -740,6 +783,7 @@ export default {
         img {
           margin-right: 2rem;
         }
+
         nav {
           display: flex;
           align-items: flex-end;
