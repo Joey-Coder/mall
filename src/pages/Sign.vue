@@ -3,14 +3,14 @@
     <section class="tabs">
       <q-btn
         unelevated
-        :class="[currentTab ? 'active' : '']"
-        @click="currentTab = !currentTab"
+        :class="[currentTab === 0 ? 'active' : '']"
+        @click="currentTab = 0"
         >Sign In</q-btn
       >
       <q-btn
         unelevated
-        :class="[!currentTab ? 'active' : '']"
-        @click="currentTab = !currentTab"
+        :class="[!currentTab === 1 ? 'active' : '']"
+        @click="currentTab = 1"
         >Join Free</q-btn
       >
     </section>
@@ -203,7 +203,8 @@
           <q-btn
             label="Create my Account"
             type="submit"
-            color="primary"
+            color="dark"
+            text-color="white"
             class="submit-btn"
           />
         </div>
@@ -236,8 +237,44 @@
             />
           </template>
         </q-input>
+        <q-separator></q-separator>
         <div class="sign-btn">
-          <q-btn label="Sign in" type="submit" color="primary" />
+          <q-btn
+            label="Sign in"
+            type="submit"
+            color="dark"
+            text-color="white"
+            unelevated
+            class="q-mb-md"
+          />
+          <q-btn
+            type="submit"
+            color="white"
+            text-color="dark"
+            style="width: 100%"
+            class="q-mb-md row justify-start"
+            outline
+            unelevated
+            align="between"
+          >
+            <img src="../assets/ic_g.png" alt="" />
+            <div>Google with login</div>
+            <div></div>
+          </q-btn>
+          <q-btn
+            type="submit"
+            color="white"
+            text-color="dark"
+            style="width: 100%"
+            class="q-mb-md row justify-start"
+            outline
+            unelevated
+            align="between"
+          >
+            <img src="../assets/ic_facebook.png" alt="" />
+            <div>Facebook with login</div>
+            <div></div>
+          </q-btn>
         </div>
       </q-form>
     </section>
@@ -254,8 +291,8 @@ export default {
       email: null,
       password: null,
       confirmPw: null,
-      passwordVisiable: false,
-      currentTab: true
+      passwordVisiable: true,
+      currentTab: 0
     }
   },
   methods: {
@@ -336,7 +373,7 @@ export default {
 }
 @media (max-width: 1100px) {
   .q-page {
-    grid-template-columns: 1fr;
+    display: block;
     .tabs {
       display: block;
       height: 3rem;
@@ -377,17 +414,18 @@ export default {
     .sign-in {
       justify-self: unset;
       .sign-btn {
-        padding-top: 2rem;
+        padding-top: 1rem;
         width: 100%;
+        margin-bottom: 5rem;
         .q-btn {
-          width: 98%;
+          width: 100%;
         }
       }
     }
   }
 }
 @media (max-width: 700px) {
-  .q-page  {
+  .q-page {
     padding: 3vw;
   }
 }

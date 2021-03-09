@@ -20,7 +20,12 @@
             <q-card class="bg-white drawer q-pa-md">
               <q-list separator>
                 <!-- 注册或登录 -->
-                <q-item clickable v-ripple class="menu bg-grey-2">
+                <q-item
+                  clickable
+                  v-ripple
+                  class="menu bg-grey-2"
+                  @click="goTo('sign', '')"
+                >
                   <q-item-section avatar>
                     <q-icon
                       name="account_circle"
