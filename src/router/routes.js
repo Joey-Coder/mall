@@ -22,14 +22,20 @@ const routes = [
         props: true
       },
       {
-        path: '/sign',
-        name: 'sign',
-        component: () => import('pages/Sign.vue')
+        path: '/login',
+        name: 'login',
+        component: () => import('pages/Login.vue')
       },
       {
-        path: '/user',
+        path: '/user/:id',
         name: 'user',
+        props: true,
         component: () => import('pages/User.vue')
+      },
+      {
+        path: '/forgot',
+        name: 'forgot',
+        component: () => import('pages/Forgot.vue')
       }
     ]
   },

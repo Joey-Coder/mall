@@ -24,7 +24,7 @@
                   clickable
                   v-ripple
                   class="menu bg-grey-2"
-                  @click="goTo('sign', '')"
+                  @click="isLogIn ? goTo('user', '0') : goTo('sign', '')"
                 >
                   <q-item-section avatar>
                     <q-icon
@@ -33,8 +33,14 @@
                       size="xl"
                     />
                   </q-item-section>
-                  <q-item-section class="text-dark text-subtitle1">
+                  <q-item-section
+                    class="text-dark text-subtitle1"
+                    v-if="!isLogIn"
+                  >
                     Sign in or Join Free
+                  </q-item-section>
+                  <q-item-section class="text-dark text-subtitle1" v-else>
+                    My Orders or Settings
                   </q-item-section>
                 </q-item>
                 <!-- 首页 -->
@@ -391,87 +397,98 @@
                 popUpVisiable = false
               "
             >
-              <q-form @submit="onSubmit" class="user-form q-pa-lg bg-white">
-                <q-input
-                  class="q-my-sm"
-                  filled
-                  v-model="email"
-                  label="Your Email Address"
-                  lazy-rules
-                  :rules="[
-                    val => (val && val.length > 0) || 'Please type something'
-                  ]"
-                />
-
-                <q-input
-                  class="q-my-sm"
-                  filled
-                  v-model="password"
-                  label="Your Password"
-                  lazy-rules
-                  :rules="[
-                    val => (val && val.length > 0) || 'Please type something'
-                  ]"
-                />
-
-                <div>
-                  <q-btn
-                    label="Sign In"
-                    type="submit"
-                    color="dark"
-                    text-color="white"
-                    style="width: 100%"
-                    class="q-mb-sm"
-                    unelevated
-                  /><q-btn
-                    type="submit"
-                    color="white"
-                    text-color="dark"
-                    style="width: 100%"
-                    class="q-mb-sm row justify-start"
-                    outline
-                    unelevated
-                    align="between"
-                  >
-                    <img src="../assets/ic_facebook.png" alt="" />
-                    <div>Facebook with login</div>
-                    <div></div>
-                  </q-btn>
-                  <q-btn
-                    type="submit"
-                    color="white"
-                    text-color="dark"
-                    style="width: 100%"
-                    class="q-mb-sm row justify-start"
-                    outline
-                    unelevated
-                    align="between"
-                  >
-                    <img src="../assets/ic_g.png" alt="" />
-                    <div>Google with login</div>
-                    <div></div>
-                  </q-btn>
-
-                  <q-separator class="q-my-xs" />
-                  <q-btn
-                    label="Join Free"
+              <div v-if="!isLogIn">
+                <q-form @submit="onSubmit" class="user-form q-pa-lg bg-white">
+                  <q-input
                     class="q-my-sm"
-                    text-color="dark"
-                    color="white"
-                    outline
-                    style="width: 100%"
-                    @click="goTo('sign', '')"
+                    filled
+                    v-model="email"
+                    label="Your Email Address"
+                    lazy-rules
+                    :rules="[
+                      val => (val && val.length > 0) || 'Please type something'
+                    ]"
                   />
-                  <a
-                    href="#"
-                    class="text-grey-8 text-right q-my-sm"
-                    style="display: block"
-                    >Forget your password?</a
-                  >
-                </div>
-              </q-form>
-            </q-popup-proxy></a
-          >
+
+                  <q-input
+                    class="q-my-sm"
+                    filled
+                    v-model="password"
+                    label="Your Password"
+                    lazy-rules
+                    :rules="[
+                      val => (val && val.length > 0) || 'Please type something'
+                    ]"
+                  />
+
+                  <div>
+                    <q-btn
+                      label="Sign In"
+                      type="submit"
+                      color="dark"
+                      text-color="white"
+                      style="width: 100%"
+                      class="q-mb-sm"
+                      unelevated
+                    /><q-btn
+                      type="submit"
+                      color="white"
+                      text-color="dark"
+                      style="width: 100%"
+                      class="q-mb-sm row justify-start"
+                      outline
+                      unelevated
+                      align="between"
+                    >
+                      <img src="../assets/ic_facebook.png" alt="" />
+                      <div>Facebook with login</div>
+                      <div></div>
+                    </q-btn>
+                    <q-btn
+                      type="submit"
+                      color="white"
+                      text-color="dark"
+                      style="width: 100%"
+                      class="q-mb-sm row justify-start"
+                      outline
+                      unelevated
+                      align="between"
+                    >
+                      <img src="../assets/ic_g.png" alt="" />
+                      <div>Google with login</div>
+                      <div></div>
+                    </q-btn>
+
+                    <q-separator class="q-my-xs" />
+                    <q-btn
+                      label="Join Free"
+                      class="q-my-sm"
+                      text-color="dark"
+                      color="white"
+                      outline
+                      style="width: 100%"
+                      @click="goTo('create', '')"
+                    />
+                    <a
+                      href="javascript:void(0)"
+                      class="text-grey-8 text-right q-my-sm"
+                      style="display: block"
+                      @click="goTo('forgot', '')"
+                      >Forget your password?</a
+                    >
+                  </div>
+                </q-form>
+              </div>
+              <div v-else class="my-account user-form">
+                <a href="javascript:void(0)" @click="goTo('user', '0')"
+                  ><p>My Orders</p></a
+                >
+                <a href="javascript:void(0)" @click="goTo('user', '1')"
+                  ><p>Account Setting</p></a
+                >
+                <q-btn outline unelevated label="Sign Out"></q-btn>
+              </div> </q-popup-proxy
+          ></a>
           <!-- 购物车按钮 -->
           <a href="#" @click="shopCarVisiable = true" class="cart-icon"
             ><i class="iconfont icon-iconfontcart-copy"></i>
@@ -741,7 +758,8 @@ export default {
       languageSubMenuVisiable: false,
       memberVisiable: false,
       overviewVisiable: false,
-      helpVisiable: false
+      helpVisiable: false,
+      isLogIn: false
     }
   },
   computed: {
@@ -763,6 +781,13 @@ export default {
     goTo(name, id) {
       this.$router.push({ name: name, params: { id } })
     }
+    // signOrSet() {
+    //   if (this.isLogIn) {
+    //     this.goTo('user', '0')
+    //   } else {
+    //     this.goTo('sign', '')
+    //   }
+    // }
   },
   mounted() {
     // console.log(this.getCarts)

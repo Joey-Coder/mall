@@ -1,14 +1,14 @@
 <template>
   <q-page>
-      <!-- 导航 -->
+    <!-- 导航 -->
     <section class="left">
       <h4 class="title">My Account</h4>
       <q-list padding class="menu-list">
         <q-item
           clickable
           v-ripple
-          @click="orderVisiable = true"
-          :class="[orderVisiable ? 'active' : '']"
+          @click="id = '0'"
+          :class="[id.toString() === '0' ? 'active' : '']"
         >
           <q-item-section>
             My Orders
@@ -18,8 +18,8 @@
         <q-item
           clickable
           v-ripple
-          @click="orderVisiable = false"
-          :class="[orderVisiable ? '' : 'active']"
+          @click="id = '1'"
+          :class="[id.toString() === '1' ? 'active' : '']"
         >
           <q-item-section>
             Account Setting
@@ -35,12 +35,12 @@
     </section>
     <!-- 内容 -->
     <section class="right">
-        <!-- 订单 -->
-      <div class="order-wrapper" v-if="orderVisiable">
+      <!-- 订单 -->
+      <div class="order-wrapper" v-if="id.toString() === '0'">
         <h4 class="title">My Orders</h4>
         <!-- 设置横向滑动区域 -->
         <!-- <q-scroll-area horizontal visible class="scroll-wrapper"> -->
-        <q-list bordered separator padding="flase" class="order-list">
+        <q-list bordered separator class="order-list">
           <q-item class="bg-grey-3">
             <q-item-section class="col-4">Order Information</q-item-section>
             <q-item-section class="col-2">Grand Total</q-item-section>
@@ -54,7 +54,9 @@
             }}</q-item-section>
             <q-item-section class="col-2">${{ item.price }}</q-item-section>
             <q-item-section class="col-3">{{ item.status }}</q-item-section>
-            <q-item-section class="col-3 q-pr-xs">{{ item.time }}</q-item-section>
+            <q-item-section class="col-3 q-pr-xs">{{
+              item.time
+            }}</q-item-section>
           </q-item>
         </q-list>
         <!-- </q-scroll-area> -->
@@ -155,7 +157,7 @@ export default {
   name: 'User',
   data() {
     return {
-      orderVisiable: true,
+      // orderVisiable: true,
       currentPage: 1,
       maxPage: 10,
       showPage: 4,
@@ -230,7 +232,12 @@ export default {
     onSubmit() {}
   },
   components: {},
-  props: {},
+  props: {
+    id: {
+      type: String,
+      default: '0'
+    }
+  },
   created() {},
   mounted() {},
   computed: {

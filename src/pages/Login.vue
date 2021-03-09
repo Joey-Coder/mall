@@ -3,123 +3,202 @@
     <section class="tabs">
       <q-btn
         unelevated
-        :class="[currentTab === 0 ? 'active' : '']"
-        @click="currentTab = 0"
+        :class="[isSign.toString() === '0' ? 'active' : '']"
+        @click="isSign = '0'"
         >Sign In</q-btn
       >
       <q-btn
         unelevated
-        :class="[!currentTab === 1 ? 'active' : '']"
-        @click="currentTab = 1"
+        :class="[isSign === '1' ? 'active' : '']"
+        @click="isSign = '1'"
         >Join Free</q-btn
       >
     </section>
-    <section class="create hide">
-      <h4 class="title">Create Account</h4>
-      <q-form @submit="onSubmit">
-        <div class="name" style="width: 100%">
-          <!-- firstName -->
-          <q-input
-            class="first-name"
-            outlined
-            v-model="firstName"
-            label="Your first name *"
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Please type something']"
-            autogrow
-          />
-          <!-- lastName -->
-          <q-input
-            outlined
-            class="last-name"
-            v-model="lastName"
-            label="Your last name *"
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Please type something']"
-          />
-        </div>
-        <!-- 邮箱 -->
-        <q-input
-          outlined
-          v-model="email"
-          label="Email *"
-          lazy-rules
-          type="email"
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
-        />
-        <!-- 密码 -->
-        <q-input
-          v-model="password"
-          outlined
-          :type="passwordVisiable ? 'password' : 'text'"
-          label="Create Your Password *"
-          class="q-mb-lg"
-        >
-          <template v-slot:append>
-            <q-icon
-              :name="passwordVisiable ? 'visibility_off' : 'visibility'"
-              class="cursor-pointer"
-              @click="passwordVisiable = !passwordVisiable"
+    <!-- pc端 -->
+    <section class="create-wrapper" v-if="isSign.toString() === '1'">
+      <!-- 输入框 -->
+      <div class="create hide">
+        <h4 class="title">Create Account</h4>
+        <q-form @submit="onSubmit">
+          <div class="name" style="width: 100%">
+            <!-- firstName -->
+            <q-input
+              class="first-name"
+              outlined
+              v-model="firstName"
+              label="Your first name *"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Please type something'
+              ]"
+              autogrow
             />
-          </template>
-        </q-input>
-        <!-- 确认密码 -->
-        <q-input
-          v-model="confirmPw"
-          outlined
-          :type="passwordVisiable ? 'password' : 'text'"
-          label="Confirm Password"
-          lazy-rules
-          :rules="[
-            val => (val && val === password) || 'Please type same password'
-          ]"
-        >
-          <template v-slot:append>
-            <q-icon
-              :name="passwordVisiable ? 'visibility_off' : 'visibility'"
-              class="cursor-pointer"
-              @click="passwordVisiable = !passwordVisiable"
+            <!-- lastName -->
+            <q-input
+              outlined
+              class="last-name"
+              v-model="lastName"
+              label="Your last name *"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Please type something'
+              ]"
             />
-          </template>
-        </q-input>
-        <div class="create-desc">
-          <h6>By clicking "Create my Account" I agree that:</h6>
-          <ul>
-            <li>
-              I may receive communication emails from MY SHOP about order and
-              delivery.
-            </li>
-            <li>
-              I may receive new products and promotion emails from MY SHOP.
-            </li>
-          </ul>
+          </div>
+          <!-- 邮箱 -->
+          <q-input
+            outlined
+            v-model="email"
+            label="Email *"
+            lazy-rules
+            type="email"
+            :rules="[val => (val && val.length > 0) || 'Please type something']"
+          />
+          <!-- 密码 -->
+          <q-input
+            v-model="password"
+            outlined
+            :type="passwordVisiable ? 'password' : 'text'"
+            label="Create Your Password *"
+            class="q-mb-lg"
+          >
+            <template v-slot:append>
+              <q-icon
+                :name="passwordVisiable ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="passwordVisiable = !passwordVisiable"
+              />
+            </template>
+          </q-input>
+          <!-- 确认密码 -->
+          <q-input
+            v-model="confirmPw"
+            outlined
+            :type="passwordVisiable ? 'password' : 'text'"
+            label="Confirm Password"
+            lazy-rules
+            :rules="[
+              val => (val && val === password) || 'Please type same password'
+            ]"
+          >
+            <template v-slot:append>
+              <q-icon
+                :name="passwordVisiable ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="passwordVisiable = !passwordVisiable"
+              />
+            </template>
+          </q-input>
+          <div class="create-desc">
+            <h6>By clicking "Create my Account" I agree that:</h6>
+            <ul>
+              <li>
+                I may receive communication emails from MY SHOP about order and
+                delivery.
+              </li>
+              <li>
+                I may receive new products and promotion emails from MY SHOP.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <q-btn
+              label="Create my Account"
+              type="submit"
+              color="dark"
+              text-color="white"
+              class="submit-btn"
+            />
+          </div>
+        </q-form>
+      </div>
+      <!-- 侧边栏 -->
+      <div class="create-aside hide">
+        <div class="return-home">
+          <a href="javascript:void(0)" @click="goTo('index', '')"
+            >Return to the home page</a
+          >
         </div>
-        <div>
+        <div class="account">
+          <p>Already have an account?</p>
           <q-btn
-            label="Create my Account"
-            type="submit"
-            color="primary"
-            class="submit-btn"
+            label="Sign In Now"
+            color="dark"
+            text-color="white"
+            class="sign-btn"
+            @click="isSign = '0'"
           />
         </div>
-      </q-form>
-    </section>
-    <section class="sign-in hide">
-      <div class="return-home">
-        Return to the home page
-      </div>
-      <div class="account">
-        <p>Already have an account?</p>
-        <q-btn
-          label="Sign In Now"
-          color="dark"
-          text-color="white"
-          class="sign-btn"
-        />
       </div>
     </section>
+    <section class="login-wrapper" v-else>
+      <div class="login hide">
+        <h4 class="title">Sign In</h4>
+        <q-form @submit="onSubmit">
+          <!-- 邮箱 -->
+          <q-input
+            outlined
+            v-model="email"
+            label="Email *"
+            lazy-rules
+            type="email"
+            :rules="[val => (val && val.length > 0) || 'Please type something']"
+          />
+          <!-- 密码 -->
+          <q-input
+            v-model="password"
+            outlined
+            :type="passwordVisiable ? 'password' : 'text'"
+            label="Enter Your Password *"
+            class="q-mb-lg"
+          >
+            <template v-slot:append>
+              <q-icon
+                :name="passwordVisiable ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="passwordVisiable = !passwordVisiable"
+              />
+            </template>
+          </q-input>
+
+          <div class="create-desc">
+            <a href="javascript:void(0)" @click="goTo('forgot', '')"
+              ><h6>Forget Password?</h6></a
+            >
+          </div>
+          <div>
+            <q-btn
+              label="Sign In"
+              type="submit"
+              color="dark"
+              text-color="white"
+              class="submit-btn"
+            />
+          </div>
+        </q-form>
+      </div>
+
+      <div class="login-aside hide">
+        <div class="return-home">
+          <a href="javascript:void(0)" @click="goTo('index', '')"
+            >Return to the home page</a
+          >
+        </div>
+        <div class="account">
+          <p>New Customer</p>
+          <q-btn
+            label="Start here"
+            color="dark"
+            text-color="white"
+            class="sign-btn"
+            @click="isSign = '1'"
+          />
+        </div>
+      </div>
+    </section>
+
     <!-- 移动端 -->
-    <section class="create hide-small" v-if="currentTab">
+    <section class="create hide-small" v-if="isSign.toString() === '1'">
       <h4 class="title">Create Account</h4>
       <q-form @submit="onSubmit">
         <div class="name" style="width: 100%">
@@ -210,7 +289,7 @@
         </div>
       </q-form>
     </section>
-    <section class="sign-in hide-small" v-if="!currentTab">
+    <section class="sign-in hide-small" v-else>
       <q-form @submit="onSubmit">
         <!-- 邮箱 -->
         <q-input
@@ -283,7 +362,7 @@
 
 <script>
 export default {
-  name: 'Sign',
+  name: 'Login',
   data() {
     return {
       firstName: null,
@@ -292,11 +371,14 @@ export default {
       password: null,
       confirmPw: null,
       passwordVisiable: true,
-      currentTab: 0
+      isSign: '0' // '0' is login, '1' is create
     }
   },
   methods: {
-    onSubmit() {}
+    onSubmit() {},
+    goTo(name, id) {
+      this.$router.push({ name: name, params: { id } })
+    }
   },
   components: {},
   props: {},
@@ -309,8 +391,13 @@ export default {
 <style scoped lang="scss">
 .q-page {
   padding: 5vw 15vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  .create-wrapper,
+  .login-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
   column-gap: 5vw;
   .tabs {
     display: none;
@@ -318,7 +405,8 @@ export default {
   .hide-small {
     display: none;
   }
-  .create {
+  .create,
+  .login {
     .title {
       margin-bottom: 3rem;
       font-size: 2.5rem;
@@ -352,13 +440,16 @@ export default {
       }
     }
   }
-  .sign-in {
+  .create-aside,
+  .login-aside {
     justify-self: center;
     .return-home {
       border: 1px solid $grey-5;
       padding: 10px 20px;
-      color: #333;
       margin-bottom: 2rem;
+      a {
+        color: #333;
+      }
     }
     .account {
       border: 1px solid $grey-5;
