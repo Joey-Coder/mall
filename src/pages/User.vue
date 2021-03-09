@@ -1,5 +1,6 @@
 <template>
   <q-page>
+      <!-- 导航 -->
     <section class="left">
       <h4 class="title">My Account</h4>
       <q-list padding class="menu-list">
@@ -32,10 +33,12 @@
         </q-item>
       </q-list>
     </section>
-
+    <!-- 内容 -->
     <section class="right">
+        <!-- 订单 -->
       <div class="order-wrapper" v-if="orderVisiable">
         <h4 class="title">My Orders</h4>
+        <!-- 设置横向滑动区域 -->
         <!-- <q-scroll-area horizontal visible class="scroll-wrapper"> -->
         <q-list bordered separator padding="flase" class="order-list">
           <q-item class="bg-grey-3">
@@ -93,6 +96,7 @@
           </div>
         </div>
       </div>
+      <!-- 账号设置 -->
       <div class="account-wrapper" v-else>
         <h4 class="title">Account Setting</h4>
         <q-separator class="q-my-md" />
