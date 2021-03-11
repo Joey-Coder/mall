@@ -371,7 +371,7 @@ export default {
       password: null,
       confirmPw: null,
       passwordVisiable: true,
-      isSign: '0' // '0' is login, '1' is create
+      isSign: this.id // '0' is login, '1' is create
     }
   },
   methods: {
@@ -381,11 +381,20 @@ export default {
     }
   },
   components: {},
-  props: {},
+  props: {
+    id: {
+      type: String,
+      default: '0'
+    }
+  },
   created() {},
   mounted() {},
   computed: {},
-  watched: {}
+  watch: {
+    id(val) {
+      this.isSign = val
+    }
+  }
 }
 </script>
 <style scoped lang="scss">

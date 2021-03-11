@@ -2,7 +2,9 @@
   <q-layout view="hhh lpr fff">
     <q-header unelevated>
       <div class="logo">
-        <img src="../assets/logo.png" alt="" />
+        <a href="javascript:void(0)" @click="goTo('index', '')"
+          ><img src="../assets/logo.png" alt=""
+        /></a>
       </div>
       <div class="step">
         <div class="step-item">
@@ -96,7 +98,8 @@
       </section>
       <section class="products">
         <h5 class="products-title">Products</h5>
-        <q-list separator>
+        <!-- pc端 -->
+        <q-list separator class="pc">
           <q-item class="list-header bg-grey-2" v-ripple>
             <q-item-section>
               Item
@@ -108,7 +111,6 @@
               Amount
             </q-item-section>
           </q-item>
-
           <q-item v-ripple v-for="item in getCart" :key="item.productID">
             <q-item-section class="product-image">
               <img :src="item.productImg" alt="" />
@@ -122,7 +124,24 @@
               <p>${{ (parseFloat(item.price) * item.num).toFixed(2) }}</p>
             </q-item-section>
           </q-item>
-          <q-item></q-item>
+        </q-list>
+        <!-- 移动端版本 -->
+        <q-list separator class="mobile">
+          <q-item v-ripple v-for="item in getCart" :key="item.productID">
+            <q-item-section class="product-image">
+              <img :src="item.productImg" alt="" />
+              <div class="badge">{{ item.num }}</div>
+            </q-item-section>
+            <q-item-section class="product-price">
+              <p>{{ item.productName }}</p>
+              <div class="row justify-between">
+                <p>USD ${{ item.price }}</p>
+                <p class="text-weight-bold">
+                  ${{ (parseFloat(item.price) * item.num).toFixed(2) }}
+                </p>
+              </div>
+            </q-item-section>
+          </q-item>
         </q-list>
         <div class="order-wrapper">
           <div class="order">
@@ -164,7 +183,10 @@ export default {
     }
   },
   methods: {
-    onSubmit() {}
+    onSubmit() {},
+    goTo(name, id) {
+      this.$router.push({ name: name, params: { id } })
+    }
   },
   components: {
     ShippingForm
@@ -305,7 +327,7 @@ export default {
         padding-bottom: 1rem;
         font-weight: 400;
       }
-      .q-list {
+      .pc {
         .q-item {
           display: grid;
           grid-template-columns: 6fr 2fr 1fr;
@@ -335,6 +357,9 @@ export default {
           }
         }
       }
+      .mobile {
+        display: none;
+      }
       .order-wrapper {
         display: flex;
         justify-content: flex-end;
@@ -358,6 +383,155 @@ export default {
           }
           .q-btn {
             width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .q-layout {
+    .q-header {
+      padding: 0 10vw;
+    }
+    .q-page-container {
+      padding: 3vw 10vw;
+    }
+  }
+}
+
+@media (max-width: 998px) {
+  .q-layout {
+    .q-header {
+      padding: 0 5vw;
+    }
+    .q-page-container {
+      padding: 3vw 5vw;
+      .shipping-method {
+        .check-menu {
+          .q-radio {
+            font-size: 1.5rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .q-layout {
+    .q-header {
+      padding: 0 3vw;
+      .logo {
+        img {
+          width: 4rem;
+          height: 4rem;
+        }
+      }
+      .step {
+        display: none;
+      }
+    }
+    .q-page-container {
+      padding: 3vw 3vw;
+      .shipping-address {
+        margin-top: 0;
+        padding: 0.5rem;
+      }
+      .shipping-method {
+        padding: 0.5rem;
+        .check-menu {
+          .q-radio {
+            font-size: 1.2rem !important;
+          }
+        }
+      }
+      .payment {
+        padding: 1.5rem 0.5rem;
+        .payment-content {
+          .desc {
+            width: 90%;
+          }
+          .paypal-wrapper {
+          }
+        }
+      }
+      .products {
+        padding: 0.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 598px) {
+  .q-layout {
+    .q-header {
+      padding: 0 1vw;
+    }
+    .q-page-container {
+      padding: 1vw;
+      .shipping-address {
+      }
+      .shipping-method {
+        .check-menu {
+          .q-radio {
+            font-size: 0.9rem !important;
+          }
+        }
+      }
+      .payment {
+        padding: 1.5rem 0.5rem;
+        .payment-content {
+          display: block;
+          .desc {
+            padding-top: 1rem;
+            width: 80%;
+          }
+          .paypal-wrapper {
+            display: none;
+          }
+        }
+      }
+      .products {
+        .pc {
+          display: none;
+        }
+        .mobile {
+          display: block;
+          padding-bottom: 1rem;
+          .q-item {
+            display: grid;
+            grid-template-columns: 5rem 1fr;
+            column-gap: 1rem;
+            padding: 0.5rem;
+            .product-image {
+              position: relative;
+              align-self: center;
+              grid-template-columns: unset;
+              img {
+                width: 4rem;
+                height: 4rem;
+                object-position: top center;
+                object-fit: cover;
+              }
+              .badge {
+                position: absolute;
+                padding: 5px;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                line-height: 10px;
+                border-radius: 10px;
+                background-color: $red-5;
+                color: white;
+                top: -10px;
+                right: 0;
+              }
+            }
+            .product-price {
+              display: block;
+            }
           }
         }
       }

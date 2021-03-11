@@ -16,9 +16,7 @@
             :key="index"
             :class="[index === currentImg ? 'current-img' : '']"
           />
-          <div class="carousel-tip">
-            {{ currentImg + 1 }}/{{ carouselNum }}
-          </div>
+          <div class="carousel-tip">{{ currentImg + 1 }}/{{ carouselNum }}</div>
         </div>
         <!-- 轮播图预览 -->
         <div class="overview row">
@@ -72,7 +70,9 @@
         </div>
         <div class="tool-btn">
           <q-btn color="white" text-color="dark" outline>Add to Cart</q-btn>
-          <q-btn color="dark" text-color="white">Buy Now</q-btn>
+          <q-btn color="dark" text-color="white" @click="goTo('checkout', '')"
+            >Buy Now</q-btn
+          >
         </div>
         <q-separator></q-separator>
         <div class="contact">

@@ -82,7 +82,9 @@
     <section class="products q-pa-xl">
       <div class="product">
         <div class="product-image">
-          <a href="#"><img src="../assets/bu1.jpg" alt="product"/></a>
+          <a href="javascript:void(0)" @click="goTo('detail', '1')"
+            ><img src="../assets/bu1.jpg" alt="product"
+          /></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
               <i class="iconfont icon-gouwudai"></i>
@@ -105,7 +107,9 @@
       </div>
       <div class="product">
         <div class="product-image">
-          <a href="#"><img src="../assets/bu2.jpg" alt="product"/></a>
+          <a href="javascript:void(0)" @click="goTo('detail', '1')"
+            ><img src="../assets/bu2.jpg" alt="product"
+          /></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
               <i class="iconfont icon-gouwudai"></i>
@@ -260,7 +264,11 @@ export default {
       scrollReveal: ScrollReveal()
     }
   },
-  methods: {},
+  methods: {
+    goTo(name, id) {
+      this.$router.push({ name: name, params: { id } })
+    }
+  },
   components: {},
   mounted() {
     const scrollOptions = {

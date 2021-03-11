@@ -276,4 +276,43 @@ export default {
     }
   }
 }
+
+@media (max-width: 700px) {
+  .shipping-form {
+    .q-form {
+      width: 90%;
+    }
+  }
+}
+
+@media (max-width: 598px) {
+  .shipping-form {
+    .q-form {
+      width: 100%;
+      .city-wrapper {
+        display: flex;
+        justify-content: space-between;
+        .q-input {
+          width: 48%;
+        }
+      }
+      .phone {
+        ::v-deep .q-field__control {
+          .pre-phone {
+            width: 5rem;
+          }
+        }
+      }
+      .select-wrapper {
+        display: block;
+        .q-select {
+          width: 100%;
+        }
+      }
+      // .q-btn {
+      //   display: none;
+      // }
+    }
+  }
+}
 </style>

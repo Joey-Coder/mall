@@ -24,7 +24,7 @@
                   clickable
                   v-ripple
                   class="menu bg-grey-2"
-                  @click="isLogIn ? goTo('user', '0') : goTo('sign', '')"
+                  @click="isLogIn ? goTo('user', '0') : goTo('login', '0')"
                 >
                   <q-item-section avatar>
                     <q-icon
@@ -247,7 +247,7 @@
               </q-list>
             </q-card>
           </q-dialog>
-          <a href="#"
+          <a href="javascript:void(0)" @click="goTo('index', '')"
             ><img
               src="../assets/logo.png"
               style="width: 4rem; height: 4rem"
@@ -467,7 +467,7 @@
                       color="white"
                       outline
                       style="width: 100%"
-                      @click="goTo('create', '')"
+                      @click="goTo('login', '1')"
                     />
                     <a
                       href="javascript:void(0)"
@@ -486,7 +486,12 @@
                 <a href="javascript:void(0)" @click="goTo('user', '1')"
                   ><p>Account Setting</p></a
                 >
-                <q-btn outline unelevated label="Sign Out"></q-btn>
+                <q-btn
+                  outline
+                  unelevated
+                  label="Sign Out"
+                  @click="isLogIn = false"
+                ></q-btn>
               </div> </q-popup-proxy
           ></a>
           <!-- 购物车按钮 -->
@@ -560,7 +565,7 @@
                 <p class="total-tip text-grey-5 text-weight-bold">
                   Taxes and shipping calculated at checkout
                 </p>
-                <div class="checkout-btn text-h6">
+                <div class="checkout-btn text-h6" @click="goTo('checkout', '')">
                   CHECK OUT->
                 </div>
               </q-card-section>
@@ -571,7 +576,7 @@
     </q-header>
 
     <q-page-container>
-      <router-view />
+      <router-view @signOut="isLogIn = false" />
       <div class="tool-btn-group">
         <div class="tool-btn">
           <a href="javascript:void(0);"

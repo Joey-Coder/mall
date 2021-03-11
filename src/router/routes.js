@@ -22,9 +22,10 @@ const routes = [
         props: true
       },
       {
-        path: '/login',
+        path: '/login/:id',
         name: 'login',
-        component: () => import('pages/Login.vue')
+        component: () => import('pages/Login.vue'),
+        props: true
       },
       {
         path: '/user/:id',

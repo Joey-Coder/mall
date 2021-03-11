@@ -6,7 +6,7 @@ export default {
         productID: '1', // 商品id
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-        productImg: 'img/bu1.jpg', // 商品图片
+        productImg: '/bu1.jpg', // 商品图片
         price: '25.50', // 商品价格
         num: '1', // 商品数量
         maxNum: '100' // 商品限购数量
@@ -16,7 +16,7 @@ export default {
         productID: '2', // 商品id
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-        productImg: 'img/bu2.jpg', // 商品图片
+        productImg: '/bu2.jpg', // 商品图片
         price: '28.00', // 商品价格
         num: '3', // 商品数量
         maxNum: '100' // 商品限购数量
@@ -26,7 +26,7 @@ export default {
         productID: '3', // 商品id
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-        productImg: 'img/bu3.jpg', // 商品图片
+        productImg: '/bu3.jpg', // 商品图片
         price: '28.00', // 商品价格
         num: '3', // 商品数量
         maxNum: '100' // 商品限购数量
@@ -36,7 +36,7 @@ export default {
         productID: '4', // 商品id
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-        productImg: 'img/bu4.jpg', // 商品图片
+        productImg: '/bu4.jpg', // 商品图片
         price: '28.00', // 商品价格
         num: '3', // 商品数量
         maxNum: '100' // 商品限购数量
@@ -46,7 +46,7 @@ export default {
         productID: '5', // 商品id
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-        productImg: 'img/bu5.jpg', // 商品图片
+        productImg: '/bu5.jpg', // 商品图片
         price: '28.00', // 商品价格
         num: '3', // 商品数量
         maxNum: '100' // 商品限购数量

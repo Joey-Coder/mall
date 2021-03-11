@@ -27,7 +27,7 @@
         </q-item>
 
         <q-item clickable v-ripple>
-          <q-item-section>
+          <q-item-section @click="$emit('signOut')">
             Sign Out
           </q-item-section>
         </q-item>
