@@ -1,6 +1,6 @@
 <template>
   <div class="shipping-form">
-    <h6 class="title">Shipping Address</h6>
+    <h6 class="title">{{ title }}</h6>
     <q-form @submit="onSubmit" class="q-gutter-md">
       <!-- 姓名 -->
       <div class="name">
@@ -117,7 +117,7 @@
         </template>
       </q-input>
 
-      <div>
+      <div v-if="saveVisiable">
         <q-btn label="Save" type="submit" color="dark" text-color="white" />
       </div>
     </q-form>
@@ -176,6 +176,14 @@ export default {
       default: () => {
         return []
       }
+    },
+    title: {
+      type: String,
+      default: 'Shipping Address'
+    },
+    saveVisiable: {
+      type: Boolean,
+      default: true
     }
   },
   created() {
@@ -208,8 +216,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .shipping-form {
-  border: 1px solid $grey-4;
-  padding: 1.5rem;
+  // border: 1px solid $grey-4;
   background-color: white;
   margin-bottom: 1rem;
   .title {
@@ -237,6 +244,7 @@ export default {
     .phone {
       ::v-deep .q-field__control {
         padding-left: 0;
+        margin-bottom: 1rem;
         .pre-phone {
           display: flex;
           justify-content: center;

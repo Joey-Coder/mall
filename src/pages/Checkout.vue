@@ -25,10 +25,124 @@
         <shipping-form :countryOptions="getCountryOptions"></shipping-form>
       </section>
       <section class="shipping-method">
-        <div class="agent" v-if="agentVisiable">
-          <shipping-form :countryOptions="getCountryOptions"></shipping-form>
+        <h5>Shipping Method</h5>
+        <div class="check-menu">
+          <q-radio
+            v-model="agentVisiable"
+            :val="true"
+            label="Own logistics agent"
+          />
+          <q-radio
+            v-model="agentVisiable"
+            :val="false"
+            label="Normal logistics"
+          />
         </div>
-        <div class="normal" v-else></div>
+        <div class="agent" v-if="agentVisiable">
+          <shipping-form
+            :countryOptions="getCountryOptions"
+            title="Agent address"
+            :saveVisiable="false"
+          ></shipping-form>
+        </div>
+        <div class="normal" v-else>
+          <q-radio
+            v-model="shippingMethod"
+            val="ups"
+            color="cyan"
+            label="UPS"
+          />
+          <q-radio
+            v-model="shippingMethod"
+            val="dhl"
+            color="cyan"
+            label="DHL"
+          />
+          <q-radio
+            v-model="shippingMethod"
+            val="sea transportation"
+            label="sea transportation"
+            color="cyan"
+          />
+          <q-radio
+            v-model="shippingMethod"
+            val="air transport"
+            label="air transport"
+            color="cyan"
+          />
+        </div>
+      </section>
+      <section class="payment">
+        <h5 class="payment-title">
+          Payment method
+        </h5>
+        <div class="payment-content">
+          <div>
+            <q-radio v-model="payment" val="paypal" label="Paypal" />
+            <div class="desc">
+              Simply choose PayPal when you select a payment option on this
+              site, and you can quickly open a PayPal account and add your
+              payment method to complete your purchase. You can use your PayPal
+              account to shop safer with millions of merchants and sellers
+              around the globe wherever you see the PayPal logo. Every day, 188
+              million people use PayPal in 202 countries and with 21 different
+              currencies.
+            </div>
+          </div>
+          <div class="paypal-wrapper">
+            paypal
+          </div>
+        </div>
+      </section>
+      <section class="products">
+        <h5 class="products-title">Products</h5>
+        <q-list separator>
+          <q-item class="list-header bg-grey-2" v-ripple>
+            <q-item-section>
+              Item
+            </q-item-section>
+            <q-item-section>
+              Price
+            </q-item-section>
+            <q-item-section>
+              Amount
+            </q-item-section>
+          </q-item>
+
+          <q-item v-ripple v-for="item in getCart" :key="item.productID">
+            <q-item-section class="product-image">
+              <img :src="item.productImg" alt="" />
+              <p>{{ item.productName }}</p>
+            </q-item-section>
+            <q-item-section class="product-price">
+              <p>${{ item.price }}</p>
+              <p class="number">{{ item.num }}</p>
+            </q-item-section>
+            <q-item-section class="product-amount">
+              <p>${{ (parseFloat(item.price) * item.num).toFixed(2) }}</p>
+            </q-item-section>
+          </q-item>
+          <q-item></q-item>
+        </q-list>
+        <div class="order-wrapper">
+          <div class="order">
+            <div class="subtotal">
+              <p>Subtotal:</p>
+              <p>${{ getTotalPrice.toFixed(2) }}</p>
+            </div>
+            <div class="express-total">
+              <p>Express Cost:</p>
+              <p>${{ expressTotal }}</p>
+            </div>
+            <div class="grand-total">
+              <p>Grand Total:</p>
+              <p>${{ (getTotalPrice + expressTotal).toFixed(2) }}</p>
+            </div>
+            <q-btn text-color="white" unelevated color="red-4"
+              >Place Your Order</q-btn
+            >
+          </div>
+        </div>
       </section>
     </q-page-container>
   </q-layout>
@@ -37,12 +151,16 @@
 <script>
 import { country } from '../boot/country.js'
 import ShippingForm from '../components/ShippingForm'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Checkout',
   data() {
     return {
       step: 1,
-      agentVisiable: true
+      agentVisiable: true,
+      shippingMethod: 'ups',
+      payment: 'paypal',
+      expressTotal: 23.0
     }
   },
   methods: {
@@ -52,32 +170,10 @@ export default {
     ShippingForm
   },
   props: {},
-  created() {
-    // this.addressObj = {
-    //   firstName: null,
-    //   lastName: null,
-    //   address: null,
-    //   apartment: null,
-    //   city: null,
-    //   zipCode: null,
-    //   countrySelect: 'United States',
-    //   stateSelect: null,
-    //   phone: null
-    // }
-    // this.agentObj = {
-    //   firstName: null,
-    //   lastName: null,
-    //   address: null,
-    //   apartment: null,
-    //   city: null,
-    //   zipCode: null,
-    //   countrySelect: 'United States',
-    //   stateSelect: null,
-    //   phone: null
-    // }
-  },
+  created() {},
   mounted() {},
   computed: {
+    ...mapGetters(['getCart', 'getTotalPrice']),
     getCountryOptions() {
       return Object.keys(country)
     }
@@ -132,8 +228,139 @@ export default {
   .q-page-container {
     padding: 3vw 15vw;
     .shipping-address {
+      padding: 1.5rem;
+      background-color: white;
+      border: 1px solid $grey-4;
+      margin: 1rem 0;
     }
     .shipping-method {
+      padding: 1.5rem;
+      background-color: white;
+      border: 1px solid $grey-4;
+      margin: 1rem 0;
+      h5 {
+        font-size: 1.2rem;
+        padding-bottom: 1rem;
+        font-weight: 400;
+      }
+      .check-menu {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 1rem;
+        .q-radio {
+          font-size: 1.8rem;
+        }
+      }
+      .normal {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 2rem;
+        margin-top: 3rem;
+      }
+    }
+    .payment {
+      padding: 1.5rem;
+      background-color: white;
+      border: 1px solid $grey-4;
+      margin: 1rem 0;
+      .payment-title {
+        font-size: 1.2rem;
+        padding-bottom: 1rem;
+        font-weight: 400;
+      }
+      .payment-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+
+        .q-radio {
+          font-size: 2rem;
+        }
+        .desc {
+          width: 65%;
+          padding-left: 1rem;
+        }
+        .paypal-wrapper {
+          width: 5rem;
+          height: 2rem;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: white;
+          background-color: black;
+          text-align: center;
+          line-height: 2rem;
+          border-radius: 3px;
+          font-style: italic;
+          margin-top: 0.8rem;
+        }
+      }
+    }
+    .products {
+      padding: 1.5rem;
+      background-color: white;
+      border: 1px solid $grey-4;
+      margin: 1rem 0;
+      .products-title {
+        font-size: 1.2rem;
+        padding-bottom: 1rem;
+        font-weight: 400;
+      }
+      .q-list {
+        .q-item {
+          display: grid;
+          grid-template-columns: 6fr 2fr 1fr;
+          align-items: center;
+          overflow: hidden;
+          padding: 1rem 0.5rem;
+          align-items: flex-start;
+          column-gap: 1rem;
+          .product-image {
+            display: grid;
+            grid-template-columns: 4rem 1fr;
+            column-gap: 1rem;
+            img {
+              width: 4rem;
+              height: 4rem;
+              object-fit: cover;
+              object-position: top center;
+              border-radius: 3px;
+            }
+          }
+          .product-price {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            .number {
+              justify-self: center;
+            }
+          }
+        }
+      }
+      .order-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 2rem;
+        .order {
+          width: 18rem;
+          padding-bottom: 10rem;
+          div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            p {
+              margin: 0;
+            }
+          }
+          .grand-total {
+            margin-bottom: 1rem;
+            p {
+              font-weight: 600;
+            }
+          }
+          .q-btn {
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }
