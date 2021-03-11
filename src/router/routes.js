@@ -42,6 +42,12 @@ const routes = [
 
   // Always leave this as last one,
   // but you can also remove it
+  //
+  {
+    path: '/checkout',
+    name: 'checkout',
+    component: () => import('pages/Checkout.vue')
+  },
   {
     path: '*',
     component: () => import('pages/Error404.vue')
