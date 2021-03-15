@@ -379,7 +379,7 @@
           </q-dialog>
           <!-- 个人中心浮窗 -->
           <a
-            href="#"
+            href="javascript:void(0)"
             class="user-icon"
             @mouseleave="mouseLeave()"
             @mouseover="popUpVisiable = true"
@@ -492,7 +492,10 @@
               </div> </q-popup-proxy
           ></a>
           <!-- 购物车按钮 -->
-          <a href="#" @click="shopCarVisiable = true" class="cart-icon"
+          <a
+            href="javascript:void(0)"
+            @click="shopCarVisiable = true"
+            class="cart-icon"
             ><i class="iconfont icon-iconfontcart-copy"></i>
             <span>{{ getTotalPrice.toFixed(2) }}</span>
           </a>
@@ -547,7 +550,7 @@
                       ></q-btn>
                     </div>
                     <div class="price">
-                      ${{ (item.price * item.num).toFixed(2) }}
+                      ${{ getProductPrice(item.productID) }}
                     </div>
                   </div>
                 </div>
@@ -769,7 +772,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getCart', 'getTotalPrice'])
+    ...mapGetters(['getCart', 'getTotalPrice', 'getProductPrice'])
   },
 
   methods: {

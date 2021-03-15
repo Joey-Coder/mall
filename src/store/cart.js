@@ -7,9 +7,11 @@ export default {
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
         productImg: '/bu1.jpg', // 商品图片
-        price: '25.50', // 商品价格
-        num: '1', // 商品数量
-        maxNum: '100' // 商品限购数量
+        Hprice: 25.5, // 商品价格
+        Mprice: 25.0,
+        Lprice: 24.5,
+        num: 1, // 商品数量
+        maxNum: 1000000 // 商品限购数量
       },
       {
         id: '', // 购物车id
@@ -17,9 +19,11 @@ export default {
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
         productImg: '/bu2.jpg', // 商品图片
-        price: '28.00', // 商品价格
-        num: '3', // 商品数量
-        maxNum: '100' // 商品限购数量
+        Hprice: 28.0, // 商品价格
+        Mprice: 27.5,
+        Lprice: 27.0,
+        num: 3, // 商品数量
+        maxNum: 1000000 // 商品限购数量
       },
       {
         id: '', // 购物车id
@@ -27,9 +31,11 @@ export default {
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
         productImg: '/bu3.jpg', // 商品图片
-        price: '28.00', // 商品价格
-        num: '3', // 商品数量
-        maxNum: '100' // 商品限购数量
+        Hprice: 28.0, // 商品价格
+        Mprice: 27.5,
+        Lprice: 27.0,
+        num: 3, // 商品数量
+        maxNum: 1000000 // 商品限购数量
       },
       {
         id: '', // 购物车id
@@ -37,9 +43,11 @@ export default {
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
         productImg: '/bu4.jpg', // 商品图片
-        price: '28.00', // 商品价格
-        num: '3', // 商品数量
-        maxNum: '100' // 商品限购数量
+        Hprice: 28.0, // 商品价格
+        Mprice: 27.5,
+        Lprice: 27.0,
+        num: 3, // 商品数量
+        maxNum: 1000000 // 商品限购数量
       },
       {
         id: '', // 购物车id
@@ -47,9 +55,11 @@ export default {
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
         productImg: '/bu5.jpg', // 商品图片
-        price: '28.00', // 商品价格
-        num: '3', // 商品数量
-        maxNum: '100' // 商品限购数量
+        Hprice: 28.0, // 商品价格
+        Mprice: 27.5,
+        Lprice: 27.0,
+        num: 3, // 商品数量
+        maxNum: 1000000 // 商品限购数量
       }
     ]
   },
@@ -61,25 +71,52 @@ export default {
       var totalPrice = 0
       for (let i = 0; i < state.shoppingCart.length; i++) {
         const temp = state.shoppingCart[i]
-        totalPrice += temp.price * temp.num
+        if (temp.num > 0 && temp.num < 10) {
+          totalPrice += temp.Hprice * temp.num
+        } else if (temp.num <= 999) {
+          totalPrice += temp.Mprice * temp.num
+        } else {
+          totalPrice += temp.Lprice * temp.num
+        }
       }
       return totalPrice
+    },
+    // 通过让 getter 返回一个函数，来实现给 getter 传参
+    getProductById: state => productID => {
+      for (let i = 0; i < state.shoppingCart.length; i++) {
+        if (
+          state.shoppingCart[i].productID.toString() === productID.toString()
+        ) {
+          // console.log(state.shoppingCart[i])
+          return state.shoppingCart[i]
+        }
+      }
+    },
+    // 通过让 getter 返回一个函数，来实现给 getter 传参
+    getProductPrice: state => productID => {
+      var totalPrice = 0
+      for (let i = 0; i < state.shoppingCart.length; i++) {
+        const temp = state.shoppingCart[i]
+        if (temp.productID.toString() === productID.toString()) {
+          if (temp.num > 0 && temp.num < 10) {
+            totalPrice += temp.Hprice * temp.num
+          } else if (temp.num <= 999) {
+            totalPrice += temp.Mprice * temp.num
+          } else {
+            totalPrice += temp.Lprice * temp.num
+          }
+        }
+      }
+      // console.log(totalPrice)
+      return totalPrice.toFixed(2)
     }
-    // getProductById(state, productID) {
-    //   for (let i = 0; i < state.shoppingCart.length; i++) {
-    //     if (state.shoppingCart[i].productID === productID) {
-    //       // console.log(state.shoppingCart[i])
-    //       return state.shoppingCart[i]
-    //     }
-    //   }
-    // }
   },
   mutations: {
     addCartNum(state, productID) {
       // 增加购物车商品数量
       for (let i = 0; i < state.shoppingCart.length; i++) {
         const temp = state.shoppingCart[i]
-        if (temp.productID === productID) {
+        if (temp.productID.toString() === productID.toString()) {
           temp.num++
         }
       }
@@ -88,11 +125,15 @@ export default {
       // 增加购物车商品数量
       for (let i = 0; i < state.shoppingCart.length; i++) {
         const temp = state.shoppingCart[i]
-        if (temp.productID === productID && temp.num > 0) {
+        if (
+          temp.productID.toString() === productID.toString() &&
+          temp.num > 0
+        ) {
           temp.num--
         }
       }
     },
+
     /**
      * 往购物车添加新商品
      * @param {*} state

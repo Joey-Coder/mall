@@ -45,7 +45,18 @@
             dense
             standout
           />
-          <h4 class="price">${{ (product.price * product.num).toFixed(2) }}</h4>
+          <div class="price">
+            <p>${{ (Hprice * num).toFixed(2) }}</p>
+            <p style="color: #aaa; font-size:1rem">1~10</p>
+          </div>
+          <div class="price">
+            <p>${{ (Mprice * num).toFixed(2) }}</p>
+            <p style="color: #aaa; font-size:1rem">11~999</p>
+          </div>
+          <div class="price">
+            <p>${{ (Lprice * num).toFixed(2) }}</p>
+            <p style="color: #aaa; font-size:1rem">>999</p>
+          </div>
         </div>
         <div class="quantity">
           <p>QUANTITY</p>
@@ -54,22 +65,28 @@
               icon="remove"
               size="md"
               class="remove-btn"
-              @click="removeCartNum(product.productID)"
+              @click="
+                if (num > 1) {
+                  num--
+                }
+              "
               unelevated
               :disable="product.num <= 0"
             ></q-btn>
-            <input type="text" class="num-input" v-model="product.num" />
+            <input type="text" class="num-input" v-model="num" />
             <q-btn
               icon="add"
               size="md"
               unelevated
               class="add-btn"
-              @click="addCartNum(product.productID)"
+              @click="num++"
             ></q-btn>
           </div>
         </div>
         <div class="tool-btn">
-          <q-btn color="white" text-color="dark" outline>Add to Cart</q-btn>
+          <q-btn color="white" text-color="dark" outline @click="addToCart"
+            >Add to Cart</q-btn
+          >
           <q-btn color="dark" text-color="white" @click="goTo('checkout', '')"
             >Buy Now</q-btn
           >
@@ -128,6 +145,9 @@ export default {
     return {
       slide: 1,
       num: 1,
+      Hprice: 100.0,
+      Mprice: 90.0,
+      Lprice: 80.0,
       currentImg: 0,
       carouselOption: [
         '/bu1.jpg',
@@ -141,7 +161,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['addCartNum', 'removeCartNum', 'inCart', 'insertProduct']),
+    ...mapMutations(['addCartNum', 'removeCartNum', 'insertProduct']),
     goTo(name, id) {
       this.$router.push({ name: name, params: { id } })
     },
@@ -152,6 +172,35 @@ export default {
     rightSlide() {
       this.currentImg =
         (this.currentImg - 1 + this.carouselNum) % this.carouselNum
+    },
+    addToCart() {
+      var inCart = false
+      for (let i = 0; i < this.getCart.length; i++) {
+        // 商品已经存在
+        if (this.getCart[i].productID === this.id.toString()) {
+          inCart = true
+          break
+        }
+      }
+      // 商品已经在购物车
+      // debugger
+      if (inCart) {
+        for (let i = 0; i < this.num; i++) {
+          this.addCartNum(this.id)
+        }
+      } else {
+        const p = {
+          id: '', // 购物车id
+          productID: this.id.toString(), // 商品id
+          productName:
+            'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
+          productImg: '', // 商品图片
+          price: this.Hprice, // 商品价格
+          num: this.num, // 商品数量
+          maxNum: 100 // 商品限购数量
+        }
+        this.insertProduct(p)
+      }
     }
   },
   components: {},
@@ -160,10 +209,16 @@ export default {
       type: [Number, String]
     }
   },
-  created() {},
+  created() {
+    if (this.getProductById(this.id)) {
+      this.Hprice = this.getProductById(this.id).Hprice
+      this.Mprice = this.getProductById(this.id).Mprice
+      this.Lprice = this.getProductById(this.id).Lprice
+    }
+  },
   mounted() {},
   computed: {
-    ...mapGetters(['getCart']),
+    ...mapGetters(['getCart', 'getProductById']),
     /**
      * 根据id获取商品数量
      */
@@ -179,9 +234,11 @@ export default {
         productName:
           'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
         productImg: '', // 商品图片
-        price: '23.00', // 商品价格
-        num: '1', // 商品数量
-        maxNum: '100' // 商品限购数量
+        Hprice: this.Hprice, // 商品价格
+        Mprice: this.Mprice, // 商品价格
+        Lprice: this.Lprice, // 商品价格
+        num: this.num, // 商品数量
+        maxNum: 10000000 // 商品限购数量
       }
       this.insertProduct(p)
       return p
@@ -373,8 +430,15 @@ export default {
           margin-right: 2rem;
         }
         .price {
-          font-size: 1.8rem;
-          font-weight: 700;
+          // display: grid;
+          // grid-template-rows: 1fr 1fr;
+          margin-right: 1.2rem;
+          p {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: center;
+          }
         }
       }
       .quantity {
