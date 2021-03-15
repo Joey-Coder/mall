@@ -45,6 +45,7 @@
             :countryOptions="getCountryOptions"
             title="Agent address"
             :saveVisiable="false"
+            who="Agent"
           ></shipping-form>
         </div>
         <div class="normal" v-else>

@@ -562,7 +562,11 @@
                 <p class="total-tip text-grey-5 text-weight-bold">
                   Taxes and shipping calculated at checkout
                 </p>
-                <div class="checkout-btn text-h6" @click="goTo('checkout', '')">
+                <div
+                  class="checkout-btn text-h6"
+                  @click="goTo('checkout', '')"
+                  style="cursor: pointer"
+                >
                   CHECK OUT->
                 </div>
               </q-card-section>

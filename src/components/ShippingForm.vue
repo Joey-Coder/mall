@@ -6,7 +6,7 @@
       <div class="name">
         <q-input
           v-model="firstName"
-          label="Your first name *"
+          :label="`${who} first name *`"
           outlined
           lazy-rules
           :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -15,7 +15,7 @@
 
         <q-input
           v-model="lastName"
-          label="Your last name *"
+          :label="`${who} last name *`"
           outlined
           lazy-rules
           class="last-name"
@@ -25,7 +25,7 @@
       <!-- 地址 -->
       <q-input
         v-model="address"
-        label="Your Address *"
+        :label="`${who} Address *`"
         outlined
         lazy-rules
         :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -34,7 +34,7 @@
       <!-- 区域 -->
       <q-input
         v-model="apartment"
-        label="Your apartment, suite, street, number, etc(optional)"
+        :label="`${who} apartment, suite, street, number, etc(optional)`"
         outlined
         lazy-rules
         :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -44,7 +44,7 @@
       <div class="city-wrapper">
         <q-input
           v-model="city"
-          label="Your city"
+          :label="`${who} city`"
           outlined
           lazy-rules
           :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -67,7 +67,7 @@
           outlined
           v-model="countrySelect"
           :options="countryOptionsFilter"
-          label="Select Country/Region"
+          :label="`Select ${who} Country/Region`"
           use-input
           hide-selected
           @filter="countryFilter"
@@ -87,7 +87,7 @@
           outlined
           v-model="stateSelect"
           :options="stateOptionsFilter"
-          label="Select State"
+          :label="`Select ${who} State`"
           use-input
           hide-selected
           input-debounce="0"
@@ -108,7 +108,7 @@
         outlined
         v-model="phone"
         class="phone"
-        label="Mobile Phone Number"
+        :label="`${who} Mobile Phone Number`"
       >
         <template v-slot:prepend>
           <div class="pre-phone">
@@ -184,6 +184,10 @@ export default {
     saveVisiable: {
       type: Boolean,
       default: true
+    },
+    who: {
+      type: String,
+      default: 'Your'
     }
   },
   created() {
