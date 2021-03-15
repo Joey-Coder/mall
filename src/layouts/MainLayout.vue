@@ -256,10 +256,10 @@
               clickable
               v-close-popup
               @click="goTo('index', '')"
-              >Home</a
+              >{{ $t('home') }}</a
             >
             <a href="javascript:void(0);"
-              >Product
+              >{{ $t('product') }}
               <q-menu>
                 <q-list style="min-width: 100px">
                   <q-item clickable v-close-popup v-for="i in 3" :key="i">
@@ -270,7 +270,9 @@
                 </q-list>
               </q-menu>
             </a>
-            <a href="javascript:void(0)" @click="goTo('about', '')">About</a>
+            <a href="javascript:void(0)" @click="goTo('about', '')">{{
+              $t('about')
+            }}</a>
           </nav>
         </div>
 
@@ -779,6 +781,7 @@ export default {
     ...mapMutations(['addCartNum', 'removeCartNum']),
     changeLanguage() {
       this.lang = this.selectedLang
+      this.$i18n.locale = 'zh'
       // send axios
     },
     mouseLeave() {

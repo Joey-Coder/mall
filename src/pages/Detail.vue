@@ -522,9 +522,15 @@ export default {
   }
 }
 
+@media (max-width: 1330px) {
+  .q-page {
+    padding: 5vw 12vw;
+  }
+}
+
 @media (max-width: 1280px) {
   .q-page {
-    padding: 5vw 10vw;
+    padding: 5vw 8vw;
   }
 }
 

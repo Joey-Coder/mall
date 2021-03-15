@@ -82,6 +82,12 @@ export default {
       return totalPrice
     },
     // 通过让 getter 返回一个函数，来实现给 getter 传参
+    /**
+     *
+     * @param {string} productID
+     * @returns
+     * 根据id返回对应的购物车商品
+     */
     getProductById: state => productID => {
       for (let i = 0; i < state.shoppingCart.length; i++) {
         if (
