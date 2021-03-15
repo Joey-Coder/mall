@@ -5,6 +5,13 @@ import Vue from 'vue'
 import vueSmoothScroll from 'vue2-smooth-scroll'
 Vue.use(vueSmoothScroll)
 
+// 手机号码下拉框
+import VuCountryIntl from 'vue-country-intl'
+// 引入css
+import 'vue-country-intl/lib/vue-country-intl.css'
+// 全局注册组件
+Vue.component(VuCountryIntl.name, VuCountryIntl)
+
 // "async" is optional;
 // more info on params: https://quasar.dev/quasar-cli/boot-files
 export default async (/* { app, router, Vue ... } */) => {

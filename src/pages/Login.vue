@@ -45,15 +45,64 @@
               ]"
             />
           </div>
+
           <!-- 邮箱 -->
-          <q-input
-            outlined
-            v-model="email"
-            label="Email *"
-            lazy-rules
-            type="email"
-            :rules="[val => (val && val.length > 0) || 'Please type something']"
-          />
+          <div class="email" v-if="useEmail">
+            <p>
+              Use your email or
+              <a href="javascript:void(0)" @click="useEmail = false">mobile</a>
+            </p>
+            <q-input
+              outlined
+              v-model="email"
+              label="Email *"
+              lazy-rules
+              type="email"
+              :rules="[
+                val => (val && val.length > 0) || 'Please type something'
+              ]"
+            />
+          </div>
+
+          <!-- 电话号码 -->
+          <div class="phone-wrapper" v-else>
+            <div class="phone">
+              <vue-country-intl schema="popover" v-model="phoneCountry" iso2>
+                <button
+                  type="button"
+                  slot="reference"
+                  style="width: 100%; height: 56px; line-height: 56px"
+                >
+                  +{{ phoneCountry }}
+                </button>
+              </vue-country-intl>
+              <q-input
+                outlined
+                v-model="phone"
+                label="phone  *"
+                lazy-rules
+                :rules="[
+                  val => (val && val.length > 0) || 'Please type something'
+                ]"
+              />
+            </div>
+            <p>
+              Use Your mobile or
+              <a href="javascript:void(0)" @click="useEmail = true">email</a>
+            </p>
+            <div class="code">
+              <q-input
+                outlined
+                v-model="code"
+                label="Code *"
+                lazy-rules
+                :rules="[
+                  val => (val && val.length > 0) || 'Please type something'
+                ]"
+              />
+              <q-btn outline label="send code" padding="xs"></q-btn>
+            </div>
+          </div>
           <!-- 密码 -->
           <q-input
             v-model="password"
@@ -144,6 +193,7 @@
             type="email"
             :rules="[val => (val && val.length > 0) || 'Please type something']"
           />
+
           <!-- 密码 -->
           <q-input
             v-model="password"
@@ -223,14 +273,78 @@
           />
         </div>
         <!-- 邮箱 -->
-        <q-input
+        <!-- <q-input
           outlined
           v-model="email"
           label="Email *"
           lazy-rules
           type="email"
           :rules="[val => (val && val.length > 0) || 'Please type something']"
-        />
+        /> -->
+
+        <!-- 邮箱 -->
+        <div class="email" v-if="useEmail">
+          <p>
+            Use your email or
+            <a href="javascript:void(0)" @click="useEmail = false">mobile</a>
+          </p>
+          <q-input
+            outlined
+            v-model="email"
+            label="Email *"
+            lazy-rules
+            type="email"
+            :rules="[val => (val && val.length > 0) || 'Please type something']"
+          />
+        </div>
+
+        <!-- 电话号码 -->
+        <div class="phone-wrapper" v-else>
+          <div class="phone">
+            <!-- <div class="country-number">+86</div> -->
+            <!-- <vue-country-intl
+                v-model="countryCode"
+                :showAreacode="false"
+                :onlyValue="true"
+                :useChinese="false"
+                placeholder="Select Country"
+              ></vue-country-intl> -->
+            <vue-country-intl schema="popover" v-model="phoneCountry" iso2>
+              <button
+                type="button"
+                slot="reference"
+                style="width: 100%; height: 56px; line-height: 56px"
+              >
+                +{{ phoneCountry }}
+              </button>
+            </vue-country-intl>
+            <q-input
+              outlined
+              v-model="phone"
+              label="phone  *"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Please type something'
+              ]"
+            />
+          </div>
+          <p>
+            Use Your mobile or
+            <a href="javascript:void(0)" @click="useEmail = true">email</a>
+          </p>
+          <div class="code">
+            <q-input
+              outlined
+              v-model="code"
+              label="Code *"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Please type something'
+              ]"
+            />
+            <q-btn outline label="send code" padding="xs"></q-btn>
+          </div>
+        </div>
         <!-- 密码 -->
         <q-input
           v-model="password"
@@ -316,6 +430,12 @@
             />
           </template>
         </q-input>
+        <a
+          href="javascript:void(0)"
+          @click="goTo('forgot', '')"
+          style="display: block; text-decoration: none; color: black;"
+          >Forget Password?</a
+        >
         <q-separator></q-separator>
         <div class="sign-btn">
           <q-btn
@@ -368,9 +488,13 @@ export default {
       firstName: null,
       lastName: null,
       email: null,
+      phone: null,
       password: null,
+      code: null,
       confirmPw: null,
       passwordVisiable: true,
+      useEmail: true,
+      phoneCountry: '1',
       isSign: this.id // '0' is login, '1' is create
     }
   },
@@ -429,6 +553,47 @@ export default {
         .first-name,
         .last-name {
           width: 45%;
+        }
+      }
+      .email {
+        p {
+          a {
+            text-decoration: underline;
+            color: black;
+            cursor: pointer;
+          }
+        }
+      }
+      .phone-wrapper {
+        .phone {
+          display: grid;
+          grid-template-columns: 1fr 5fr;
+          column-gap: 1rem;
+          .country-number {
+            width: 100%;
+            height: 56px;
+            line-height: 56px;
+            text-align: center;
+            background-color: $grey-3;
+          }
+        }
+        p {
+          a {
+            text-decoration: underline;
+            color: black;
+            cursor: pointer;
+          }
+        }
+        .code {
+          display: grid;
+          grid-template-columns: 4fr 1fr;
+          column-gap: 1rem;
+          .q-btn {
+            height: 56px;
+            ::v-deep .block {
+              white-space: nowrap;
+            }
+          }
         }
       }
       .create-desc {

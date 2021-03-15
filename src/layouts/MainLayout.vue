@@ -809,7 +809,7 @@ export default {
     height: 120px;
     padding: 0 4rem;
     .q-toolbar {
-      height: 80px;
+      height: 6rem;
       display: grid;
       grid-template-columns: 3fr 1fr;
       align-items: end;
@@ -818,8 +818,8 @@ export default {
         display: flex;
         img {
           margin-right: 2rem;
-          width: 5rem;
-          height: 5rem;
+          width: 6rem;
+          height: 6rem;
         }
 
         nav {
