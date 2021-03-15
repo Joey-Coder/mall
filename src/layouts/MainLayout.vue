@@ -248,10 +248,7 @@
             </q-card>
           </q-dialog>
           <a href="javascript:void(0)" @click="goTo('index', '')"
-            ><img
-              src="../assets/logo.png"
-              style="width: 4rem; height: 4rem"
-              alt=""
+            ><img src="../assets/logo.png" alt=""
           /></a>
           <nav>
             <a
@@ -808,7 +805,7 @@ export default {
     height: 120px;
     padding: 0 4rem;
     .q-toolbar {
-      height: 76px;
+      height: 80px;
       display: grid;
       grid-template-columns: 3fr 1fr;
       align-items: end;
@@ -817,6 +814,8 @@ export default {
         display: flex;
         img {
           margin-right: 2rem;
+          width: 5rem;
+          height: 5rem;
         }
 
         nav {
@@ -869,7 +868,7 @@ export default {
         }
         .iconfont {
           color: #000;
-          font-size: 2rem;
+          font-size: 1.8rem;
         }
         .cart-icon {
           display: flex;
