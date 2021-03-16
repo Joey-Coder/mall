@@ -1,1 +1,32 @@
-export default {}
+export default {
+  product: 'домашняя страница',
+  home: 'продукт',
+  about: 'о',
+  yourEmailAddress: 'Ваш адрес электронной почты',
+  yourPassword: 'твой пароль',
+  signIn: 'авторизоваться',
+  joinFree: 'присоединиться бесплатно',
+  facebookWithLogin: 'Facebook с логином',
+  googleWithLogin: 'гугл с логином',
+  forgetYourPassword: 'Забыли свой пароль',
+  yourCart: 'твоя тележка',
+  total: 'общий',
+
+  taxesAndShippingCalculatedAtCheckout:
+    'Налоги и доставка рассчитываются при оформлении заказа',
+  checkOut: 'проверить',
+  showThisFabric: 'показать эту ткань',
+  email: 'ээлектронное письмо',
+  phone: 'Телефон',
+  address: 'адрес',
+  member: 'Член',
+  orderTracking: 'Отслеживание заказа',
+  createAnAccount: 'Завести аккаунт',
+  overview: 'Обзор',
+  paymentMethods: 'Способы оплаты',
+  shippingReturns: 'Доставка и возврат',
+  FaqHelp: 'FAQ и Помощь',
+  Faq: 'FAQ',
+  buyerProtection: 'Защита Покупателя',
+  copyRight: 'Copyright © 2020-2021 Все права защищены.'
+}

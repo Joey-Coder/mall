@@ -402,7 +402,7 @@
                     class="q-my-sm"
                     filled
                     v-model="email"
-                    label="Your Email Address"
+                    label="$t('yourEmailAddress')"
                     lazy-rules
                     :rules="[
                       val => (val && val.length > 0) || 'Please type something'
@@ -413,7 +413,7 @@
                     class="q-my-sm"
                     filled
                     v-model="password"
-                    label="Your Password"
+                    label="$t('yourPassword')"
                     lazy-rules
                     :rules="[
                       val => (val && val.length > 0) || 'Please type something'
@@ -422,7 +422,7 @@
 
                   <div>
                     <q-btn
-                      label="Sign In"
+                      :label="$t('signIn')"
                       type="submit"
                       color="dark"
                       text-color="white"
@@ -440,7 +440,7 @@
                       align="between"
                     >
                       <img src="../assets/ic_facebook.png" alt="" />
-                      <div>Facebook with login</div>
+                      <div>{{ $t('facebookWithLogin') }}</div>
                       <div></div>
                     </q-btn>
                     <q-btn
@@ -454,13 +454,13 @@
                       align="between"
                     >
                       <img src="../assets/ic_g.png" alt="" />
-                      <div>Google with login</div>
+                      <div>{{ $t('googleWithLogin') }}</div>
                       <div></div>
                     </q-btn>
 
                     <q-separator class="q-my-xs" />
                     <q-btn
-                      label="Join Free"
+                      :label="$t('joinFree')"
                       class="q-my-sm"
                       text-color="dark"
                       color="white"
@@ -473,7 +473,7 @@
                       class="text-grey-8 text-right q-my-sm"
                       style="display: block"
                       @click="goTo('forgot', '')"
-                      >Forget your password?</a
+                      >{{ $t('forgetYourPassword') }}?</a
                     >
                   </div>
                 </q-form>
@@ -506,7 +506,7 @@
               <q-card-section
                 class="cart-title row items-start justify-between no-wrap"
               >
-                <div class="text-h6 text-white">Your Cart</div>
+                <div class="text-h6 text-white">{{ $t('yourCart') }}</div>
                 <q-space />
                 <q-btn
                   icon="close"
@@ -559,20 +559,20 @@
               </q-card-section>
               <q-card-section class="text-white total">
                 <div class="row justify-between items-center">
-                  <p class="total-title text-weight-bold">Total</p>
+                  <p class="total-title text-weight-bold">{{ $t('total') }}</p>
                   <p class="total-price text-weight-bold ">
                     ${{ getTotalPrice.toFixed(2) }}
                   </p>
                 </div>
                 <p class="total-tip text-grey-5 text-weight-bold">
-                  Taxes and shipping calculated at checkout
+                  {{ $t('taxesAndShippingCalculatedAtCheckout') }}
                 </p>
                 <div
                   class="checkout-btn text-h6"
                   @click="goTo('checkout', '')"
                   style="cursor: pointer"
                 >
-                  CHECK OUT->
+                  {{ $t('checkOut') }}->
                 </div>
               </q-card-section>
             </q-card>
@@ -620,13 +620,13 @@
             class="member-title text-h6 row justify-between items-center"
             @click="memberVisiable = !memberVisiable"
           >
-            <div>Member</div>
+            <div>{{ $t('member') }}</div>
             <q-btn icon="add" flat dense v-if="!memberVisiable"></q-btn>
             <q-btn icon="remove" flat dense v-else></q-btn>
           </div>
           <div class="member-text" v-if="memberVisiable">
-            <div class="q-pt-md">Order Tracking</div>
-            <div>Create an Account</div>
+            <div class="q-pt-md">{{ $t('orderTracking') }}</div>
+            <div>{{ $t('createAnAccount') }}</div>
           </div>
         </div>
         <div class="overview ">
@@ -634,13 +634,13 @@
             class="overview-title text-h6 row justify-between items-center"
             @click="overviewVisiable = !overviewVisiable"
           >
-            <div>Overview</div>
+            <div>{{ $t('overview') }}</div>
             <q-btn icon="add" flat dense v-if="!overviewVisiable"></q-btn>
             <q-btn icon="remove" flat dense v-else></q-btn>
           </div>
           <div class="overview-text" v-if="overviewVisiable">
-            <div class="q-pt-md">Payment Methods</div>
-            <div>Shipping & Returns</div>
+            <div class="q-pt-md">{{ $t('paymentMethods') }}</div>
+            <div>{{ $t('shippingReturns') }}</div>
           </div>
         </div>
         <div class="help ">
@@ -648,13 +648,13 @@
             class="text-h6 help-title row justify-between items-center"
             @click="helpVisiable = !helpVisiable"
           >
-            <div>FAQ & Help</div>
+            <div>{{ $t('FAQHelp') }}</div>
             <q-btn icon="add" flat dense v-if="!helpVisiable"></q-btn>
             <q-btn icon="remove" flat dense v-else></q-btn>
           </div>
           <div class="help-text" v-if="helpVisiable">
-            <div class="q-pt-md">FAQ</div>
-            <div>Buyer Protection</div>
+            <div class="q-pt-md">{{ $t('Faq') }}</div>
+            <div>{{ $t('buyerProtection') }}</div>
           </div>
         </div>
       </div>
@@ -662,29 +662,29 @@
       <div class="footer-menu" v-else>
         <div class="member">
           <div class="member-title text-h6 ">
-            Member
+            {{ $t('member') }}
           </div>
           <div class="member-text">
-            <div class="q-pt-md">Order Tracking</div>
-            <div>Create an Account</div>
+            <div class="q-pt-md">{{ $t('orderTracking') }}</div>
+            <div>{{ $t('createAnAccount') }}</div>
           </div>
         </div>
         <div class="overview ">
           <div class="overview-title text-h6">
-            Overview
+            {{ $t('overview') }}
           </div>
           <div class="overview-text">
-            <div class="q-pt-md">Payment Methods</div>
-            <div>Shipping & Returns</div>
+            <div class="q-pt-md">{{ $t('paymentMethods') }}</div>
+            <div>{{ $t('shippingReturns') }}</div>
           </div>
         </div>
         <div class="help ">
           <div class="text-h6 help-title ">
-            FAQ & Help
+            {{ $t('FaqHelp') }}
           </div>
           <div class="help-text">
-            <div class="q-pt-md">FAQ</div>
-            <div>Buyer Protection</div>
+            <div class="q-pt-md">{{ $t('Faq') }}</div>
+            <div>{{ $t('buyerProtection') }}</div>
           </div>
         </div>
       </div>
@@ -744,9 +744,7 @@
         </div>
       </div>
       <!-- copyright -->
-      <div class="copyright q-py-lg">
-        版权所有©2020-2020保留所有权利
-      </div>
+      <div class="copyright q-py-lg">{{ $t('copyRight') }}</div>
     </q-footer>
   </q-layout>
 </template>
@@ -781,7 +779,7 @@ export default {
     ...mapMutations(['addCartNum', 'removeCartNum']),
     changeLanguage() {
       this.lang = this.selectedLang
-      this.$i18n.locale = 'zh'
+      this.$i18n.locale = this.lang
       // send axios
     },
     mouseLeave() {

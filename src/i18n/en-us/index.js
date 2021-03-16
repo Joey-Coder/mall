@@ -2,6 +2,7 @@
 // so you can safely delete all default props below
 
 export default {
+  // 首页相关
   product: 'Product',
   home: 'Home',
   about: 'About',
@@ -15,7 +16,7 @@ export default {
   yourCart: 'your cart',
   total: 'total',
 
-  TaxesAndShippingCalculatedAtCheckout:
+  taxesAndShippingCalculatedAtCheckout:
     'taxesAndShipping calculated at checkout',
   checkOut: 'check out',
   showThisFabric: 'show this fabric',

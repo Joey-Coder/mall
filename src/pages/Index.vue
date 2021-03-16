@@ -49,7 +49,7 @@
         <q-img src="../assets/bu1.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
-            <q-btn color="black">Shop this fabri-></q-btn>
+            <q-btn color="black">{{ $t('showThisFabric') }}-></q-btn>
           </div>
         </q-img>
       </div>
@@ -57,7 +57,7 @@
         <q-img src="../assets/bu2.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
-            <q-btn label="Shop this fabri->" color="black"></q-btn>
+            <q-btn :label="$t('showThisFabric') + '->'" color="black"></q-btn>
           </div>
         </q-img>
       </div>
@@ -65,7 +65,7 @@
         <q-img src="../assets/bu3.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
-            <q-btn label="Shop this fabri->" color="black"></q-btn>
+            <q-btn :label="$t('showThisFabric') + '->'" color="black"></q-btn>
           </div>
         </q-img>
       </div>
@@ -73,7 +73,7 @@
         <q-img src="../assets/bu4.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
-            <q-btn label="Shop this fabri->" color="black"></q-btn>
+            <q-btn :label="$t('showThisFabric') + '->'" color="black"></q-btn>
           </div>
         </q-img>
       </div>
@@ -229,21 +229,21 @@
         <div class="icon">
           <i class="iconfont icon-email"></i>
         </div>
-        <h5 class="title">mail</h5>
+        <h5 class="title">{{ $t('email') }}</h5>
         <p class="text">*******@qq.com</p>
       </div>
       <div class="info">
         <div class="icon">
           <i class="iconfont icon-phone"></i>
         </div>
-        <h5 class="title">phone</h5>
+        <h5 class="title">{{ $t('phone') }}</h5>
         <p class="text">0755-33****</p>
       </div>
       <div class="info">
         <div class="icon">
           <i class="iconfont icon-location"></i>
         </div>
-        <h5 class="title">address</h5>
+        <h5 class="title">{{ $t('address') }}</h5>
         <p class="text">
           美國華盛頓哥倫比亞特區西北區賓夕法尼亞大道1600號
         </p>
@@ -334,6 +334,7 @@ export default {
           margin-bottom: 2.5rem;
         }
         .q-btn {
+          white-space: nowrap;
           width: 12rem;
           height: 3rem;
         }
