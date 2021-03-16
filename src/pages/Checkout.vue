@@ -112,11 +112,11 @@
               <p>{{ item.productName }}</p>
             </q-item-section>
             <q-item-section class="product-price">
-              <p>${{ item.Hprice }}</p>
+              <p>${{ calcPerPrice(item) }}</p>
               <p class="number">{{ item.num }}</p>
             </q-item-section>
             <q-item-section class="product-amount">
-              <p>${{ (parseFloat(item.Hprice) * item.num).toFixed(2) }}</p>
+              <p>${{ getProductPrice(item.productID) }}</p>
             </q-item-section>
           </q-item>
         </q-list>
@@ -130,7 +130,7 @@
             <q-item-section class="product-price">
               <p>{{ item.productName }}</p>
               <div class="row justify-between">
-                <p>USD ${{ item.price }}</p>
+                <p>USD ${{ calcPerPrice(item) }}</p>
                 <p class="text-weight-bold">
                   ${{ getProductPrice(item.productID) }}
                 </p>
@@ -146,7 +146,7 @@
             </div>
             <div class="express-total">
               <p>{{ $t('expressCost') }}:</p>
-              <p>${{ expressTotal }}</p>
+              <p>${{ expressTotal.toFixed(2) }}</p>
             </div>
             <div class="grand-total">
               <p>{{ $t('grandTotal') }}:</p>
@@ -193,6 +193,15 @@ export default {
     ...mapGetters(['getCart', 'getTotalPrice', 'getProductPrice']),
     getCountryOptions() {
       return Object.keys(country)
+    },
+    calcPerPrice: () => item => {
+      if (item.num < 10) {
+        return item.Hprice
+      } else if (item.num < 1000) {
+        return item.Mprice
+      } else {
+        return item.Lprice
+      }
     }
   },
   watch: {}
