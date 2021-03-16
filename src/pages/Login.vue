@@ -566,7 +566,9 @@ export default {
     }
   },
   created() {},
-  mounted() {},
+  mounted() {
+    console.log(this.$i18n.locale)
+  },
   computed: {},
   watch: {
     id(val) {

@@ -9,15 +9,15 @@
       <div class="step">
         <div class="step-item">
           <div class="icon">1</div>
-          <div class="title">Shopping</div>
+          <div class="title">{{ $t('shopping') }}</div>
         </div>
         <div class="step-item">
           <div class="icon active">2</div>
-          <div class="title">Place Order</div>
+          <div class="title">{{ $t('placeOrder') }}</div>
         </div>
         <div class="step-item">
           <div class="icon">3</div>
-          <div class="title">Completed</div>
+          <div class="title">{{ $t('completed') }}</div>
         </div>
       </div>
     </q-header>
@@ -112,11 +112,11 @@
               <p>{{ item.productName }}</p>
             </q-item-section>
             <q-item-section class="product-price">
-              <p>${{ item.price }}</p>
+              <p>${{ item.Hprice }}</p>
               <p class="number">{{ item.num }}</p>
             </q-item-section>
             <q-item-section class="product-amount">
-              <p>${{ (parseFloat(item.price) * item.num).toFixed(2) }}</p>
+              <p>${{ (parseFloat(item.Hprice) * item.num).toFixed(2) }}</p>
             </q-item-section>
           </q-item>
         </q-list>
@@ -132,7 +132,7 @@
               <div class="row justify-between">
                 <p>USD ${{ item.price }}</p>
                 <p class="text-weight-bold">
-                  ${{ (parseFloat(item.price) * item.num).toFixed(2) }}
+                  ${{ getProductPrice(item.productID) }}
                 </p>
               </div>
             </q-item-section>
@@ -190,7 +190,7 @@ export default {
   created() {},
   mounted() {},
   computed: {
-    ...mapGetters(['getCart', 'getTotalPrice']),
+    ...mapGetters(['getCart', 'getTotalPrice', 'getProductPrice']),
     getCountryOptions() {
       return Object.keys(country)
     }
