@@ -7,6 +7,7 @@ export default {
   yourPassword: 'şifreniz',
   signIn: 'oturum aç',
   joinFree: 'ücretsiz katılım',
+  signOrJoin: 'oturum aç kullanın ücretsiz katılım',
   facebookWithLogin: 'Facebook girişli',
   googleWithLogin: 'giriş ile google',
   forgetYourPassword: 'Şifreni mi unuttun',

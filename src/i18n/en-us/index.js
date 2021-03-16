@@ -10,6 +10,7 @@ export default {
   yourPassword: 'your password',
   signIn: 'sign in',
   joinFree: 'join free',
+  signOrJoin: 'Sign in or Join free',
   facebookWithLogin: 'Facebook with login',
   googleWithLogin: 'Google with login',
   forgetYourPassword: 'forget your password',

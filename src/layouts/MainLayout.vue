@@ -36,8 +36,9 @@
                   <q-item-section
                     class="text-dark text-subtitle1"
                     v-if="!isLogIn"
+                    style="white-space:nowrap; overflow: scroll"
                   >
-                    Sign in or Join Free
+                    {{ $t('signOrJoin') }}
                   </q-item-section>
                   <q-item-section class="text-dark text-subtitle1" v-else>
                     My Orders or Settings
@@ -51,7 +52,7 @@
                   @click="goTo('index', '')"
                 >
                   <q-item-section class="text-dark text-subtitle1">
-                    Home
+                    {{ $t('home') }}
                   </q-item-section>
                 </q-item>
                 <!-- 商品菜单 -->
@@ -62,7 +63,7 @@
                   @click="productSubMenuVisiable = true"
                 >
                   <q-item-section class="text-dark text-subtitle1">
-                    Product
+                    {{ $t('product') }}
                   </q-item-section>
                   <q-item-section side>
                     <q-icon name="keyboard_arrow_right" size="lg" />
@@ -113,7 +114,7 @@
                     class="text-dark text-subtitle1"
                     @click="goTo('about', '')"
                   >
-                    About
+                    {{ $t('about') }}
                   </q-item-section>
                 </q-item>
                 <q-separator size="8px" />
@@ -177,7 +178,7 @@
                           clickable
                           v-ripple
                           class="menu"
-                          @click="lang = 'United States'"
+                          @click="lang = $i18n.locale = 'United States'"
                           v-close-popup
                         >
                           <q-item-section avatar style="font-size: 1.5rem">
@@ -193,7 +194,7 @@
                           clickable
                           v-ripple
                           class="menu"
-                          @click="lang = 'Россия'"
+                          @click="lang = $i18n.locale = 'Россия'"
                           v-close-popup
                         >
                           <q-item-section avatar style="font-size: 1.5rem">
@@ -209,7 +210,7 @@
                           clickable
                           v-ripple
                           class="menu"
-                          @click="lang = 'Türkiye'"
+                          @click="lang = $i18n.locale = 'Türkiye'"
                           v-close-popup
                         >
                           <q-item-section avatar style="font-size: 1.5rem">
@@ -225,7 +226,7 @@
                           clickable
                           v-ripple
                           class="menu"
-                          @click="lang = 'لغة عربية'"
+                          @click="lang = $i18n.locale = 'لغة عربية'"
                           v-close-popup
                         >
                           <q-item-section avatar style="font-size: 1.5rem">

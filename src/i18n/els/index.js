@@ -6,6 +6,7 @@ export default {
   yourPassword: 'твой пароль',
   signIn: 'авторизоваться',
   joinFree: 'присоединиться бесплатно',
+  signOrJoin: 'авторизоваться или присоединиться бесплатно',
   facebookWithLogin: 'Facebook с логином',
   googleWithLogin: 'гугл с логином',
   forgetYourPassword: 'Забыли свой пароль',

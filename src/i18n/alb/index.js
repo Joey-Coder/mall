@@ -7,6 +7,7 @@ export default {
   yourPassword: 'كلمة السر خاصتك',
   signIn: 'تسجيل الدخول',
   joinFree: 'انضم مجانا',
+  signOrJoin: 'تسجيل الدخول استخدم انضم مجانا',
   facebookWithLogin: 'الفيسبوك مع تسجيل الدخول',
   googleWithLogin: 'جوجل مع تسجيل الدخول',
   forgetYourPassword: 'نسيت كلمة المرور',
