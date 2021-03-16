@@ -72,5 +72,23 @@ export default {
   subTotal: 'المجموع الفرعي',
   expressCost: 'التكلفة السريعة',
   grandTotal: 'المجموع الكلي',
-  placeYourOrder: 'ضع طلبك'
+  placeYourOrder: 'ضع طلبك',
+  // 注册页面
+  createAccount: 'إنشاء حساب',
+  useYourMobileOr: ' استخدم هاتفك المحمول أو',
+  useYourEmailOr: ' استخدم بريدك الإلكتروني أو',
+  mobile: 'بريدك الإلكتروني',
+  enterSecurityCode: 'أدخل رمز الحماية',
+  sendCode: 'أرسل الرمز',
+  createYourPassword: 'إنشاء كلمة مرورك',
+  confirmPassword: 'تأكيد كلمة المرور',
+  byClickCreate: 'بالنقر فوق "إنشاء حسابي" أوافق على ما يلي:',
+  orderAndDelivery:
+    'قد أتلقى رسائل بريد إلكتروني للتواصل من متجري حول الطلب والتسليم.',
+  productsAndPromotions:
+    'قد أتلقى منتجات جديدة ورسائل بريد إلكتروني ترويجية من متجري.',
+  returnToHome: 'العودة إلى الصفحة الرئيسية',
+  alreadyHaveAnAccount: 'هل لديك حساب؟',
+  signInNow: 'قم بتسجيل دخولك الآن',
+  createMyAccount: 'إنشيء حسابي'
 }

@@ -369,7 +369,7 @@
 
               <q-card-actions align="center" class="q-pb-lg">
                 <q-btn
-                  label="Save"
+                  :label="$t('save')"
                   style="width: 30%"
                   color="dark"
                   unelevated
@@ -402,7 +402,7 @@
                     class="q-my-sm"
                     filled
                     v-model="email"
-                    label="$t('yourEmailAddress')"
+                    :label="$t('yourEmailAddress')"
                     lazy-rules
                     :rules="[
                       val => (val && val.length > 0) || 'Please type something'
@@ -413,7 +413,7 @@
                     class="q-my-sm"
                     filled
                     v-model="password"
-                    label="$t('yourPassword')"
+                    :label="$t('yourPassword')"
                     lazy-rules
                     :rules="[
                       val => (val && val.length > 0) || 'Please type something'
@@ -648,7 +648,7 @@
             class="text-h6 help-title row justify-between items-center"
             @click="helpVisiable = !helpVisiable"
           >
-            <div>{{ $t('FAQHelp') }}</div>
+            <div>{{ $t('FaqHelp') }}</div>
             <q-btn icon="add" flat dense v-if="!helpVisiable"></q-btn>
             <q-btn icon="remove" flat dense v-else></q-btn>
           </div>

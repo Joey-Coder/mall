@@ -44,7 +44,8 @@ export default {
   yourFirstName: 'ilk adın',
   yourLastName: 'soy adınız',
   yourAddress: 'senin adresin',
-  yourApartmentSuit: 'daireniz, süitiniz, sokağınız, numaranız vb. （isteğe bağlı）',
+  yourApartmentSuit:
+    'daireniz, süitiniz, sokağınız, numaranız vb. （isteğe bağlı）',
   yourCity: 'senin şehirin',
   zipCode: 'Posta kodu',
   selectCountry: 'Ülke / Bölge Seçin',
@@ -57,7 +58,8 @@ export default {
   agentFirstName: 'temsilci soyadı',
   agentLastName: 'temsilci adı',
   agentAddress: 'temsilci adres',
-  agentApartmentSuit: 'temsilci apartman, süit, cadde, numara vb. （isteğe bağlı）',
+  agentApartmentSuit:
+    'temsilci apartman, süit, cadde, numara vb. （isteğe bağlı）',
   agentCity: 'Kent',
   seaTransport: 'Deniz taşımacılığı',
   airTransport: 'Hava Taşımacılığı',
@@ -71,5 +73,24 @@ export default {
   subTotal: 'ara toplam',
   expressCost: 'Ekspres Maliyet',
   grandTotal: 'Genel Toplam',
-  placeYourOrder: 'Siparişinizi'
+  placeYourOrder: 'Siparişinizi',
+
+  // 注册页面
+  createAccount: 'Hesap oluştur',
+  useYourMobileOr: ' veya e-postanızı kullanın',
+  useYourEmailOr: ' veya cep telefonunuzu kullanın',
+  mobile: 'cep telefonunuzu',
+  enterSecurityCode: 'Güvenlik kodunu gir',
+  sendCode: 'kodu gönder',
+  createYourPassword: 'Şifreni oluştur',
+  confirmPassword: 'Şifreyi Onayla',
+  byClickCreate: '"Hesabımı Oluştur" u tıklayarak şunları kabul ediyorum:',
+  orderAndDelivery:
+    "MY SHOP'tan sipariş ve teslimatla ilgili iletişim e-postaları alabilirim.",
+  productsAndPromotions:
+    "MY SHOP'tan yeni ürünler ve promosyon e-postaları alabilirim.",
+  returnToHome: 'Ana sayfaya dön',
+  alreadyHaveAnAccount: 'Zaten hesabınız var mı?',
+  signInNow: 'şimdi giriş yap',
+  createMyAccount: 'Hesabımı oluşturmak'
 }

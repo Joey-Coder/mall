@@ -74,5 +74,24 @@ export default {
   subTotal: 'Промежуточный итог',
   expressCost: 'Экспресс-стоимость',
   grandTotal: 'Общая сумма',
-  placeYourOrder: 'разместить заказ'
+  placeYourOrder: 'разместить заказ',
+
+  // 注册页面
+  createAccount: 'Зарегистрироваться',
+  useYourMobileOr: 'используйте свой мобильный телефон или ',
+  useYourEmailOr: 'используйте свою электронную почту или ',
+  mobile: 'мобильный телефон',
+  enterSecurityCode: 'Введите код безопасности',
+  sendCode: 'Отправить код',
+  createYourPassword: 'Создайте свой пароль',
+  confirmPassword: 'Подтвердить Пароль',
+  byClickCreate: 'Нажимая «Создать учетную запись», я подтверждаю, что:',
+  orderAndDelivery:
+    'Я могу получать электронные письма от МОЕГО МАГАЗИНА о заказе и доставке.',
+  productsAndPromotions:
+    'Я могу получать электронные письма о новых продуктах и рекламных сообщениях от МОЙ МАГАЗИН.',
+  returnToHome: 'Вернуться на главную страницу',
+  alreadyHaveAnAccount: 'Уже есть аккаунт?',
+  signInNow: 'войдите сейчас',
+  createMyAccount: 'создать мой аккаунт'
 }

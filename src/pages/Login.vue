@@ -5,20 +5,20 @@
         unelevated
         :class="[isSign.toString() === '0' ? 'active' : '']"
         @click="isSign = '0'"
-        >Sign In</q-btn
+        >{{ $t('signIn') }}</q-btn
       >
       <q-btn
         unelevated
         :class="[isSign === '1' ? 'active' : '']"
         @click="isSign = '1'"
-        >Join Free</q-btn
+        >{{ $t('joinFree') }}</q-btn
       >
     </section>
     <!-- pc端 -->
     <section class="create-wrapper" v-if="isSign.toString() === '1'">
       <!-- 输入框 -->
       <div class="create hide">
-        <h4 class="title">Create Account</h4>
+        <h4 class="title">{{ $t('createAccount') }}</h4>
         <q-form @submit="onSubmit">
           <div class="name" style="width: 100%">
             <!-- firstName -->
@@ -26,7 +26,7 @@
               class="first-name"
               outlined
               v-model="firstName"
-              label="Your first name *"
+              :label="$t('yourFirstName')"
               lazy-rules
               :rules="[
                 val => (val && val.length > 0) || 'Please type something'
@@ -38,7 +38,7 @@
               outlined
               class="last-name"
               v-model="lastName"
-              label="Your last name *"
+              :label="$t('yourLastName')"
               lazy-rules
               :rules="[
                 val => (val && val.length > 0) || 'Please type something'
@@ -49,13 +49,28 @@
           <!-- 邮箱 -->
           <div class="email" v-if="useEmail">
             <p>
-              Use your email or
-              <a href="javascript:void(0)" @click="useEmail = false">mobile</a>
+              <a
+                href="javascript:void(0)"
+                @click="useEmail = false"
+                v-if="
+                  $i18n.locale === 'Türkiye' || $i18n.locale === 'لغة عربية'
+                "
+                >{{ $t('mobile') }}</a
+              >
+              {{ $t('useYourEmailOr') }}
+              <a
+                href="javascript:void(0)"
+                @click="useEmail = false"
+                v-if="
+                  $i18n.locale === 'United States' || $i18n.locale === 'Россия'
+                "
+                >{{ $t('mobile') }}</a
+              >
             </p>
             <q-input
               outlined
               v-model="email"
-              label="Email *"
+              :label="$t('email')"
               lazy-rules
               type="email"
               :rules="[
@@ -87,20 +102,35 @@
               />
             </div>
             <p>
-              Use Your mobile or
-              <a href="javascript:void(0)" @click="useEmail = true">email</a>
+              <a
+                href="javascript:void(0)"
+                @click="useEmail = true"
+                v-if="
+                  $i18n.locale === 'Türkiye' || $i18n.locale === 'لغة عربية'
+                "
+                >{{ $t('email') }}</a
+              >
+              {{ $t('useYourMobileOr') }}
+              <a
+                href="javascript:void(0)"
+                @click="useEmail = true"
+                v-if="
+                  $i18n.locale === 'United States' || $i18n.locale === 'Россия'
+                "
+                >{{ $t('email') }}</a
+              >
             </p>
             <div class="code">
               <q-input
                 outlined
                 v-model="code"
-                label="Code *"
+                :label="$t('enterSecurityCode')"
                 lazy-rules
                 :rules="[
                   val => (val && val.length > 0) || 'Please type something'
                 ]"
               />
-              <q-btn outline label="send code" padding="xs"></q-btn>
+              <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
             </div>
           </div>
           <!-- 密码 -->
@@ -108,7 +138,7 @@
             v-model="password"
             outlined
             :type="passwordVisiable ? 'password' : 'text'"
-            label="Create Your Password *"
+            :label="$t('createYourPassword')"
             class="q-mb-lg"
           >
             <template v-slot:append>
@@ -124,7 +154,7 @@
             v-model="confirmPw"
             outlined
             :type="passwordVisiable ? 'password' : 'text'"
-            label="Confirm Password"
+            :label="$t('confirmPassword')"
             lazy-rules
             :rules="[
               val => (val && val === password) || 'Please type same password'
@@ -139,20 +169,19 @@
             </template>
           </q-input>
           <div class="create-desc">
-            <h6>By clicking "Create my Account" I agree that:</h6>
+            <h6>{{ $t('byClickCreate') }}</h6>
             <ul>
               <li>
-                I may receive communication emails from MY SHOP about order and
-                delivery.
+                {{ $t('orderAndDelivery') }}
               </li>
               <li>
-                I may receive new products and promotion emails from MY SHOP.
+                {{ $t('productsAndPromotions') }}
               </li>
             </ul>
           </div>
           <div>
             <q-btn
-              label="Create my Account"
+              :label="$t('createMyAccount')"
               type="submit"
               color="dark"
               text-color="white"
@@ -164,14 +193,14 @@
       <!-- 侧边栏 -->
       <div class="create-aside hide">
         <div class="return-home">
-          <a href="javascript:void(0)" @click="goTo('index', '')"
-            >Return to the home page</a
-          >
+          <a href="javascript:void(0)" @click="goTo('index', '')">{{
+            $t('returnToHome')
+          }}</a>
         </div>
         <div class="account">
-          <p>Already have an account?</p>
+          <p>{{ $t('alreadyHaveAnAccount') }}</p>
           <q-btn
-            label="Sign In Now"
+            :label="$t('signInNow')"
             color="dark"
             text-color="white"
             class="sign-btn"
@@ -182,13 +211,13 @@
     </section>
     <section class="login-wrapper" v-else>
       <div class="login hide">
-        <h4 class="title">Sign In</h4>
+        <h4 class="title">{{ $t('signIn') }}</h4>
         <q-form @submit="onSubmit">
           <!-- 邮箱 -->
           <q-input
             outlined
             v-model="email"
-            label="Email *"
+            :label="$t('email')"
             lazy-rules
             type="email"
             :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -199,7 +228,7 @@
             v-model="password"
             outlined
             :type="passwordVisiable ? 'password' : 'text'"
-            label="Enter Your Password *"
+            :label="$t('yourPassword')"
             class="q-mb-lg"
           >
             <template v-slot:append>
@@ -213,12 +242,12 @@
 
           <div class="create-desc">
             <a href="javascript:void(0)" @click="goTo('forgot', '')"
-              ><h6>Forget Password?</h6></a
+              ><h6>{{ $t('forgetYourPassword') }}</h6></a
             >
           </div>
           <div>
             <q-btn
-              label="Sign In"
+              :label="$t('signIn')"
               type="submit"
               color="dark"
               text-color="white"
@@ -230,9 +259,9 @@
 
       <div class="login-aside hide">
         <div class="return-home">
-          <a href="javascript:void(0)" @click="goTo('index', '')"
-            >Return to the home page</a
-          >
+          <a href="javascript:void(0)" @click="goTo('index', '')">{{
+            $t('returnToHome')
+          }}</a>
         </div>
         <div class="account">
           <p>New Customer</p>
@@ -249,7 +278,7 @@
 
     <!-- 移动端 -->
     <section class="create hide-small" v-if="isSign.toString() === '1'">
-      <h4 class="title">Create Account</h4>
+      <h4 class="title">{{ $t('createAccount') }}</h4>
       <q-form @submit="onSubmit">
         <div class="name" style="width: 100%">
           <!-- firstName -->
@@ -257,7 +286,7 @@
             class="first-name"
             outlined
             v-model="firstName"
-            label="Your first name *"
+            :label="$t('yourFirstName')"
             lazy-rules
             :rules="[val => (val && val.length > 0) || 'Please type something']"
             autogrow
@@ -267,7 +296,7 @@
             outlined
             class="last-name"
             v-model="lastName"
-            label="Your last name *"
+            :label="$t('yourLastName')"
             lazy-rules
             :rules="[val => (val && val.length > 0) || 'Please type something']"
           />
@@ -285,13 +314,26 @@
         <!-- 邮箱 -->
         <div class="email" v-if="useEmail">
           <p>
-            Use your email or
-            <a href="javascript:void(0)" @click="useEmail = false">mobile</a>
+            <a
+              href="javascript:void(0)"
+              @click="useEmail = false"
+              v-if="$i18n.locale === 'Türkiye' || $i18n.locale === 'لغة عربية'"
+              >{{ $t('mobile') }}</a
+            >
+            {{ $t('useYourEmailOr') }}
+            <a
+              href="javascript:void(0)"
+              @click="useEmail = false"
+              v-if="
+                $i18n.locale === 'United States' || $i18n.locale === 'Россия'
+              "
+              >{{ $t('mobile') }}</a
+            >
           </p>
           <q-input
             outlined
             v-model="email"
-            label="Email *"
+            :label="$t('email')"
             lazy-rules
             type="email"
             :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -329,20 +371,33 @@
             />
           </div>
           <p>
-            Use Your mobile or
-            <a href="javascript:void(0)" @click="useEmail = true">email</a>
+            <a
+              href="javascript:void(0)"
+              @click="useEmail = true"
+              v-if="$i18n.locale === 'Türkiye' || $i18n.locale === 'لغة عربية'"
+              >{{ $t('email') }}</a
+            >
+            {{ $t('useYourMobileOr') }}
+            <a
+              href="javascript:void(0)"
+              @click="useEmail = true"
+              v-if="
+                $i18n.locale === 'United States' || $i18n.locale === 'Россия'
+              "
+              >{{ $t('email') }}</a
+            >
           </p>
           <div class="code">
             <q-input
               outlined
               v-model="code"
-              label="Code *"
+              :label="$t('enterSecurityCode')"
               lazy-rules
               :rules="[
                 val => (val && val.length > 0) || 'Please type something'
               ]"
             />
-            <q-btn outline label="send code" padding="xs"></q-btn>
+            <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
           </div>
         </div>
         <!-- 密码 -->
@@ -350,7 +405,7 @@
           v-model="password"
           outlined
           :type="passwordVisiable ? 'password' : 'text'"
-          label="Create Your Password *"
+          :label="$t('createYourPassword')"
           class="q-mb-lg"
         >
           <template v-slot:append>
@@ -366,7 +421,7 @@
           v-model="confirmPw"
           outlined
           :type="passwordVisiable ? 'password' : 'text'"
-          label="Confirm Password"
+          :label="$t('confirmPassword')"
           lazy-rules
           :rules="[
             val => (val && val === password) || 'Please type same password'
@@ -381,20 +436,19 @@
           </template>
         </q-input>
         <div class="create-desc">
-          <h6>By clicking "Create my Account" I agree that:</h6>
+          <h6>{{ $t('byClickCreate') }}</h6>
           <ul>
             <li>
-              I may receive communication emails from MY SHOP about order and
-              delivery.
+              {{ $t('orderAndDelivery') }}
             </li>
             <li>
-              I may receive new products and promotion emails from MY SHOP.
+              {{ $t('productsAndPromotions') }}
             </li>
           </ul>
         </div>
         <div>
           <q-btn
-            label="Create my Account"
+            :label="$t('createMyAccount')"
             type="submit"
             color="dark"
             text-color="white"
@@ -409,7 +463,7 @@
         <q-input
           outlined
           v-model="email"
-          label="Enter Your Email"
+          :label="$t('email')"
           lazy-rules
           type="email"
           :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -419,7 +473,7 @@
           v-model="password"
           outlined
           :type="passwordVisiable ? 'password' : 'text'"
-          label="Enter Your Password"
+          :label="$t('yourPassword')"
           class="q-mb-lg"
         >
           <template v-slot:append>
@@ -434,12 +488,12 @@
           href="javascript:void(0)"
           @click="goTo('forgot', '')"
           style="display: block; text-decoration: none; color: black;"
-          >Forget Password?</a
+          >{{ $t('forgetYourPassword') }}</a
         >
         <q-separator></q-separator>
         <div class="sign-btn">
           <q-btn
-            label="Sign in"
+            :label="$t('signIn')"
             type="submit"
             color="dark"
             text-color="white"
@@ -457,7 +511,7 @@
             align="between"
           >
             <img src="../assets/ic_g.png" alt="" />
-            <div>Google with login</div>
+            <div>{{ $t('googleWithLogin') }}</div>
             <div></div>
           </q-btn>
           <q-btn
@@ -471,7 +525,7 @@
             align="between"
           >
             <img src="../assets/ic_facebook.png" alt="" />
-            <div>Facebook with login</div>
+            <div>{{ $t('facebookWithLogin') }}</div>
             <div></div>
           </q-btn>
         </div>
@@ -534,6 +588,10 @@ export default {
   column-gap: 5vw;
   .tabs {
     display: none;
+    .q-btn {
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
   .hide-small {
     display: none;

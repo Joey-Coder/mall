@@ -76,5 +76,24 @@ export default {
   subTotal: 'Subtotal',
   expressCost: 'Express Cost',
   grandTotal: 'Grand Total',
-  placeYourOrder: 'place your order'
+  placeYourOrder: 'place your order',
+
+  // 注册页面
+  createAccount: 'Create Account',
+  useYourMobileOr: 'use your mobile or ',
+  useYourEmailOr: 'use your email or ',
+  mobile: 'mobile',
+  enterSecurityCode: 'Enter Security Code',
+  sendCode: 'send code',
+  createYourPassword: 'create your password',
+  confirmPassword: 'confirm password',
+  byClickCreate: 'By clicking "Create my Account" I agree that:',
+  orderAndDelivery:
+    'I may receive communication emails from MY SHOP about order and delivery.',
+  productsAndPromotions:
+    'I may receive new products and promotion emails from MY SHOP.',
+  returnToHome: 'Return to the home page',
+  alreadyHaveAnAccount: 'Already have an account?',
+  signInNow: 'sign in now',
+  createMyAccount: 'create my account'
 }
