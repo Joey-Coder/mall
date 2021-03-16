@@ -6,7 +6,7 @@
       <div class="name">
         <q-input
           v-model="firstName"
-          :label="`${who} first name *`"
+          :label="who === 'Your' ? $t('yourFirstName') : $t('agentFirstName')"
           outlined
           lazy-rules
           :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -15,7 +15,7 @@
 
         <q-input
           v-model="lastName"
-          :label="`${who} last name *`"
+          :label="who === 'Your' ? $t('yourLastName') : $t('agentLastName')"
           outlined
           lazy-rules
           class="last-name"
@@ -25,7 +25,7 @@
       <!-- 地址 -->
       <q-input
         v-model="address"
-        :label="`${who} Address *`"
+        :label="who === 'Your' ? $t('yourAddress') : $t('agentAddress')"
         outlined
         lazy-rules
         :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -34,7 +34,9 @@
       <!-- 区域 -->
       <q-input
         v-model="apartment"
-        :label="`${who} apartment, suite, street, number, etc(optional)`"
+        :label="
+          who === 'Your' ? $t('yourApartmentSuit') : $t('agentApartmentSuit')
+        "
         outlined
         lazy-rules
         :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -44,7 +46,7 @@
       <div class="city-wrapper">
         <q-input
           v-model="city"
-          :label="`${who} city`"
+          :label="who === 'Your' ? $t('yourCity') : $t('agentCity')"
           outlined
           lazy-rules
           :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -53,7 +55,7 @@
         <!-- 优惠码 -->
         <q-input
           v-model="zipCode"
-          label="Zip code"
+          :label="$t('zipCode')"
           outlined
           lazy-rules
           :rules="[val => (val && val.length > 0) || 'Please type something']"
@@ -67,7 +69,7 @@
           outlined
           v-model="countrySelect"
           :options="countryOptionsFilter"
-          :label="`Select ${who} Country/Region`"
+          :label="$t('selectCountry')"
           use-input
           hide-selected
           @filter="countryFilter"
@@ -87,7 +89,7 @@
           outlined
           v-model="stateSelect"
           :options="stateOptionsFilter"
-          :label="`Select ${who} State`"
+          :label="$t('selectState')"
           use-input
           hide-selected
           input-debounce="0"
@@ -108,7 +110,7 @@
         outlined
         v-model="phone"
         class="phone"
-        :label="`${who} Mobile Phone Number`"
+        :label="$t('mobilePhoneNumber')"
       >
         <template v-slot:prepend>
           <div class="pre-phone">
@@ -118,7 +120,12 @@
       </q-input>
 
       <div v-if="saveVisiable">
-        <q-btn label="Save" type="submit" color="dark" text-color="white" />
+        <q-btn
+          :label="$t('save')"
+          type="submit"
+          color="dark"
+          text-color="white"
+        />
       </div>
     </q-form>
   </div>

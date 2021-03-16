@@ -27,17 +27,17 @@
         <shipping-form :countryOptions="getCountryOptions"></shipping-form>
       </section>
       <section class="shipping-method">
-        <h5>Shipping Method</h5>
+        <h5>{{ $t('shippingMethod') }}</h5>
         <div class="check-menu">
           <q-radio
             v-model="agentVisiable"
             :val="true"
-            label="Own logistics agent"
+            :label="$t('ownLogisticsAgent')"
           />
           <q-radio
             v-model="agentVisiable"
             :val="false"
-            label="Normal logistics"
+            :label="$t('normalLogistics')"
           />
         </div>
         <div class="agent" v-if="agentVisiable">
@@ -64,32 +64,26 @@
           <q-radio
             v-model="shippingMethod"
             val="sea transportation"
-            label="sea transportation"
+            :label="$t('seaTransport')"
             color="cyan"
           />
           <q-radio
             v-model="shippingMethod"
             val="air transport"
-            label="air transport"
+            :label="$t('airTransport')"
             color="cyan"
           />
         </div>
       </section>
       <section class="payment">
         <h5 class="payment-title">
-          Payment method
+          {{ $t('paymentMethod') }}
         </h5>
         <div class="payment-content">
           <div>
             <q-radio v-model="payment" val="paypal" label="Paypal" />
             <div class="desc">
-              Simply choose PayPal when you select a payment option on this
-              site, and you can quickly open a PayPal account and add your
-              payment method to complete your purchase. You can use your PayPal
-              account to shop safer with millions of merchants and sellers
-              around the globe wherever you see the PayPal logo. Every day, 188
-              million people use PayPal in 202 countries and with 21 different
-              currencies.
+              {{ $t('thirdDesc') }}
             </div>
           </div>
           <div class="paypal-wrapper">
@@ -98,18 +92,18 @@
         </div>
       </section>
       <section class="products">
-        <h5 class="products-title">Products</h5>
+        <h5 class="products-title">{{ $t('products') }}</h5>
         <!-- pc端 -->
         <q-list separator class="pc">
           <q-item class="list-header bg-grey-2" v-ripple>
             <q-item-section>
-              Item
+              {{ $t('item') }}
             </q-item-section>
             <q-item-section>
-              Price
+              {{ $t('price') }}
             </q-item-section>
             <q-item-section>
-              Amount
+              {{ $t('amount') }}
             </q-item-section>
           </q-item>
           <q-item v-ripple v-for="item in getCart" :key="item.productID">
@@ -147,20 +141,20 @@
         <div class="order-wrapper">
           <div class="order">
             <div class="subtotal">
-              <p>Subtotal:</p>
+              <p>{{ $t('subTotal') }}:</p>
               <p>${{ getTotalPrice.toFixed(2) }}</p>
             </div>
             <div class="express-total">
-              <p>Express Cost:</p>
+              <p>{{ $t('expressCost') }}:</p>
               <p>${{ expressTotal }}</p>
             </div>
             <div class="grand-total">
-              <p>Grand Total:</p>
+              <p>{{ $t('grandTotal') }}:</p>
               <p>${{ (getTotalPrice + expressTotal).toFixed(2) }}</p>
             </div>
-            <q-btn text-color="white" unelevated color="red-4"
-              >Place Your Order</q-btn
-            >
+            <q-btn text-color="white" unelevated color="red-4">{{
+              $t('placeYourOrder')
+            }}</q-btn>
           </div>
         </div>
       </section>

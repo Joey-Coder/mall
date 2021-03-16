@@ -30,7 +30,7 @@
           "
         >
           <q-icon name="arrow_back_ios_new"> </q-icon>
-          <span>Previous</span>
+          <span>{{ $t('previous') }}</span>
         </a>
         <a
           href="javascript:void(0)"
@@ -49,7 +49,7 @@
               currentPage = currentPage + 1
             }
           "
-          ><span>Next</span>
+          ><span>{{ $t('next') }}</span>
           <q-icon name="arrow_forward_ios"></q-icon>
         </a>
       </div>

@@ -28,5 +28,51 @@ export default {
   FaqHelp: 'FAQ и Помощь',
   Faq: 'FAQ',
   buyerProtection: 'Защита Покупателя',
-  copyRight: 'Copyright © 2020-2021 Все права защищены.'
+  copyRight: 'Copyright © 2020-2021 Все права защищены.',
+
+  // 产品页面
+  shopping: 'поход по магазинам',
+  placeOrder: 'разместить заказ',
+  completed: 'Завершенный',
+  previous: 'предыдущий',
+  next: 'Следующий',
+  description: 'Описание',
+  addToCart: 'ДОБАВИТЬ В КОРЗИНУ',
+  buyNow: 'КУПИ СЕЙЧАС',
+  quantity: 'КОЛИЧЕСТВО',
+
+  // 提交订单页面
+  yourFirstName: 'Ваша фамилия',
+  yourLastName: 'твое имя',
+  yourAddress: 'ваш адрес',
+  yourApartmentSuit:
+    'ваша квартира, апартаменты, улица, номер и т. д. (необязательно)',
+  yourCity: 'ваш город',
+  zipCode: 'Почтовый индекс',
+  selectCountry: 'Выберите страну / регион',
+  selectState: 'Выберите штат',
+  mobilePhoneNumber: 'номер мобильного телефона',
+  save: 'спасти',
+  shippingMethod: 'способ доставки',
+  ownLogisticsAgent: 'собственный логистический агент',
+  normalLogistics: 'Нормальная логистика',
+  agentFirstName: 'Фамилия агента',
+  agentLastName: 'Имя агента',
+  agentAddress: 'адрес',
+  agentApartmentSuit:
+    'квартира, квартира, улица, номер и т. д. (необязательно)',
+  agentCity: 'город',
+  seaTransport: 'морские перевозки',
+  airTransport: 'воздушный транспорт',
+  paymentMethod: 'Метод оплаты',
+  thirdDesc:
+    'Просто выберите PayPal при выборе варианта оплаты на этом сайте, и вы сможете быстро открыть учетную запись PayPal и добавить свой способ оплаты для завершения покупки. Вы можете использовать свою учетную запись PayPal, чтобы делать покупки безопаснее у миллионов торговцев и продавцов по всему миру, где бы вы ни увидели логотип PayPal. Каждый день 188 миллионов человек используют PayPal в 202 странах с 21 валютой.',
+  products: 'Товары',
+  item: 'Элемент',
+  price: 'Цена',
+  amount: 'Всего',
+  subTotal: 'Промежуточный итог',
+  expressCost: 'Экспресс-стоимость',
+  grandTotal: 'Общая сумма',
+  placeYourOrder: 'разместить заказ'
 }

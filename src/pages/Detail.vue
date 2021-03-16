@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="quantity">
-          <p>QUANTITY</p>
+          <p>{{ $t('quantity') }}</p>
           <div class="quantity-btn">
             <q-btn
               icon="remove"
@@ -84,11 +84,14 @@
           </div>
         </div>
         <div class="tool-btn">
-          <q-btn color="white" text-color="dark" outline @click="addToCart"
-            >Add to Cart</q-btn
-          >
-          <q-btn color="dark" text-color="white" @click="goTo('checkout', '')"
-            >Buy Now</q-btn
+          <q-btn color="white" text-color="dark" outline @click="addToCart">{{
+            $t('addToCart')
+          }}</q-btn>
+          <q-btn
+            color="dark"
+            text-color="white"
+            @click="goTo('checkout', '')"
+            >{{ $t('buyNow') }}</q-btn
           >
         </div>
         <q-separator></q-separator>
@@ -119,7 +122,7 @@
         <h4 class="product-title">
           2018 Hot New Tropical Print Button Front Belted Romper
         </h4>
-        <h4 class="description">Descripiton</h4>
+        <h4 class="description">{{ $t('descripiton') }}</h4>
         <div class="desc-content">
           <p>Is In Size S Model</p>
           <p>Height: 175cm ,Bust: 81cm</p>
