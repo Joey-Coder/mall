@@ -46,7 +46,7 @@
     <!-- 商品海报区 -->
     <section class="postcard">
       <div class="postcard-item col-12">
-        <q-img src="../assets/bu1.jpg" class="q-mr-xl">
+        <q-img src="../assets/bu4.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
             <q-btn color="black">{{ $t('showThisFabric') }}-></q-btn>
@@ -83,7 +83,7 @@
       <div class="product">
         <div class="product-image">
           <a href="javascript:void(0)" @click="goTo('detail', '1')"
-            ><img src="../assets/bu1.jpg" alt="product"
+            ><img src="../assets/bu4.jpg" alt="product"
           /></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">

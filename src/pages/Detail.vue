@@ -46,15 +46,15 @@
             standout
           />
           <div class="price">
-            <p>${{ (Hprice * num).toFixed(2) }}</p>
+            <p>${{ Hprice.toFixed(2) }}</p>
             <p style="color: #aaa; font-size:1rem">1~10</p>
           </div>
           <div class="price">
-            <p>${{ (Mprice * num).toFixed(2) }}</p>
+            <p>${{ Mprice.toFixed(2) }}</p>
             <p style="color: #aaa; font-size:1rem">11~999</p>
           </div>
           <div class="price">
-            <p>${{ (Lprice * num).toFixed(2) }}</p>
+            <p>${{ Lprice.toFixed(2) }}</p>
             <p style="color: #aaa; font-size:1rem">>999</p>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default {
         '/bu5.jpg'
       ],
       currency: 'USD',
-      currencyOptions: ['USD', 'ELS', 'TEQ']
+      currencyOptions: ['USD']
     }
   },
   methods: {

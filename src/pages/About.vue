@@ -6,11 +6,12 @@
     <section class="content">
       <h6 class="about-us">About us</h6>
       <div>
+        <p class="intro">Introduction: {{ $t('intro') }}</p>
         <p class="address">
-          address: 美國華盛頓哥倫比亞特區西北區賓夕法尼亞大道1600號
+          {{ $t('address') }}: 美國華盛頓哥倫比亞特區西北區賓夕法尼亞大道1600號
         </p>
-        <p class="phone">phone: 0755-74******</p>
-        <p class="email">email: *****email@mail.com</p>
+        <p class="phone">{{ $t('phone') }}: 0755-74******</p>
+        <p class="email">{{ $t('email') }}: *****email@mail.com</p>
       </div>
     </section>
   </q-page>

@@ -397,7 +397,7 @@
                 popUpVisiable = false
               "
             >
-              <div v-if="!isLogIn">
+              <div v-if="!getIsLogIn">
                 <q-form @submit="onSubmit" class="user-form q-pa-lg bg-white">
                   <q-input
                     class="q-my-sm"
@@ -430,6 +430,7 @@
                       style="width: 100%"
                       class="q-mb-sm"
                       unelevated
+                      @click="signIn"
                     /><q-btn
                       type="submit"
                       color="white"
@@ -490,7 +491,7 @@
                   outline
                   unelevated
                   label="Sign Out"
-                  @click="isLogIn = false"
+                  @click="signOut"
                 ></q-btn>
               </div> </q-popup-proxy
           ></a>
@@ -691,35 +692,35 @@
       </div>
       <!-- 合作伙伴 -->
       <div class="partners row justify-center q-gutter-x-lg q-py-xl">
-        <a href="javascript:void(0)" class="partners-item text-primary">
+        <a href="http://www.baidu.com" class="partners-item text-primary">
           <img src="../assets/paypal.png" alt="" />
         </a>
-        <a href="javascript:void(0)" class="partners-item text-primary">
+        <a href="http://www.baidu.com" class="partners-item text-primary">
           <img src="../assets/fedex.png" alt="" />
         </a>
-        <a href="javascript:void(0)" class="partners-item text-primary">
+        <a href="http://www.baidu.com" class="partners-item text-primary">
           <img src="../assets/dhl.png" alt="" />
         </a>
-        <a href="javascript:void(0)" class="partners-item text-primary">
+        <a href="http://www.baidu.com" class="partners-item text-primary">
           <img src="../assets/ups.png" alt="" />
         </a>
-        <a href="javascript:void(0)" class="partners-item text-primary">
+        <a href="http://www.baidu.com" class="partners-item text-primary">
           <img src="../assets/ems.png" alt="" />
         </a>
       </div>
       <!-- 联系方式和付款方式 -->
       <div class="contact">
         <div class="follow-us row col-2 justify-between">
-          <a href="javascript:void(0)" class="follow-image">
+          <a href="http://www.baidu.com" class="follow-image">
             <img src="../assets/ic_facebook.png" alt="" />
           </a>
-          <a href="javascript:void(0)" class="follow-image">
+          <a href="http://www.baidu.com" class="follow-image">
             <img src="../assets/ic_ins.png" alt="" />
           </a>
-          <a href="javascript:void(0)" class="follow-image">
+          <a href="http://www.baidu.com" class="follow-image">
             <img src="../assets/ic_whatsapp.png" alt="" />
           </a>
-          <a href="javascript:void(0)" class="follow-image">
+          <a href="http://www.baidu.com" class="follow-image">
             <img src="../assets/ic_g.png" alt="" />
           </a>
           <a href="javascript:void(0)" class="follow-image">
@@ -727,19 +728,19 @@
           </a>
         </div>
         <div class="payment row col-2 justify-between">
-          <a href="javascript:void(0)" class="payment-item">
+          <a href="http://www.baidu.com" class="payment-item">
             <img src="../assets/icon_paypal.png" />
           </a>
-          <a href="javascript:void(0)" class="payment-item">
+          <a href="http://www.baidu.com" class="payment-item">
             <img src="../assets/icon_visa.png" />
           </a>
-          <a href="javascript:void(0)" class="payment-item">
+          <a href="http://www.baidu.com" class="payment-item">
             <img src="../assets/icon_jcb.png" />
           </a>
-          <a href="javascript:void(0)" class="payment-item">
+          <a href="http://www.baidu.com" class="payment-item">
             <img src="../assets/icon_wanshida.png" />
           </a>
-          <a href="javascript:void(0)" class="payment-item">
+          <a href="http://www.baidu.com" class="payment-item">
             <img src="../assets/icon_diners.png" />
           </a>
         </div>
@@ -773,11 +774,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getCart', 'getTotalPrice', 'getProductPrice'])
+    ...mapGetters(['getCart', 'getTotalPrice', 'getProductPrice', 'getIsLogIn'])
   },
 
   methods: {
-    ...mapMutations(['addCartNum', 'removeCartNum']),
+    ...mapMutations(['addCartNum', 'removeCartNum', 'signIn', 'signOut']),
     changeLanguage() {
       this.lang = this.selectedLang
       this.$i18n.locale = this.lang
@@ -922,7 +923,7 @@ export default {
 
   .q-footer {
     z-index: 200;
-    padding: 46px 64px;
+    padding: 5vw 15vw;
     .footer-menu {
       display: grid;
       grid-template-columns: repeat(3, 1fr);

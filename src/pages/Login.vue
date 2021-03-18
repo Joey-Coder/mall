@@ -77,12 +77,29 @@
                 val => (val && val.length > 0) || 'Please type something'
               ]"
             />
+            <div class="code">
+              <q-input
+                outlined
+                v-model="code"
+                :label="$t('enterSecurityCode')"
+                lazy-rules
+                :rules="[
+                  val => (val && val.length > 0) || 'Please type something'
+                ]"
+              />
+              <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
+            </div>
           </div>
 
           <!-- 电话号码 -->
           <div class="phone-wrapper" v-else>
             <div class="phone">
-              <vue-country-intl schema="popover" v-model="phoneCountry" iso2>
+              <vue-country-intl
+                schema="popover"
+                v-model="phoneCountry"
+                disableCountry="86"
+                iso2
+              >
                 <button
                   type="button"
                   slot="reference"
@@ -216,10 +233,9 @@
           <!-- 邮箱 -->
           <q-input
             outlined
-            v-model="email"
-            :label="$t('email')"
+            v-model="emailPhone"
+            :label="$t('email') + '/' + $t('phone')"
             lazy-rules
-            type="email"
             :rules="[val => (val && val.length > 0) || 'Please type something']"
           />
 
@@ -251,9 +267,36 @@
               type="submit"
               color="dark"
               text-color="white"
+              unelevated
               class="submit-btn"
             />
           </div>
+          <q-btn
+            color="white"
+            text-color="dark"
+            style="width: 50%"
+            class="q-mt-sm row justify-start"
+            outline
+            unelevated
+            align="between"
+          >
+            <img src="../assets/ic_g.png" alt="" />
+            <div>{{ $t('googleWithLogin') }}</div>
+            <div></div>
+          </q-btn>
+          <q-btn
+            color="white"
+            text-color="dark"
+            style="width: 50%"
+            class="q-mt-sm row justify-start"
+            outline
+            unelevated
+            align="between"
+          >
+            <img src="../assets/ic_facebook.png" alt="" />
+            <div>{{ $t('facebookWithLogin') }}</div>
+            <div></div>
+          </q-btn>
         </q-form>
       </div>
 
@@ -338,6 +381,18 @@
             type="email"
             :rules="[val => (val && val.length > 0) || 'Please type something']"
           />
+          <div class="code">
+            <q-input
+              outlined
+              v-model="code"
+              :label="$t('enterSecurityCode')"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || 'Please type something'
+              ]"
+            />
+            <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
+          </div>
         </div>
 
         <!-- 电话号码 -->
@@ -351,7 +406,12 @@
                 :useChinese="false"
                 placeholder="Select Country"
               ></vue-country-intl> -->
-            <vue-country-intl schema="popover" v-model="phoneCountry" iso2>
+            <vue-country-intl
+              schema="popover"
+              v-model="phoneCountry"
+              disableCountry="86"
+              iso2
+            >
               <button
                 type="button"
                 slot="reference"
@@ -462,10 +522,9 @@
         <!-- 邮箱 -->
         <q-input
           outlined
-          v-model="email"
-          :label="$t('email')"
+          v-model="emailPhone"
+          :label="$t('email') + '/' + $t('phone')"
           lazy-rules
-          type="email"
           :rules="[val => (val && val.length > 0) || 'Please type something']"
         />
         <!-- 密码 -->
@@ -542,6 +601,7 @@ export default {
       firstName: null,
       lastName: null,
       email: null,
+      emailPhone: null,
       phone: null,
       password: null,
       code: null,
@@ -621,6 +681,17 @@ export default {
             text-decoration: underline;
             color: black;
             cursor: pointer;
+          }
+        }
+        .code {
+          display: grid;
+          grid-template-columns: 4fr 1fr;
+          column-gap: 1rem;
+          .q-btn {
+            height: 56px;
+            ::v-deep .block {
+              white-space: nowrap;
+            }
           }
         }
       }

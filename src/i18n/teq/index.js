@@ -93,5 +93,9 @@ export default {
   returnToHome: 'Ana sayfaya dön',
   alreadyHaveAnAccount: 'Zaten hesabınız var mı?',
   signInNow: 'şimdi giriş yap',
-  createMyAccount: 'Hesabımı oluşturmak'
+  createMyAccount: 'Hesabımı oluşturmak',
+
+  // about us
+  intro:
+    'Guangzhou Jingyi Textile Co., Ltd. bağımsız geliştirme, üretim ve satışları entegre eden bir sanayi ve ticaret kuruluştur. Firmamız uzun yıllardır gelinlik-nakışlı kumaşlar alanında yoğunlaşmıştır.Ürünler ağırlıklı olarak hafif lüks gelinlik, elbise, moda ve diğer alanlarda kullanılmaktadır.Kumaşlarımız Avrupa, Amerika, Orta Doğu, Orta ülkelere ihraç edilmektedir. Asya ve diğer ülkeler ve bölgeler.Şirket, üst düzey bir gelinlik-nakış kumaşı Ar-Ge ve üretim ekibine, zengin bir model yelpazesine sahiptir, çeşitli farklı kumaş özellikleri üretebilir ve sıkı kalite yönetimi uygulayabilir.Aynı zamanda, şirket ithalat ve ihracat işlemleri, genel vergi mükellefi nitelikleri ve üretimden ihracata sunulmaya kadar mükemmel tek elden destek hizmetlerine sahiptir.Şirket, her zaman düşük fiyat ve yüksek kalite, önce müşteri, sürekli yenilik ve dürüstlük iş ilkesine bağlı kalmıştır ve müşterilerin bizimle açıkça işbirliği yapmasına izin vererek büyük miktarda bağımsız tasarım ve müşteri hizmetleri deneyimi biriktirmiştir. birçok müşterinin iyiliği ve onayı.'
 }

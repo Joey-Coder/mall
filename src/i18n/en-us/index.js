@@ -96,5 +96,9 @@ export default {
   returnToHome: 'Return to the home page',
   alreadyHaveAnAccount: 'Already have an account?',
   signInNow: 'sign in now',
-  createMyAccount: 'create my account'
+  createMyAccount: 'create my account',
+
+  // about us
+  intro:
+    'Guangzhou Jingyi Textile Co., Ltd. is an industrial and trade enterprise integrating independent development, production and sales. Our company has focused on the field of wedding dress-embroidery fabrics for many years. Our products are mainly used in light luxury wedding dresses, dresses, fashion and other fields. Our fabrics are exported to Europe, America, the Middle East, Central Asia and many other countries and regions.The company has a senior wedding dress-embroidery fabric R&D and production team, a rich selection of models, can produce a variety of different specifications of fabrics, and implement strict quality management.At the same time, the company has the right to import and export operations, general taxpayer qualifications, and perfect one-stop supporting services from production to export submission.The company has always adhered to the business tenet of low price and high quality, customer first, continuous innovation, and integrity first, and has accumulated a large amount of independent design and customer service experience, allowing customers to cooperate with us openly, winning the favor and affirmation of many customers .'
 }
