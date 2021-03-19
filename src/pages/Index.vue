@@ -313,9 +313,6 @@ export default {
     }
   }
   .postcard {
-    // position: relative;
-    // width: auto;
-    // height: auto;
     .postcard-item {
       padding: 2rem 0;
       width: 100%;
@@ -542,7 +539,7 @@ export default {
         }
         .text {
           width: 80%;
-          font-size: 1px;
+          font-size: .6rem;
         }
       }
     }
@@ -583,7 +580,7 @@ export default {
         }
         .text {
           width: 90%;
-          font-size: 1px;
+          font-size: .6rem;
         }
       }
     }

@@ -591,9 +591,16 @@
           ></a>
         </div>
         <div class="tool-btn">
-          <a href="javascript:void(0);"
-            ><i class="iconfont icon-we-chat"></i
-          ></a>
+          <a
+            href="javascript:void(0);"
+            @mouseleave="mouseLeave('inWechatIcon')"
+            @mouseover="inWechatIcon = true"
+            ><i class="iconfont icon-we-chat"></i>
+            <wechat-popup
+              target=".icon-we-chat"
+              :inIcon="inWechatIcon"
+            ></wechat-popup>
+          </a>
         </div>
         <div class="tool-btn">
           <a href="javascript:void(0);"><i class="iconfont icon-email"></i></a>
@@ -722,8 +729,17 @@
           <a href="http://www.baidu.com" class="follow-image">
             <img src="../assets/ic_g.png" alt="" />
           </a>
-          <a href="javascript:void(0)" class="follow-image">
-            <img src="../assets/ic_wechat.png" alt="" />
+          <a
+            href="http://www.baidu.com"
+            class="follow-image"
+            @mouseleave="mouseLeave('inFooterWechatIcon')"
+            @mouseover="inFooterWechatIcon = true"
+          >
+            <img src="../assets/ic_wechat.png" alt="" class="wechat-img" />
+            <wechat-popup
+              target=".wechat-img"
+              :inIcon="inFooterWechatIcon"
+            ></wechat-popup>
           </a>
         </div>
         <div class="payment row col-2 justify-between">
@@ -752,6 +768,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import WechatPopup from '../components/WechatPopup'
 export default {
   data() {
     return {
@@ -760,6 +777,8 @@ export default {
       lang: 'United States',
       inPopUp: false,
       inIcon: false,
+      inWechatIcon: false,
+      inFooterWechatIcon: false,
       email: null,
       password: null,
       shopCarVisiable: false,
@@ -771,6 +790,9 @@ export default {
       helpVisiable: false,
       isLogIn: false
     }
+  },
+  components: {
+    WechatPopup
   },
   computed: {
     ...mapGetters([
@@ -795,14 +817,27 @@ export default {
       // send axios
     },
     mouseLeave(type) {
-      if (type === 'icon') {
-        setTimeout(() => {
-          this.inIcon = false
-        }, 600)
-      } else {
-        setTimeout(() => {
-          this.inPopUp = false
-        }, 600)
+      switch (type) {
+        case 'icon':
+          setTimeout(() => {
+            this.inIcon = false
+          }, 600)
+          break
+        case 'inWechatIcon':
+          setTimeout(() => {
+            this.inWechatIcon = false
+          }, 600)
+          break
+        case 'inFooterWechatIcon':
+          setTimeout(() => {
+            this.inFooterWechatIcon = false
+          }, 600)
+          break
+        default:
+          setTimeout(() => {
+            this.inPopUp = false
+          }, 600)
+          break
       }
     },
     onSubmit() {},

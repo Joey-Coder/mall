@@ -96,20 +96,29 @@
         </div>
         <q-separator></q-separator>
         <div class="contact">
-          <a href="javascript:void(0)" class="follow-image">
+          <a href="http://www.baidu.com" class="follow-image">
             <img src="../assets/ic_facebook.png" alt="" />
           </a>
-          <a href="javascript:void(0)" class="follow-image">
+          <a href="http://www.baidu.com" class="follow-image">
             <img src="../assets/ic_ins.png" alt="" />
           </a>
-          <a href="javascript:void(0)" class="follow-image">
+          <a href="http://www.baidu.com" class="follow-image">
             <img src="../assets/ic_whatsapp.png" alt="" />
           </a>
-          <a href="javascript:void(0)" class="follow-image">
+          <a href="http://www.baidu.com" class="follow-image">
             <img src="../assets/ic_g.png" alt="" />
           </a>
-          <a href="javascript:void(0)" class="follow-image">
-            <img src="../assets/ic_wechat.png" alt="" />
+          <a
+            href="http://www.baidu.com"
+            class="follow-image"
+            @mouseleave="mouseLeave"
+            @mouseover="inDetailWechatIcon = true"
+          >
+            <img src="../assets/ic_wechat.png" alt="" class="wechat-img" />
+            <wechat-popup
+              target=".wechat-img"
+              :inIcon="inDetailWechatIcon"
+            ></wechat-popup>
           </a>
         </div>
       </div>
@@ -122,7 +131,7 @@
         <h4 class="product-title">
           2018 Hot New Tropical Print Button Front Belted Romper
         </h4>
-        <h4 class="description">{{ $t('descripiton') }}</h4>
+        <h4 class="description">{{ $t('description') }}</h4>
         <div class="desc-content">
           <p>Is In Size S Model</p>
           <p>Height: 175cm ,Bust: 81cm</p>
@@ -142,6 +151,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import WechatPopup from '../components/WechatPopup'
 export default {
   name: 'Detail',
   data() {
@@ -160,8 +170,12 @@ export default {
         '/bu5.jpg'
       ],
       currency: 'USD',
-      currencyOptions: ['USD']
+      currencyOptions: ['USD'],
+      inDetailWechatIcon: false
     }
+  },
+  components: {
+    WechatPopup
   },
   methods: {
     ...mapMutations(['addCartNum', 'removeCartNum', 'insertProduct']),
@@ -204,9 +218,13 @@ export default {
         }
         this.insertProduct(p)
       }
+    },
+    mouseLeave() {
+      setTimeout(() => {
+        this.inDetailWechatIcon = false
+      }, 600)
     }
   },
-  components: {},
   props: {
     id: {
       type: [Number, String]
