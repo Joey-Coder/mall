@@ -779,8 +779,11 @@ export default {
       'getProductPrice',
       'getIsLogIn'
     ]),
-    popUpVisiable() {
-      return this.inIcon || this.inPopUp
+    popUpVisiable: {
+      get: function() {
+        return this.inIcon || this.inPopUp
+      },
+      set: function(newValue) {}
     }
   },
 
