@@ -661,8 +661,16 @@
             <q-btn icon="remove" flat dense v-else></q-btn>
           </div>
           <div class="overview-text" v-if="overviewVisiable">
-            <div class="q-pt-md">{{ $t('paymentMethods') }}</div>
-            <div>{{ $t('shippingReturns') }}</div>
+            <div
+              class="q-pt-md"
+              @click="goTo('payment', '')"
+              style="cursor: pointer"
+            >
+              {{ $t('paymentMethods') }}
+            </div>
+            <div @click="goTo('shipping', '')" style="cursor: pointer">
+              {{ $t('shippingReturns') }}
+            </div>
           </div>
         </div>
         <div class="help ">
@@ -675,8 +683,16 @@
             <q-btn icon="remove" flat dense v-else></q-btn>
           </div>
           <div class="help-text" v-if="helpVisiable">
-            <div class="q-pt-md">{{ $t('Faq') }}</div>
-            <div>{{ $t('buyerProtection') }}</div>
+            <div
+              class="q-pt-md"
+              @click="goTo('faq', '')"
+              style="cursor: pointer"
+            >
+              {{ $t('Faq') }}
+            </div>
+            <div @click="goTo('protection', '')" style="cursor: pointer">
+              {{ $t('buyerProtection') }}
+            </div>
           </div>
         </div>
       </div>
@@ -711,8 +727,16 @@
             {{ $t('overview') }}
           </div>
           <div class="overview-text">
-            <div class="q-pt-md">{{ $t('paymentMethods') }}</div>
-            <div>{{ $t('shippingReturns') }}</div>
+            <div
+              class="q-pt-md"
+              @click="goTo('payment', '')"
+              style="cursor: pointer"
+            >
+              {{ $t('paymentMethods') }}
+            </div>
+            <div @click="goTo('shipping', '')" style="cursor: pointer">
+              {{ $t('shippingReturns') }}
+            </div>
           </div>
         </div>
         <div class="help ">
@@ -720,8 +744,16 @@
             {{ $t('FaqHelp') }}
           </div>
           <div class="help-text">
-            <div class="q-pt-md">{{ $t('Faq') }}</div>
-            <div>{{ $t('buyerProtection') }}</div>
+            <div
+              class="q-pt-md"
+              @click="goTo('faq', '')"
+              style="cursor: pointer"
+            >
+              {{ $t('Faq') }}
+            </div>
+            <div @click="goTo('protection', '')" style="cursor: pointer">
+              {{ $t('buyerProtection') }}
+            </div>
           </div>
         </div>
       </div>

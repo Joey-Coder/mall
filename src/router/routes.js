@@ -37,6 +37,26 @@ const routes = [
         path: '/forgot',
         name: 'forgot',
         component: () => import('pages/Forgot.vue')
+      },
+      {
+        path: '/payment',
+        name: 'payment',
+        component: () => import('pages/Payment.vue')
+      },
+      {
+        path: '/shipping',
+        name: 'shipping',
+        component: () => import('pages/Shipping.vue')
+      },
+      {
+        path: '/faq',
+        name: 'faq',
+        component: () => import('src/pages/Faq.vue')
+      },
+      {
+        path: '/protection',
+        name: 'protection',
+        component: () => import('src/pages/Protection.vue')
       }
     ]
   },
