@@ -633,8 +633,22 @@
             <q-btn icon="remove" flat dense v-else></q-btn>
           </div>
           <div class="member-text" v-if="memberVisiable">
-            <div class="q-pt-md">{{ $t('orderTracking') }}</div>
-            <div>{{ $t('createAnAccount') }}</div>
+            <div
+              class="q-pt-md"
+              @click="
+                if (getIsLogIn) {
+                  goTo('user', '0')
+                } else {
+                  goTo('login', '0')
+                }
+              "
+              style="cursor: pointer"
+            >
+              {{ $t('orderTracking') }}
+            </div>
+            <div @click="goTo('login', '1')" style="cursor: pointer">
+              {{ $t('createAnAccount') }}
+            </div>
           </div>
         </div>
         <div class="overview ">
@@ -673,8 +687,23 @@
             {{ $t('member') }}
           </div>
           <div class="member-text">
-            <div class="q-pt-md">{{ $t('orderTracking') }}</div>
-            <div>{{ $t('createAnAccount') }}</div>
+            <div
+              class="q-pt-md"
+              @click="
+                if (getIsLogIn) {
+                  goTo('user', '0')
+                } else {
+                  goTo('login', '0')
+                }
+              "
+              style="cursor: pointer"
+            >
+              {{ $t('orderTracking') }}
+            </div>
+
+            <div @click="goTo('login', '1')" style="cursor: pointer">
+              {{ $t('createAnAccount') }}
+            </div>
           </div>
         </div>
         <div class="overview ">
