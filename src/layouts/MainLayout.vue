@@ -384,19 +384,17 @@
           <a
             href="javascript:void(0)"
             class="user-icon"
-            @mouseleave="mouseLeave()"
-            @mouseover="popUpVisiable = true"
+            @mouseleave="mouseLeave('icon')"
+            @mouseover="inIcon = true"
             ><i class="iconfont icon-user1"></i>
             <q-popup-proxy
               no-parent-event
               target=".user-icon"
               v-model="popUpVisiable"
               @mouseover="inPopUp = true"
-              @mouseleave="
-                inPopUp = false
-                popUpVisiable = false
-              "
+              @mouseleave="mouseLeave('popup')"
             >
+              <!-- 登录框 -->
               <div v-if="!getIsLogIn">
                 <q-form @submit="onSubmit" class="user-form q-pa-lg bg-white">
                   <q-input
@@ -480,6 +478,7 @@
                   </div>
                 </q-form>
               </div>
+              <!-- 已登录 -->
               <div v-else class="my-account user-form">
                 <a href="javascript:void(0)" @click="goTo('user', '0')"
                   ><p>My Orders</p></a
@@ -759,8 +758,8 @@ export default {
       langVisiable: false,
       selectedLang: 'United States',
       lang: 'United States',
-      popUpVisiable: false,
       inPopUp: false,
+      inIcon: false,
       email: null,
       password: null,
       shopCarVisiable: false,
@@ -774,7 +773,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getCart', 'getTotalPrice', 'getProductPrice', 'getIsLogIn'])
+    ...mapGetters([
+      'getCart',
+      'getTotalPrice',
+      'getProductPrice',
+      'getIsLogIn'
+    ]),
+    popUpVisiable() {
+      return this.inIcon || this.inPopUp
+    }
   },
 
   methods: {
@@ -784,10 +791,16 @@ export default {
       this.$i18n.locale = this.lang
       // send axios
     },
-    mouseLeave() {
-      setTimeout(() => {
-        this.popUpVisiable = this.inPopUp
-      }, 500)
+    mouseLeave(type) {
+      if (type === 'icon') {
+        setTimeout(() => {
+          this.inIcon = false
+        }, 600)
+      } else {
+        setTimeout(() => {
+          this.inPopUp = false
+        }, 600)
+      }
     },
     onSubmit() {},
     goTo(name, id) {
