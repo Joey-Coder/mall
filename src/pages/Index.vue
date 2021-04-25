@@ -230,14 +230,14 @@
           <i class="iconfont icon-email"></i>
         </div>
         <h5 class="title">{{ $t('email') }}</h5>
-        <p class="text">*******@qq.com</p>
+        <p class="text">jartlace@gmail.com</p>
       </div>
       <div class="info">
         <div class="icon">
           <i class="iconfont icon-phone"></i>
         </div>
         <h5 class="title">{{ $t('phone') }}</h5>
-        <p class="text">0755-33****</p>
+        <p class="text">+86-13760888315</p>
       </div>
       <div class="info">
         <div class="icon">
@@ -245,7 +245,7 @@
         </div>
         <h5 class="title">{{ $t('address') }}</h5>
         <p class="text">
-          美國華盛頓哥倫比亞特區西北區賓夕法尼亞大道1600號
+          {{ $t('addressValue')}}
         </p>
       </div>
     </section>

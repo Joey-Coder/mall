@@ -21,6 +21,7 @@ export default {
   email: 'e-posta',
   phone: 'telefon',
   address: 'adres',
+  addressValue: 'Yangtze Nehri Çin Tekstil Şehri, Haizhu Bölgesi, Guangzhou',
   member: 'Üye',
   orderTracking: 'Sipariş izleme',
   createAnAccount: 'Bir hesap oluşturun',
@@ -94,6 +95,18 @@ export default {
   alreadyHaveAnAccount: 'Zaten hesabınız var mı?',
   signInNow: 'şimdi giriş yap',
   createMyAccount: 'Hesabımı oluşturmak',
+
+  // 忘记密码页面
+  resetYourPassword: 'Parolanızı Sıfırlayın',
+  enterYourEmailOrPhone: 'E posta adresini veya telefon numaranı gir',
+  emailPhone: 'E-posta / telefon',
+  beforeWeReset:
+    'Şifrenizi sıfırlamadan önce, e-posta adresinizi veya cep telefonu numaranızı aşağıya girmenizi rica ediyoruz. Ardından bir doğrulama kodu alacaksınız.',
+  ifYouCant:
+    'Hangi e-posta adresine kaydolduğunuzu hatırlayamıyorsanız veya hesabınızda oturum açarken hala sorun yaşıyorsanız, lütfen Müşteri Hizmetlerimiz ile iletişime geçin.',
+  pleaseTypeSomething: 'Lütfen bir şeyler yazın',
+  newCustomer: 'Yeni müşteri',
+  startHere: 'buradan başlayın',
 
   // about us
   intro:

@@ -4,36 +4,105 @@
     <section class="forgot-wrapper">
       <!-- 输入框 -->
       <div class="forgot hide">
-        <h4 class="title">Reset Your Password</h4>
-        <p>Enter your email address</p>
+        <h4 class="title">{{ $t('resetYourPassword') }}</h4>
+        <p>{{ $t('enterYourEmailOrPhone') }}</p>
         <q-form @submit="onSubmit">
-          <!-- 邮箱 -->
+          <!-- 电话号码 -->
+          <div class="phone-wrapper">
+            <div class="phone">
+              <!-- 手机区号选择 -->
+              <vue-country-intl
+                schema="popover"
+                v-model="phoneCountry"
+                disableCountry="86"
+                iso2
+              >
+                <button
+                  type="button"
+                  slot="reference"
+                  style="width: 100%; height: 56px; line-height: 56px"
+                >
+                  +{{ phoneCountry }}
+                </button>
+              </vue-country-intl>
+              <q-input
+                ref="phonePc"
+                outlined
+                v-model="phone"
+                :label="$t('phone') + '*'"
+                lazy-rules
+                :rules="[
+                  val => (val && val.length > 0) || $t('pleaseTypeSomething'),
+                  val =>
+                    (val && /^1[3456789]\d{9}$/.test(val)) ||
+                    $t('checkPhoneFormat')
+                ]"
+              />
+            </div>
+
+            <div class="code">
+              <q-input
+                ref="codePc"
+                outlined
+                v-model="code"
+                :label="$t('enterSecurityCode')"
+                lazy-rules
+                :rules="[
+                  val => (val && val.length > 0) || $t('pleaseTypeSomething')
+                ]"
+              />
+              <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
+            </div>
+          </div>
+          <!-- 密码 -->
           <q-input
+            ref="passwordPc"
+            v-model="password"
             outlined
-            v-model="email"
-            label="Email *"
+            :type="passwordVisiable ? 'password' : 'text'"
+            :label="$t('createYourPassword')"
+            class="q-mb-lg"
             lazy-rules
-            type="email"
-            :rules="[val => (val && val.length > 0) || 'Please type something']"
-          />
+            :rules="[
+              val => (val && val.length > 0) || $t('pleaseTypeSomething')
+            ]"
+          >
+            <template v-slot:append>
+              <q-icon
+                :name="passwordVisiable ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="passwordVisiable = !passwordVisiable"
+              />
+            </template>
+          </q-input>
+          <!-- 确认密码 -->
+          <q-input
+            ref="confirmPwPc"
+            v-model="confirmPw"
+            outlined
+            :type="passwordVisiable ? 'password' : 'text'"
+            :label="$t('confirmPassword')"
+            lazy-rules
+            :rules="[val => (val && val === password) || $t('samePassword')]"
+          >
+            <template v-slot:append>
+              <q-icon
+                :name="passwordVisiable ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="passwordVisiable = !passwordVisiable"
+              />
+            </template>
+          </q-input>
 
           <div class="create-desc">
             <ul>
-              <li>
-                Before we can reset your password, we require that you enter
-                your email address below. You will then receive an email with
-                instructions to reset your password.
-              </li>
-              <li>
-                If you can't remember which email address you registered with or
-                still have problems signing in to your account please contact
-                our Customer Services.
-              </li>
+              <li>{{ $t('beforeWeReset') }}</li>
+              <li>{{ $t('ifYouCant') }}</li>
             </ul>
           </div>
           <div>
             <q-btn
-              label="Send Email"
+              :label="$t('resetYourPassword')"
               type="submit"
               color="dark"
               text-color="white"
@@ -45,14 +114,14 @@
       <!-- 侧边栏 -->
       <div class="forgot-aside hide">
         <div class="return-home">
-          <a href="javascript:void(0)" @click="goTo('index', '')"
-            >Return to the home page</a
-          >
+          <a href="javascript:void(0)" @click="goTo('index', '')">{{
+            $t('returnToHome')
+          }}</a>
         </div>
         <div class="account">
-          <p>Already have an account?</p>
+          <p>{{ $t('alreadyHaveAnAccount') }}</p>
           <q-btn
-            label="Sign In Now"
+            :label="$t('signInNow')"
             color="dark"
             text-color="white"
             class="sign-btn"
@@ -67,27 +136,91 @@
       <h6 class="q-pb-md">Reset Your Password</h6>
       <q-form @submit="onSubmit">
         <!-- 邮箱 -->
-        <p>Enter Your Email Address</p>
+        <p>Enter Your Phone</p>
+        <!-- 电话号码 -->
+        <div class="phone-wrapper">
+          <div class="phone">
+            <vue-country-intl
+              schema="popover"
+              v-model="phoneCountry"
+              disableCountry="86"
+              iso2
+            >
+              <button
+                type="button"
+                slot="reference"
+                style="width: 100%; height: 56px; line-height: 56px"
+              >
+                +{{ phoneCountry }}
+              </button>
+            </vue-country-intl>
+            <q-input
+              ref="phoneMobile"
+              outlined
+              v-model="phone"
+              :label="$t('phone') + '*'"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || $t('pleaseTypeSomething'),
+                val =>
+                  (val && /^1[3456789]\d{9}$/.test(val)) ||
+                  $t('checkPhoneFormat')
+              ]"
+            />
+          </div>
+          <div class="code">
+            <q-input
+              ref="codeMobile"
+              outlined
+              v-model="code"
+              :label="$t('enterSecurityCode')"
+              lazy-rules
+              :rules="[
+                val => (val && val.length > 0) || $t('pleaseTypeSomething')
+              ]"
+            />
+            <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
+          </div>
+        </div>
+        <!-- 密码 -->
         <q-input
+          ref="passwordMobile"
+          v-model="password"
           outlined
-          v-model="email"
-          label="Email *"
+          :type="passwordVisiable ? 'password' : 'text'"
+          :label="$t('createYourPassword')"
+          class="q-mb-lg"
+        >
+          <template v-slot:append>
+            <q-icon
+              :name="passwordVisiable ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="passwordVisiable = !passwordVisiable"
+            />
+          </template>
+        </q-input>
+        <!-- 确认密码 -->
+        <q-input
+          ref="confirmPwMobile"
+          v-model="confirmPw"
+          outlined
+          :type="passwordVisiable ? 'password' : 'text'"
+          :label="$t('confirmPassword')"
           lazy-rules
-          type="email"
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
-        />
+          :rules="[val => (val && val === password) || $t('samePassword')]"
+        >
+          <template v-slot:append>
+            <q-icon
+              :name="passwordVisiable ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="passwordVisiable = !passwordVisiable"
+            />
+          </template>
+        </q-input>
         <div class="create-desc">
           <ul>
-            <li>
-              Before we can reset your password, we require that you enter your
-              email address below. You will then receive an email with
-              instructions to reset your password.
-            </li>
-            <li>
-              If you can't remember which email address you registered with or
-              still have problems signing in to your account please contact our
-              Customer Services.
-            </li>
+            <li>{{ $t('beforeWeReset') }}</li>
+            <li>{{ $t('ifYouCant') }}</li>
           </ul>
         </div>
         <q-separator></q-separator>
@@ -111,8 +244,13 @@ export default {
   name: 'Forgot',
   data() {
     return {
-      email: null,
-      isSign: '1' // '0' is login, '1' is create
+      isSign: '1', // '0' is login, '1' is create
+      phoneCountry: '1',
+      phone: null,
+      code: null,
+      password: null,
+      confirmPw: null,
+      passwordVisiable: true
     }
   },
   methods: {
@@ -126,7 +264,32 @@ export default {
   created() {},
   mounted() {},
   computed: {},
-  watched: {}
+  watch: {
+    /**
+     * 监听vuex中当前语言的改变
+     * 一旦语言发生改变，对已经校验的input重新校验
+     * 确保校验提示也切换到当前语言
+     */
+    '$store.state.lang.lang': function(newVal, oldVal) {
+      // console.log(newVal)
+      const refs = [
+        'phonePc',
+        'codePc',
+        'passwordPc',
+        'confirmPwPc',
+        'phoneMobile',
+        'codeMobile',
+        'passwordMobile',
+        'confirmPwMobile'
+      ]
+      refs.forEach(ref => {
+        if (this.$refs[ref].hasError) {
+          // console.log(ref)
+          this.$refs[ref].validate()
+        }
+      })
+    }
+  }
 }
 </script>
 <style scoped lang="scss">
@@ -155,6 +318,29 @@ export default {
         .first-name,
         .last-name {
           width: 45%;
+        }
+      }
+      .phone {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        column-gap: 1rem;
+        .country-number {
+          width: 100%;
+          height: 56px;
+          line-height: 56px;
+          text-align: center;
+          background-color: $grey-3;
+        }
+      }
+      .code {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        column-gap: 1rem;
+        .q-btn {
+          height: 56px;
+          ::v-deep .block {
+            white-space: nowrap;
+          }
         }
       }
       .create-desc {

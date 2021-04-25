@@ -178,7 +178,7 @@
                           clickable
                           v-ripple
                           class="menu"
-                          @click="lang = $i18n.locale = 'United States'"
+                          @click="changeLanguage('United States')"
                           v-close-popup
                         >
                           <q-item-section avatar style="font-size: 1.5rem">
@@ -194,7 +194,7 @@
                           clickable
                           v-ripple
                           class="menu"
-                          @click="lang = $i18n.locale = 'Россия'"
+                          @click="changeLanguage('Россия')"
                           v-close-popup
                         >
                           <q-item-section avatar style="font-size: 1.5rem">
@@ -210,7 +210,7 @@
                           clickable
                           v-ripple
                           class="menu"
-                          @click="lang = $i18n.locale = 'Türkiye'"
+                          @click="changeLanguage('Türkiye')"
                           v-close-popup
                         >
                           <q-item-section avatar style="font-size: 1.5rem">
@@ -226,7 +226,7 @@
                           clickable
                           v-ripple
                           class="menu"
-                          @click="lang = $i18n.locale = 'لغة عربية'"
+                          @click="changeLanguage('لغة عربية')"
                           v-close-popup
                         >
                           <q-item-section avatar style="font-size: 1.5rem">
@@ -871,10 +871,27 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['addCartNum', 'removeCartNum', 'signIn', 'signOut']),
-    changeLanguage() {
-      this.lang = this.selectedLang
+    ...mapMutations([
+      'addCartNum',
+      'removeCartNum',
+      'signIn',
+      'signOut',
+      'changeLang'
+    ]),
+    /**
+     * 切换语言
+     * pc端不传lang，lang为Event
+     * mobile端传递lang， lang为string
+     */
+    changeLanguage(lang) {
+      if (typeof lang === 'string') {
+        this.lang = lang
+      } else {
+        this.lang = this.selectedLang
+      }
       this.$i18n.locale = this.lang
+      // 修改vuex中国的lang，用于表单校验时使用
+      this.changeLang(this.lang)
       // send axios
     },
     mouseLeave(type) {
