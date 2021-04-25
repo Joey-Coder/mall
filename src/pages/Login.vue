@@ -495,7 +495,7 @@
           outlined
           :type="passwordVisiable ? 'password' : 'text'"
           :label="$t('createYourPassword')"
-          class="q-mb-lg"
+          :rules="[val => (val && val.length > 0) || $t('pleaseTypeSomething')]"
         >
           <template v-slot:append>
             <q-icon
