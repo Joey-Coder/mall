@@ -15,6 +15,7 @@
       >
     </section>
     <!-- pc端 -->
+    <!-- 创建新账号 -->
     <section class="create-wrapper" v-if="isSign.toString() === '1'">
       <!-- 输入框 -->
       <div class="create hide">
@@ -23,31 +24,33 @@
           <div class="name" style="width: 100%">
             <!-- firstName -->
             <q-input
+              ref="firstNamePc"
               class="first-name"
               outlined
               v-model="firstName"
               :label="$t('yourFirstName')"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val => (val && val.length > 0) || $t('pleaseTypeSomething')
               ]"
               autogrow
             />
             <!-- lastName -->
             <q-input
+              ref="lastNamePc"
               outlined
               class="last-name"
               v-model="lastName"
               :label="$t('yourLastName')"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val => (val && val.length > 0) || $t('pleaseTypeSomething')
               ]"
             />
           </div>
 
           <!-- 邮箱 -->
-          <div class="email" v-if="useEmail">
+          <!-- <div class="email" v-if="useEmail">
             <p>
               <a
                 href="javascript:void(0)"
@@ -74,7 +77,7 @@
               lazy-rules
               type="email"
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val => (val && val.length > 0) || $t('pleaseTypeSomething')
               ]"
             />
             <div class="code">
@@ -84,15 +87,15 @@
                 :label="$t('enterSecurityCode')"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Please type something'
+                  val => (val && val.length > 0) || $t('pleaseTypeSomething')
                 ]"
               />
               <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
             </div>
-          </div>
+          </div> -->
 
           <!-- 电话号码 -->
-          <div class="phone-wrapper" v-else>
+          <div class="phone-wrapper">
             <div class="phone">
               <vue-country-intl
                 schema="popover"
@@ -109,16 +112,21 @@
                 </button>
               </vue-country-intl>
               <q-input
+                ref="phonePc"
                 outlined
                 v-model="phone"
                 label="phone  *"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Please type something'
+                  val => (val && val.length > 0) || $t('pleaseTypeSomething'),
+                  val =>
+                    (val && /^1[3456789]\d{9}$/.test(val)) ||
+                    $t('checkPhoneFormat')
                 ]"
               />
             </div>
-            <p>
+            <!-- 切换选项 -->
+            <!-- <p>
               <a
                 href="javascript:void(0)"
                 @click="useEmail = true"
@@ -136,15 +144,16 @@
                 "
                 >{{ $t('email') }}</a
               >
-            </p>
+            </p> -->
             <div class="code">
               <q-input
+                ref="codePc"
                 outlined
                 v-model="code"
                 :label="$t('enterSecurityCode')"
                 lazy-rules
                 :rules="[
-                  val => (val && val.length > 0) || 'Please type something'
+                  val => (val && val.length > 0) || $t('pleaseTypeSomething')
                 ]"
               />
               <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
@@ -152,6 +161,7 @@
           </div>
           <!-- 密码 -->
           <q-input
+            ref="passwordPc"
             v-model="password"
             outlined
             :type="passwordVisiable ? 'password' : 'text'"
@@ -168,14 +178,13 @@
           </q-input>
           <!-- 确认密码 -->
           <q-input
+            ref="confirmPwPc"
             v-model="confirmPw"
             outlined
             :type="passwordVisiable ? 'password' : 'text'"
             :label="$t('confirmPassword')"
             lazy-rules
-            :rules="[
-              val => (val && val === password) || 'Please type same password'
-            ]"
+            :rules="[val => (val && val === password) || $t('samePassword')]"
           >
             <template v-slot:append>
               <q-icon
@@ -226,26 +235,38 @@
         </div>
       </div>
     </section>
+    <!-- 登录 -->
     <section class="login-wrapper" v-else>
       <div class="login hide">
         <h4 class="title">{{ $t('signIn') }}</h4>
         <q-form @submit="onSubmit">
-          <!-- 邮箱 -->
+          <!-- 手机号 -->
           <q-input
+            ref="phonePc"
             outlined
             v-model="emailPhone"
-            :label="$t('email') + '/' + $t('phone')"
+            :label="$t('phone') + '*'"
             lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Please type something']"
-          />
+            :rules="[
+              val => (val && val.length > 0) || $t('pleaseTypeSomething'),
+              val =>
+                (val && /^1[3456789]\d{9}$/.test(val)) || $t('checkPhoneFormat')
+            ]"
+          >
+            <template v-slot:append></template>
+          </q-input>
 
           <!-- 密码 -->
           <q-input
+            ref="passwordPc"
             v-model="password"
             outlined
             :type="passwordVisiable ? 'password' : 'text'"
             :label="$t('yourPassword')"
             class="q-mb-lg"
+            :rules="[
+              val => (val && val.length > 0) || $t('pleaseTypeSomething')
+            ]"
           >
             <template v-slot:append>
               <q-icon
@@ -322,26 +343,33 @@
     <!-- 移动端 -->
     <section class="create hide-small" v-if="isSign.toString() === '1'">
       <h4 class="title">{{ $t('createAccount') }}</h4>
+      <!-- 注册 -->
       <q-form @submit="onSubmit">
         <div class="name" style="width: 100%">
           <!-- firstName -->
           <q-input
+            ref="firstNameMobile"
             class="first-name"
             outlined
             v-model="firstName"
             :label="$t('yourFirstName')"
             lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Please type something']"
+            :rules="[
+              val => (val && val.length > 0) || $t('pleaseTypeSomething')
+            ]"
             autogrow
           />
           <!-- lastName -->
           <q-input
+            ref="lastNameMobile"
             outlined
             class="last-name"
             v-model="lastName"
             :label="$t('yourLastName')"
             lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Please type something']"
+            :rules="[
+              val => (val && val.length > 0) || $t('pleaseTypeSomething')
+            ]"
           />
         </div>
         <!-- 邮箱 -->
@@ -351,11 +379,11 @@
           label="Email *"
           lazy-rules
           type="email"
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
+          :rules="[val => (val && val.length > 0) || $t('pleaseTypeSomething')]"
         /> -->
 
         <!-- 邮箱 -->
-        <div class="email" v-if="useEmail">
+        <!-- <div class="email" v-if="useEmail">
           <p>
             <a
               href="javascript:void(0)"
@@ -379,7 +407,9 @@
             :label="$t('email')"
             lazy-rules
             type="email"
-            :rules="[val => (val && val.length > 0) || 'Please type something']"
+            :rules="[
+              val => (val && val.length > 0) || $t('pleaseTypeSomething')
+            ]"
           />
           <div class="code">
             <q-input
@@ -388,24 +418,16 @@
               :label="$t('enterSecurityCode')"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val => (val && val.length > 0) || $t('pleaseTypeSomething')
               ]"
             />
             <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
           </div>
-        </div>
+        </div> -->
 
         <!-- 电话号码 -->
-        <div class="phone-wrapper" v-else>
+        <div class="phone-wrapper">
           <div class="phone">
-            <!-- <div class="country-number">+86</div> -->
-            <!-- <vue-country-intl
-                v-model="countryCode"
-                :showAreacode="false"
-                :onlyValue="true"
-                :useChinese="false"
-                placeholder="Select Country"
-              ></vue-country-intl> -->
             <vue-country-intl
               schema="popover"
               v-model="phoneCountry"
@@ -421,16 +443,21 @@
               </button>
             </vue-country-intl>
             <q-input
+              ref="phoneMobile"
               outlined
               v-model="phone"
               label="phone  *"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val => (val && val.length > 0) || $t('pleaseTypeSomething'),
+                val =>
+                  (val && /^1[3456789]\d{9}$/.test(val)) ||
+                  $t('checkPhoneFormat')
               ]"
             />
           </div>
-          <p>
+          <!-- 手机和邮箱的切换 -->
+          <!-- <p>
             <a
               href="javascript:void(0)"
               @click="useEmail = true"
@@ -446,15 +473,16 @@
               "
               >{{ $t('email') }}</a
             >
-          </p>
+          </p> -->
           <div class="code">
             <q-input
+              ref="codeMobile"
               outlined
               v-model="code"
               :label="$t('enterSecurityCode')"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val => (val && val.length > 0) || $t('pleaseTypeSomething')
               ]"
             />
             <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
@@ -462,6 +490,7 @@
         </div>
         <!-- 密码 -->
         <q-input
+          ref="passwordMobile"
           v-model="password"
           outlined
           :type="passwordVisiable ? 'password' : 'text'"
@@ -478,14 +507,13 @@
         </q-input>
         <!-- 确认密码 -->
         <q-input
+          ref="confirmPwMobile"
           v-model="confirmPw"
           outlined
           :type="passwordVisiable ? 'password' : 'text'"
           :label="$t('confirmPassword')"
           lazy-rules
-          :rules="[
-            val => (val && val === password) || 'Please type same password'
-          ]"
+          :rules="[val => (val && val === password) || $t('samePassword')]"
         >
           <template v-slot:append>
             <q-icon
@@ -517,23 +545,33 @@
         </div>
       </q-form>
     </section>
+    <!-- 登录 -->
     <section class="sign-in hide-small" v-else>
       <q-form @submit="onSubmit">
-        <!-- 邮箱 -->
+        <!-- 手机号 -->
         <q-input
+          ref="phoneMobile"
           outlined
           v-model="emailPhone"
-          :label="$t('email') + '/' + $t('phone')"
+          :label="$t('phone') + '*'"
           lazy-rules
-          :rules="[val => (val && val.length > 0) || 'Please type something']"
-        />
+          :rules="[
+            val => (val && val.length > 0) || $t('pleaseTypeSomething'),
+            val =>
+              (val && /^1[3456789]\d{9}$/.test(val)) || $t('checkPhoneFormat')
+          ]"
+        >
+          <template v-slot:append> </template>
+        </q-input>
         <!-- 密码 -->
         <q-input
+          ref="passwordMobile"
           v-model="password"
           outlined
           :type="passwordVisiable ? 'password' : 'text'"
           :label="$t('yourPassword')"
           class="q-mb-lg"
+          :rules="[val => (val && val.length > 0) || $t('pleaseTypeSomething')]"
         >
           <template v-slot:append>
             <q-icon
@@ -633,6 +671,29 @@ export default {
   watch: {
     id(val) {
       this.isSign = val
+    },
+    /**
+     * 监听语言改变，重新校验表单规则
+     */
+    '$store.state.lang.lang': function(newValue, oldValue) {
+      const refs = [
+        'firstName',
+        'lastName',
+        'phone',
+        'code',
+        'password',
+        'confirmPw'
+      ]
+      refs.forEach(ref => {
+        const refPc = this.$refs[ref + 'Pc']
+        const refMobile = this.$refs[ref + 'Mobile']
+        if (refPc && refPc.hasError) {
+          refPc.validate()
+        }
+        if (refMobile && refMobile.hasError) {
+          refMobile.validate()
+        }
+      })
     }
   }
 }
