@@ -125,7 +125,7 @@
     </section>
     <section class="desc">
       <div class="title">
-        <h4>Descripiton</h4>
+        <h4>{{ $t('description') }}</h4>
       </div>
       <div class="detail-wrapper">
         <h4 class="product-title">
