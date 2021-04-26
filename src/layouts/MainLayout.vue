@@ -584,12 +584,18 @@
 
     <q-page-container>
       <router-view @signOut="isLogIn = false" />
+      <!-- 浮动工具栏 -->
       <div class="tool-btn-group">
+        <!-- whatsapp -->
         <div class="tool-btn">
-          <a href="javascript:void(0);"
+          <a
+            href="https://wa.me/8613760888315?text=Hello"
+            target="_blank"
+            class="whatsapp-pc"
             ><i class="iconfont icon-whats-app"></i
           ></a>
         </div>
+        <!-- 微信 -->
         <div class="tool-btn">
           <a
             href="javascript:void(0);"
@@ -602,8 +608,11 @@
             ></wechat-popup>
           </a>
         </div>
+        <!-- email -->
         <div class="tool-btn">
-          <a href="javascript:void(0);"><i class="iconfont icon-email"></i></a>
+          <a href="mailto: guo57881@gmail.com" target="_blank"
+            ><i class="iconfont icon-email"></i
+          ></a>
         </div>
         <div class="tool-btn" id="top-bar" v-to-top>
           <a
@@ -696,7 +705,7 @@
           </div>
         </div>
       </div>
-      <!-- 底部菜单栏 -->
+      <!-- 底部菜单栏 PC -->
       <div class="footer-menu" v-else>
         <div class="member">
           <div class="member-title text-h6 ">
@@ -778,20 +787,37 @@
       <!-- 联系方式和付款方式 -->
       <div class="contact">
         <div class="follow-us row col-2 justify-between">
-          <a href="http://www.baidu.com" class="follow-image">
+          <a
+            href="https://www.facebook.com/profile.php?id=100058147485088"
+            target="_blank"
+            class="follow-image"
+          >
             <img src="../assets/ic_facebook.png" alt="" />
           </a>
-          <a href="http://www.baidu.com" class="follow-image">
+          <a
+            href="https://instagram.com/jiaxin2234?igshid=ufg1l2ahokio"
+            target="_blank"
+            class="follow-image"
+          >
             <img src="../assets/ic_ins.png" alt="" />
           </a>
-          <a href="http://www.baidu.com" class="follow-image">
+          <a
+            href="https://wa.me/+8613760888315?text=Hello"
+            class="follow-image"
+            target="_blank"
+          >
             <img src="../assets/ic_whatsapp.png" alt="" />
           </a>
-          <a href="http://www.baidu.com" class="follow-image">
+          <a
+            href="mailto: guo47881@gmail.com"
+            class="follow-image"
+            target="_blank"
+          >
             <img src="../assets/ic_g.png" alt="" />
           </a>
+
           <a
-            href="http://www.baidu.com"
+            href="javaScript:void(0)"
             class="follow-image"
             @mouseleave="mouseLeave('inFooterWechatIcon')"
             @mouseover="inFooterWechatIcon = true"
@@ -878,6 +904,9 @@ export default {
       'signOut',
       'changeLang'
     ]),
+    whatsApp() {
+      console.log('talk')
+    },
     /**
      * 切换语言
      * pc端不传lang，lang为Event
@@ -895,26 +924,28 @@ export default {
       // send axios
     },
     mouseLeave(type) {
+      const t = this.$q.screen.gt.sm ? 600 : 2000
+      // const t = 3000
       switch (type) {
         case 'icon':
           setTimeout(() => {
             this.inIcon = false
-          }, 600)
+          }, t)
           break
         case 'inWechatIcon':
           setTimeout(() => {
             this.inWechatIcon = false
-          }, 600)
+          }, t)
           break
         case 'inFooterWechatIcon':
           setTimeout(() => {
             this.inFooterWechatIcon = false
-          }, 600)
+          }, t)
           break
         default:
           setTimeout(() => {
             this.inPopUp = false
-          }, 600)
+          }, t)
           break
       }
     },

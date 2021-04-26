@@ -5,10 +5,14 @@
     v-model="popUpVisiable"
     @mouseover="inPopUp = true"
     @mouseleave="mouseLeave('popup')"
-    v-if="$q.screen.gt.xs"
+    class="wechat-popup"
   >
-    <div style="width: 200px; height: 200px; background-color: #fff;">
-      二维码
+    <!-- v-if="$q.screen.gt.xs" -->
+    <div
+      style="width: 200px; height: 200px; background-color: #fff;"
+      class="flex justify-center"
+    >
+      <img src="../assets/scanCode.png" alt="二维码" class="scan-code" />
     </div>
   </q-popup-proxy>
 </template>
@@ -24,6 +28,7 @@ export default {
   },
   methods: {
     mouseLeave(type) {
+      // console.log('sdsdf')
       if (type === 'icon') {
         setTimeout(() => {
           this.inIcon = false
@@ -59,4 +64,13 @@ export default {
   watch: {}
 }
 </script>
-<style scoped lang="less"></style>
+<style scoped lang="scss">
+.wechat-popup {
+  .scan-code {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+}
+</style>
