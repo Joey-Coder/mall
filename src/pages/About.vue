@@ -4,14 +4,14 @@
       <h4>About</h4>
     </section>
     <section class="content">
-      <h6 class="about-us">About us</h6>
+      <h6 class="about-us">{{ $t('aboutUs') }}</h6>
       <div>
         <p class="intro">Introduction: {{ $t('intro') }}</p>
         <p class="address">
-          {{ $t('address') }}: 美國華盛頓哥倫比亞特區西北區賓夕法尼亞大道1600號
+          {{ $t('address') + ': ' + $t('addressValue') }}
         </p>
-        <p class="phone">{{ $t('phone') }}: 0755-74******</p>
-        <p class="email">{{ $t('email') }}: *****email@mail.com</p>
+        <p class="phone">{{ $t('phone') }}: +86-13760888315</p>
+        <p class="email">{{ $t('email') }}: jartlace@gmail.com</p>
       </div>
     </section>
   </q-page>
