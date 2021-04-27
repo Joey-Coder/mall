@@ -481,10 +481,10 @@
               <!-- 已登录 -->
               <div v-else class="my-account user-form">
                 <a href="javascript:void(0)" @click="goTo('user', '0')"
-                  ><p>My Orders</p></a
+                  ><p>{{ $t('myOrders') }}</p></a
                 >
                 <a href="javascript:void(0)" @click="goTo('user', '1')"
-                  ><p>Account Setting</p></a
+                  ><p>{{ $t('accountSetting') }}</p></a
                 >
                 <q-btn
                   outline

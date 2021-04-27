@@ -120,5 +120,7 @@ export default {
   // 补充
   samePassword: 'Please type the same password',
   checkPhoneFormat: 'please check phone format',
-  aboutUs: 'About us'
+  aboutUs: 'About us',
+  myOrders: 'My Orders',
+  accountSetting: 'Account Setting'
 }
