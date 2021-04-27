@@ -20,7 +20,7 @@
       <!-- 输入框 -->
       <div class="create hide">
         <h4 class="title">{{ $t('createAccount') }}</h4>
-        <q-form @submit="onSubmit">
+        <q-form @submit="register">
           <div class="name" style="width: 100%">
             <!-- firstName -->
             <q-input
@@ -156,7 +156,12 @@
                   val => (val && val.length > 0) || $t('pleaseTypeSomething')
                 ]"
               />
-              <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
+              <q-btn
+                outline
+                :label="$t('sendCode')"
+                padding="xs"
+                @click="getAuthCode"
+              ></q-btn>
             </div>
           </div>
           <!-- 密码 -->
@@ -239,7 +244,7 @@
     <section class="login-wrapper" v-else>
       <div class="login hide">
         <h4 class="title">{{ $t('signIn') }}</h4>
-        <q-form @submit="onSubmit">
+        <q-form @submit="login">
           <!-- 手机号 -->
           <q-input
             ref="phonePc"
@@ -259,7 +264,7 @@
           <!-- 密码 -->
           <q-input
             ref="passwordPc"
-            v-model="password"
+            v-model="loginPassword"
             outlined
             :type="passwordVisiable ? 'password' : 'text'"
             :label="$t('yourPassword')"
@@ -344,7 +349,7 @@
     <section class="create hide-small" v-if="isSign.toString() === '1'">
       <h4 class="title">{{ $t('createAccount') }}</h4>
       <!-- 注册 -->
-      <q-form @submit="onSubmit">
+      <q-form @submit="register">
         <div class="name" style="width: 100%">
           <!-- firstName -->
           <q-input
@@ -485,7 +490,12 @@
                 val => (val && val.length > 0) || $t('pleaseTypeSomething')
               ]"
             />
-            <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
+            <q-btn
+              outline
+              :label="$t('sendCode')"
+              padding="xs"
+              @click="getAuthCode"
+            ></q-btn>
           </div>
         </div>
         <!-- 密码 -->
@@ -547,7 +557,7 @@
     </section>
     <!-- 登录 -->
     <section class="sign-in hide-small" v-else>
-      <q-form @submit="onSubmit">
+      <q-form @submit="login">
         <!-- 手机号 -->
         <q-input
           ref="phoneMobile"
@@ -566,7 +576,7 @@
         <!-- 密码 -->
         <q-input
           ref="passwordMobile"
-          v-model="password"
+          v-model="loginPassword"
           outlined
           :type="passwordVisiable ? 'password' : 'text'"
           :label="$t('yourPassword')"
@@ -632,6 +642,7 @@
 </template>
 
 <script>
+import { getAuthCode, register } from '../boot/axios'
 export default {
   name: 'Login',
   data() {
@@ -642,6 +653,7 @@ export default {
       emailPhone: null,
       phone: null,
       password: null,
+      loginPassword: null,
       code: null,
       confirmPw: null,
       passwordVisiable: true,
@@ -651,7 +663,31 @@ export default {
     }
   },
   methods: {
-    onSubmit() {},
+    /**
+     * 获取手机验证码
+     */
+    async getAuthCode() {
+      const res = await getAuthCode(this.phone)
+      this.$q.notify({
+        message: res.message
+      })
+      console.log(res)
+    },
+
+    async register() {
+      const res = await register({
+        authCode: this.code,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        password: this.password,
+        phone: this.phone
+      })
+      this.$q.notify({
+        message: res.message
+      })
+      console.log(res)
+    },
+    login() {},
     goTo(name, id) {
       this.$router.push({ name: name, params: { id } })
     }

@@ -401,7 +401,7 @@
                     class="q-my-sm"
                     filled
                     v-model="email"
-                    :label="$t('yourEmailAddress')"
+                    :label="$t('phone') + '*'"
                     lazy-rules
                     :rules="[
                       val => (val && val.length > 0) || 'Please type something'
