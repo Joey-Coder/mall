@@ -642,7 +642,8 @@
 </template>
 
 <script>
-import { getAuthCode, register } from '../boot/axios'
+import { getAuthCode, register, login } from '../boot/axios'
+import { setToken } from '../boot/auth.js'
 export default {
   name: 'Login',
   data() {
@@ -675,19 +676,49 @@ export default {
     },
 
     async register() {
-      const res = await register({
+      const { data, code } = await register({
         authCode: this.code,
         firstName: this.firstName,
         lastName: this.lastName,
         password: this.password,
-        phone: this.phone
+        phone: this.phoneCountry + '-' + this.phone
       })
-      this.$q.notify({
-        message: res.message
-      })
-      console.log(res)
+      if (code === 200) {
+        this.$q.notify({
+          type: 'positive',
+          message: '注册成功'
+        })
+      } else {
+        this.$q.notify({
+          type: 'danger',
+          message: data.message
+        })
+      }
+      // console.log(res)
     },
-    login() {},
+    async login() {
+      const { code, data } = await login({
+        phone: this.emailPhone,
+        password: this.loginPassword
+      })
+      // console.log(res)
+      if (code === 200) {
+        setToken(data.tokenHead + data.token)
+        this.$q.notify({
+          type: 'success',
+          message: '登录成功'
+        })
+        // const res = await getUserInfo(this.emailPhone)
+        // console.log(res)
+        this.$store.commit('signIn')
+        this.$router.push({ path: '/' })
+      } else {
+        this.$q.notify({
+          type: 'danger',
+          message: data.message
+        })
+      }
+    },
     goTo(name, id) {
       this.$router.push({ name: name, params: { id } })
     }

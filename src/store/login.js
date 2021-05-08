@@ -1,6 +1,7 @@
+import { removeToken, getToken } from '../boot/auth'
 export default {
   state: {
-    isLogIn: false
+    isLogIn: !!getToken()
   },
   getters: {
     getIsLogIn(state) {
@@ -12,6 +13,7 @@ export default {
       state.isLogIn = true
     },
     signOut(state) {
+      removeToken()
       state.isLogIn = false
     }
   }

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import { getToken } from './auth.js'
 
 const service = axios.create({
   // baseURL: 'http://8.135.102.77:8060/',
@@ -54,6 +55,7 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   config => {
+    config.headers.Authorization = getToken()
     return config
   },
   error => {
@@ -104,6 +106,32 @@ export function register(userInfo) {
     method: 'post',
     url: '/user/register',
     data: userInfo
+  })
+}
+
+/**
+ * 会员登录
+ * @param {Object} userInfo
+ * @returns Object
+ */
+export function login(userInfo) {
+  return service({
+    method: 'post',
+    url: '/user/login',
+    data: userInfo
+  })
+}
+
+/**
+ * 获取用户信息
+ * @param {String} name
+ * @returns Object
+ */
+export function getUserInfo(name) {
+  return service({
+    method: 'get',
+    url: '/user/info',
+    params: { name }
   })
 }
 

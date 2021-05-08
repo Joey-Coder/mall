@@ -400,7 +400,7 @@
                   <q-input
                     class="q-my-sm"
                     filled
-                    v-model="email"
+                    v-model="phone"
                     :label="$t('phone') + '*'"
                     lazy-rules
                     :rules="[
@@ -428,7 +428,7 @@
                       style="width: 100%"
                       class="q-mb-sm"
                       unelevated
-                      @click="signIn"
+                      @click="login"
                     /><q-btn
                       type="submit"
                       color="white"
@@ -459,6 +459,7 @@
                     </q-btn>
 
                     <q-separator class="q-my-xs" />
+                    <!-- join free -->
                     <q-btn
                       :label="$t('joinFree')"
                       class="q-my-sm"
@@ -490,7 +491,7 @@
                   outline
                   unelevated
                   label="Sign Out"
-                  @click="signOut"
+                  @click="logout"
                 ></q-btn>
               </div> </q-popup-proxy
           ></a>
@@ -856,7 +857,10 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import WechatPopup from '../components/WechatPopup'
+import { login } from '../boot/axios'
+import { setToken } from '../boot/auth'
 export default {
+  inject: ['reload'],
   data() {
     return {
       langVisiable: false,
@@ -866,7 +870,7 @@ export default {
       inIcon: false,
       inWechatIcon: false,
       inFooterWechatIcon: false,
-      email: null,
+      phone: null,
       password: null,
       shopCarVisiable: false,
       drawerVisiable: false,
@@ -948,6 +952,33 @@ export default {
           }, t)
           break
       }
+    },
+    async login() {
+      const { code, data } = await login({
+        phone: this.phone,
+        password: this.password
+      })
+      // console.log(res)
+      if (code === 200) {
+        setToken(data.tokenHead + data.token)
+        this.$q.notify({
+          type: 'positive',
+          message: '登录成功'
+        })
+        // const res = await getUserInfo(this.emailPhone)
+        // console.log(res)
+        this.$store.commit('signIn')
+        // this.$router.push({ path: '/' })
+      } else {
+        this.$q.notify({
+          type: 'danger',
+          message: data.message
+        })
+      }
+    },
+    logout() {
+      this.signOut()
+      this.reload()
     },
     onSubmit() {},
     goTo(name, id) {
