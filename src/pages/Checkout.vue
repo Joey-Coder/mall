@@ -106,33 +106,33 @@
               {{ $t('amount') }}
             </q-item-section>
           </q-item>
-          <q-item v-ripple v-for="item in getCart" :key="item.productID">
+          <q-item v-ripple v-for="item in getCart" :key="item.productId">
             <q-item-section class="product-image">
-              <img :src="item.productImg" alt="" />
+              <img :src="item.productPic" alt="" />
               <p>{{ item.productName }}</p>
             </q-item-section>
             <q-item-section class="product-price">
               <p>${{ calcPerPrice(item) }}</p>
-              <p class="number">{{ item.num }}</p>
+              <p class="number">{{ item.quantity }}</p>
             </q-item-section>
             <q-item-section class="product-amount">
-              <p>${{ getProductPrice(item.productID) }}</p>
+              <p>${{ getProductPrice(item.productId) }}</p>
             </q-item-section>
           </q-item>
         </q-list>
         <!-- 移动端版本 -->
         <q-list separator class="mobile">
-          <q-item v-ripple v-for="item in getCart" :key="item.productID">
+          <q-item v-ripple v-for="item in getCart" :key="item.productId">
             <q-item-section class="product-image">
-              <img :src="item.productImg" alt="" />
-              <div class="badge">{{ item.num }}</div>
+              <img :src="item.productPic" alt="" />
+              <div class="badge">{{ item.quantity }}</div>
             </q-item-section>
             <q-item-section class="product-price">
               <p>{{ item.productName }}</p>
               <div class="row justify-between">
                 <p>USD ${{ calcPerPrice(item) }}</p>
                 <p class="text-weight-bold">
-                  ${{ getProductPrice(item.productID) }}
+                  ${{ getProductPrice(item.productId) }}
                 </p>
               </div>
             </q-item-section>
@@ -195,9 +195,9 @@ export default {
       return Object.keys(country)
     },
     calcPerPrice: () => item => {
-      if (item.num < 10) {
+      if (item.quantity < 10) {
         return item.Hprice
-      } else if (item.num < 1000) {
+      } else if (item.quantity < 1000) {
         return item.Mprice
       } else {
         return item.Lprice

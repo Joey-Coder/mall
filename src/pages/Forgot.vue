@@ -134,7 +134,7 @@
     <!-- 移动端 -->
     <section class="forgot hide-small">
       <h6 class="q-pb-md">Reset Your Password</h6>
-      <q-form @submit="onSubmit">
+      <q-form @submit="resetPassword">
         <!-- 邮箱 -->
         <p>Enter Your Phone</p>
         <!-- 电话号码 -->
@@ -240,6 +240,7 @@
 </template>
 
 <script>
+import { updatePassword } from '../boot/axios'
 export default {
   name: 'Forgot',
   data() {
@@ -254,7 +255,25 @@ export default {
     }
   },
   methods: {
-    onSubmit() {},
+    async resetPassword() {
+      const { data, code } = await updatePassword({
+        phone: this.phoneCountry + '-' + this.phone,
+        authCode: this.code,
+        password: this.password
+      })
+      if (code === 200) {
+        this.$q.notify({
+          type: 'positive',
+          message: '密码修改成功'
+        })
+        this.goTo('login', 0)
+      } else {
+        this.$q.notify({
+          type: 'danger',
+          message: data.message
+        })
+      }
+    },
     goTo(name, id) {
       this.$router.push({ name: name, params: { id } })
     }

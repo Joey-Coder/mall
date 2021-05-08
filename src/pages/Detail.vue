@@ -66,20 +66,20 @@
               size="md"
               class="remove-btn"
               @click="
-                if (num > 1) {
-                  num--
+                if (quantity > 1) {
+                  quantity--
                 }
               "
               unelevated
-              :disable="product.num <= 0"
+              :disable="quantity <= 0"
             ></q-btn>
-            <input type="text" class="num-input" v-model="num" />
+            <input type="text" class="num-input" v-model="quantity" />
             <q-btn
               icon="add"
               size="md"
               unelevated
               class="add-btn"
-              @click="num++"
+              @click="quantity++"
             ></q-btn>
           </div>
         </div>
@@ -150,14 +150,14 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import WechatPopup from '../components/WechatPopup'
 export default {
   name: 'Detail',
   data() {
     return {
       slide: 1,
-      num: 1,
+      quantity: 1,
       Hprice: 100.0,
       Mprice: 90.0,
       Lprice: 80.0,
@@ -178,7 +178,8 @@ export default {
     WechatPopup
   },
   methods: {
-    ...mapMutations(['addCartNum', 'removeCartNum', 'insertProduct']),
+    ...mapMutations(['addCartQuantity', 'removeCartQuantity', 'insertProduct']),
+    ...mapActions(['addCartQuantity', 'insertProduct']),
     goTo(name, id) {
       this.$router.push({ name: name, params: { id } })
     },
@@ -194,7 +195,7 @@ export default {
       var inCart = false
       for (let i = 0; i < this.getCart.length; i++) {
         // 商品已经存在
-        if (this.getCart[i].productID === this.id.toString()) {
+        if (this.getCart[i].productId === this.id.toString()) {
           inCart = true
           break
         }
@@ -202,21 +203,25 @@ export default {
       // 商品已经在购物车
       // debugger
       if (inCart) {
-        for (let i = 0; i < this.num; i++) {
-          this.addCartNum(this.id)
+        for (let i = 0; i < this.quantity; i++) {
+          this.addCartQuantity(this.id)
         }
       } else {
         const p = {
-          id: '', // 购物车id
-          productID: this.id.toString(), // 商品id
+          id: null, // 购物车id
+          productId: this.id.toString(), // 商品id
           productName:
             'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-          productImg: '', // 商品图片
+          productPic: '', // 商品图片
           price: this.Hprice, // 商品价格
-          num: this.num, // 商品数量
-          maxNum: 100 // 商品限购数量
+          Hprice: this.Hprice,
+          Mprice: this.Mprice,
+          Lprice: this.Lprice,
+          quantity: this.quantity, // 商品数量
+          maxNum: 10000 // 商品限购数量
         }
-        this.insertProduct(p)
+        // this.insertProduct(p)
+        this.$store.dispatch('insertProduct', p)
       }
     },
     mouseLeave() {
@@ -232,6 +237,7 @@ export default {
   },
   created() {
     if (this.getProductById(this.id)) {
+      console.log('sdfsd')
       this.Hprice = this.getProductById(this.id).Hprice
       this.Mprice = this.getProductById(this.id).Mprice
       this.Lprice = this.getProductById(this.id).Lprice
@@ -243,27 +249,27 @@ export default {
     /**
      * 根据id获取商品数量
      */
-    product() {
-      for (let i = 0; i < this.getCart.length; i++) {
-        if (this.getCart[i].productID === this.id.toString()) {
-          return this.getCart[i]
-        }
-      }
-      const p = {
-        id: '', // 购物车id
-        productID: this.id.toString(), // 商品id
-        productName:
-          'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-        productImg: '', // 商品图片
-        Hprice: this.Hprice, // 商品价格
-        Mprice: this.Mprice, // 商品价格
-        Lprice: this.Lprice, // 商品价格
-        num: this.num, // 商品数量
-        maxNum: 10000000 // 商品限购数量
-      }
-      this.insertProduct(p)
-      return p
-    },
+    // product() {
+    //   for (let i = 0; i < this.getCart.length; i++) {
+    //     if (this.getCart[i].productId === this.id.toString()) {
+    //       return this.getCart[i]
+    //     }
+    //   }
+    //   const p = {
+    //     id: '', // 购物车id
+    //     productId: this.id.toString(), // 商品id
+    //     productName:
+    //       'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
+    //     productImg: '', // 商品图片
+    //     Hprice: this.Hprice, // 商品价格
+    //     Mprice: this.Mprice, // 商品价格
+    //     Lprice: this.Lprice, // 商品价格
+    //     num: this.num, // 商品数量
+    //     maxNum: 10000000 // 商品限购数量
+    //   }
+    //   this.insertProduct(p)
+    //   return p
+    // },
     carouselNum() {
       return this.carouselOption.length
     }

@@ -135,4 +135,67 @@ export function getUserInfo(name) {
   })
 }
 
+/**
+ * 重置密码
+ * @param {Object} userInfo
+ * @returns Object
+ */
+export function updatePassword(userInfo) {
+  return service({
+    method: 'post',
+    url: '/user/updatePassword',
+    data: userInfo
+  })
+}
+
+/**
+ * 获取已登录用户的购物车列表
+ * @returns Object
+ */
+export function getCartList() {
+  return service({
+    method: 'get',
+    url: '/cartItem/list'
+  })
+}
+
+/**
+ * 更新购物车商品数量
+ * @param {Object} productInfo
+ * @returns
+ */
+export function updateQuantity(productInfo) {
+  return service({
+    method: 'get',
+    url: '/cartItem/update/quantity',
+    params: productInfo
+  })
+}
+
+/**
+ * 往购物车添加商品
+ * @param {Object} item
+ * @returns Object
+ */
+export function addCartItem(item) {
+  return service({
+    method: 'post',
+    url: '/cartItem/add',
+    data: item
+  })
+}
+
+/**
+ * 删除购物车中的商品
+ * @param {Object} productInfo
+ * @returns Object
+ */
+export function deleteCartItem(ids) {
+  return service({
+    method: 'post',
+    url: `/cartItem/delete?ids=${ids}`
+    // data: productInfo,
+  })
+}
+
 Vue.prototype.$axios = axios

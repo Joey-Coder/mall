@@ -523,7 +523,7 @@
                 <div
                   class="cart-item text-white q-pb-lg"
                   v-for="item in getCart"
-                  :key="item.productID"
+                  :key="item.productId"
                 >
                   <div class="cart-image">
                     <!-- <img src="/zzf.jpeg" alt="" /> -->
@@ -541,20 +541,34 @@
                         dense
                         size="sm"
                         class="remove-btn"
-                        @click="removeCartNum(item.productID)"
+                        @click="
+                          $store.dispatch('removeCartQuantity', {
+                            id: item.id,
+                            quantity: item.quantity - 1
+                          })
+                        "
                       ></q-btn>
-                      <input type="text" class="num-input" v-model="item.num" />
+                      <input
+                        type="text"
+                        class="num-input"
+                        v-model="item.quantity"
+                      />
                       <q-btn
                         icon="add"
                         unelevated
                         dense
                         size="sm"
                         class="add-btn"
-                        @click="addCartNum(item.productID)"
+                        @click="
+                          $store.dispatch('addCartQuantity', {
+                            id: item.id,
+                            quantity: item.quantity + 1
+                          })
+                        "
                       ></q-btn>
                     </div>
                     <div class="price">
-                      ${{ getProductPrice(item.productID) }}
+                      ${{ getProductPrice(item.productId) }}
                     </div>
                   </div>
                 </div>
@@ -855,10 +869,11 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import WechatPopup from '../components/WechatPopup'
 import { login } from '../boot/axios'
 import { setToken } from '../boot/auth'
+// import {} from ''
 export default {
   inject: ['reload'],
   data() {
@@ -902,12 +917,13 @@ export default {
 
   methods: {
     ...mapMutations([
-      'addCartNum',
-      'removeCartNum',
+      'addCartQuantity',
+      'removeCartQuantity',
       'signIn',
       'signOut',
       'changeLang'
     ]),
+    ...mapActions(['addCartQuantity', 'removeCartQuantity']),
     whatsApp() {
       console.log('talk')
     },
@@ -995,6 +1011,9 @@ export default {
   mounted() {
     // console.log(this.getCarts)
     this.$q.screen.setSizes({ sm: 599, md: 700, lg: 998, xl: 110 })
+    if (this.getIsLogIn) {
+      this.$store.dispatch('getCartList')
+    }
   },
   destroyed() {}
 }

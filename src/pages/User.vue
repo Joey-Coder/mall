@@ -7,8 +7,8 @@
         <q-item
           clickable
           v-ripple
-          @click="id = '0'"
-          :class="[id.toString() === '0' ? 'active' : '']"
+          @click="activeId = '0'"
+          :class="[activeId === '0' ? 'active' : '']"
         >
           <q-item-section>
             My Orders
@@ -18,8 +18,8 @@
         <q-item
           clickable
           v-ripple
-          @click="id = '1'"
-          :class="[id.toString() === '1' ? 'active' : '']"
+          @click="activeId = '1'"
+          :class="[activeId === '1' ? 'active' : '']"
         >
           <q-item-section>
             Account Setting
@@ -36,7 +36,7 @@
     <!-- 内容 -->
     <section class="right">
       <!-- 订单 -->
-      <div class="order-wrapper" v-if="id.toString() === '0'">
+      <div class="order-wrapper" v-if="activeId === '0'">
         <h4 class="title">My Orders</h4>
         <!-- 设置横向滑动区域 -->
         <!-- <q-scroll-area horizontal visible class="scroll-wrapper"> -->
@@ -158,6 +158,7 @@ export default {
   data() {
     return {
       // orderVisiable: true,
+      activeId: this.id,
       currentPage: 1,
       maxPage: 10,
       showPage: 4,
@@ -257,7 +258,11 @@ export default {
       return rangeArr
     }
   },
-  watched: {}
+  watch: {
+    id: function(newVal, oldVal) {
+      this.activeId = newVal
+    }
+  }
 }
 </script>
 <style scoped lang="scss">
