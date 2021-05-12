@@ -45,15 +45,19 @@
 
     <!-- 商品海报区 -->
     <section class="postcard">
-      <div class="postcard-item col-12">
-        <q-img src="../assets/bu4.jpg" class="q-mr-xl">
+      <div
+        class="postcard-item col-12"
+        v-for="(url, index) in postcards"
+        :key="index"
+      >
+        <q-img :src="url || bu2" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
             <q-btn color="black">{{ $t('showThisFabric') }}-></q-btn>
           </div>
         </q-img>
       </div>
-      <div class="postcard-item col-12">
+      <!-- <div class="postcard-item col-12">
         <q-img src="../assets/bu2.jpg" class="q-mr-xl">
           <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
@@ -76,14 +80,14 @@
             <q-btn :label="$t('showThisFabric') + '->'" color="black"></q-btn>
           </div>
         </q-img>
-      </div>
+      </div> -->
     </section>
     <!-- 商品展示区 -->
     <section class="products q-pa-xl">
-      <div class="product">
+      <div class="product" v-for="item in products" :key="item.id">
         <div class="product-image">
           <a href="javascript:void(0)" @click="goTo('detail', '1')"
-            ><img src="../assets/bu4.jpg" alt="product"
+            ><img :src="item.pic || bu2" alt="product"
           /></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
@@ -95,17 +99,18 @@
           </div>
         </div>
         <h5 class="product-desc">
-          <a href="#"
+          <!-- <a href="#"
             >modelo de lichi de Color sólido bufanda bolsa hombro Diagonal
             bolso</a
-          >
+          > -->
+          <a href="javaScript:void(0)">{{ item.name }}</a>
         </h5>
         <!-- <ul class="price">
           <li class="normal-price">$25.00</li>
           <li class="cheap-price">$20.00</li>
         </ul> -->
       </div>
-      <div class="product">
+      <!-- <div class="product">
         <div class="product-image">
           <a href="javascript:void(0)" @click="goTo('detail', '1')"
             ><img src="../assets/bu2.jpg" alt="product"
@@ -125,10 +130,10 @@
             bolso</a
           >
         </h5>
-        <!-- <ul class="price">
+        <ul class="price">
           <li class="normal-price">$25.00</li>
           <li class="cheap-price">$20.00</li>
-        </ul> -->
+        </ul>
       </div>
       <div class="product">
         <div class="product-image">
@@ -148,10 +153,10 @@
             bolso</a
           >
         </h5>
-        <!-- <ul class="price">
+        <ul class="price">
           <li class="normal-price">$25.00</li>
           <li class="cheap-price">$20.00</li>
-        </ul> -->
+        </ul>
       </div>
       <div class="product">
         <div class="product-image">
@@ -171,10 +176,10 @@
             bolso</a
           >
         </h5>
-        <!-- <ul class="price">
+        <ul class="price">
           <li class="normal-price">$25.00</li>
           <li class="cheap-price">$20.00</li>
-        </ul> -->
+        </ul>
       </div>
       <div class="product">
         <div class="product-image">
@@ -194,10 +199,10 @@
             bolso</a
           >
         </h5>
-        <!-- <ul class="price">
+        <ul class="price">
           <li class="normal-price">$25.00</li>
           <li class="cheap-price">$20.00</li>
-        </ul> -->
+        </ul>
       </div>
       <div class="product">
         <div class="product-image">
@@ -217,11 +222,11 @@
             bolso</a
           >
         </h5>
-        <!-- <ul class="price">
+        <ul class="price">
           <li class="normal-price">$25.00</li>
           <li class="cheap-price">$20.00</li>
-        </ul> -->
-      </div>
+        </ul>
+      </div> -->
     </section>
     <!-- 联系信息 -->
     <section class="contact-info q-pa-xl">
@@ -245,7 +250,7 @@
         </div>
         <h5 class="title">{{ $t('address') }}</h5>
         <p class="text">
-          {{ $t('addressValue')}}
+          {{ $t('addressValue') }}
         </p>
       </div>
     </section>
@@ -255,21 +260,55 @@
 <script>
 // import LazyImg from '../components/LazyImg'
 import ScrollReveal from 'scrollreveal'
+import { getHome } from '../boot/axios'
 export default {
   name: 'Index',
   data() {
     return {
       slide: 1,
       autoplay: true,
-      scrollReveal: ScrollReveal()
+      scrollReveal: ScrollReveal(),
+      postcards: [],
+      products: [],
+      bu2: '/bu2.jpg'
+    }
+  },
+  computed: {
+    /**
+     * 去除掉封面中url为null的元素
+     */
+    filterPostcards() {
+      // console.log()
+      return this.postcards.filter(val => val !== null)
     }
   },
   methods: {
     goTo(name, id) {
       this.$router.push({ name: name, params: { id } })
+    },
+    async getHome() {
+      const { code, data, message } = await getHome()
+      if (code === 200) {
+        console.log(data)
+        Object.keys(data).forEach(key => {
+          if (key.includes('showPic')) {
+            this.postcards.push(data[key])
+          }
+        })
+        this.products = data.product
+        // console.log(this.postcards)
+      } else {
+        this.$q.notify({
+          type: 'negative',
+          message: message
+        })
+      }
     }
   },
   components: {},
+  created() {
+    this.getHome()
+  },
   mounted() {
     const scrollOptions = {
       duration: 1500,
@@ -539,7 +578,7 @@ export default {
         }
         .text {
           width: 80%;
-          font-size: .6rem;
+          font-size: 0.6rem;
         }
       }
     }
@@ -580,7 +619,7 @@ export default {
         }
         .text {
           width: 90%;
-          font-size: .6rem;
+          font-size: 0.6rem;
         }
       }
     }

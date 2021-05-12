@@ -198,4 +198,15 @@ export function deleteCartItem(ids) {
   })
 }
 
+/**
+ * 获取首页数据
+ * @returns Object
+ */
+export function getHome() {
+  return service({
+    method: 'post',
+    url: '/home/get'
+  })
+}
+
 Vue.prototype.$axios = axios
