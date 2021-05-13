@@ -289,7 +289,7 @@ export default {
     async getHome() {
       const { code, data, message } = await getHome()
       if (code === 200) {
-        console.log(data)
+        // console.log(data)
         Object.keys(data).forEach(key => {
           if (key.includes('showPic')) {
             this.postcards.push(data[key])

@@ -6,7 +6,7 @@
       <div class="forgot hide">
         <h4 class="title">{{ $t('resetYourPassword') }}</h4>
         <p>{{ $t('enterYourEmailOrPhone') }}</p>
-        <q-form @submit="onSubmit">
+        <q-form @submit="resetPassword">
           <!-- 电话号码 -->
           <div class="phone-wrapper">
             <div class="phone">
@@ -51,7 +51,12 @@
                   val => (val && val.length > 0) || $t('pleaseTypeSomething')
                 ]"
               />
-              <q-btn outline :label="$t('sendCode')" padding="xs"></q-btn>
+              <q-btn
+                outline
+                :label="$t('sendCode')"
+                padding="xs"
+                @click="sendCode"
+              ></q-btn>
             </div>
           </div>
           <!-- 密码 -->
@@ -240,7 +245,7 @@
 </template>
 
 <script>
-import { updatePassword } from '../boot/axios'
+import { updatePassword, getAuthCode } from '../boot/axios'
 export default {
   name: 'Forgot',
   data() {
@@ -255,11 +260,16 @@ export default {
     }
   },
   methods: {
+    /**
+     * 重置密码
+     */
     async resetPassword() {
       const { data, code } = await updatePassword({
-        phone: this.phoneCountry + '-' + this.phone,
-        authCode: this.code,
-        password: this.password
+        // phone: this.phoneCountry + '-' + this.phone,
+        phone: this.phone,
+        code: this.code,
+        newPassword: this.confirmPw,
+        type: true
       })
       if (code === 200) {
         this.$q.notify({
@@ -271,6 +281,19 @@ export default {
         this.$q.notify({
           type: 'danger',
           message: data.message
+        })
+      }
+    },
+    async sendCode() {
+      const { code, data, message } = await getAuthCode(this.phone)
+      if (code === 200) {
+        this.$q.notify({
+          type: 'positive',
+          message: `code: ${data}`
+        })
+      } else {
+        this.$q.notify({
+          message: message
         })
       }
     },

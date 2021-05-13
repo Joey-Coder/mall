@@ -263,10 +263,15 @@
               >{{ $t('product') }}
               <q-menu>
                 <q-list style="min-width: 100px">
-                  <q-item clickable v-close-popup v-for="i in 3" :key="i">
-                    <q-item-section @click="goTo('products', `category${i}`)"
-                      >category{{ i }}</q-item-section
-                    >
+                  <q-item
+                    clickable
+                    v-close-popup
+                    v-for="item in categoryList"
+                    :key="item.id"
+                  >
+                    <q-item-section @click="goTo('products', item.name)">{{
+                      item.name
+                    }}</q-item-section>
                   </q-item>
                 </q-list>
               </q-menu>
@@ -871,7 +876,7 @@
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import WechatPopup from '../components/WechatPopup'
-import { login } from '../boot/axios'
+import { login, getCategory } from '../boot/axios'
 import { setToken } from '../boot/auth'
 // import {} from ''
 export default {
@@ -894,7 +899,8 @@ export default {
       memberVisiable: false,
       overviewVisiable: false,
       helpVisiable: false,
-      isLogIn: false
+      isLogIn: false,
+      categoryList: []
     }
   },
   components: {
@@ -999,6 +1005,18 @@ export default {
     onSubmit() {},
     goTo(name, id) {
       this.$router.push({ name: name, params: { id } })
+    },
+    async getCategory() {
+      const { code, data, message } = await getCategory()
+      if (code === 200) {
+        // console.log(data)
+        this.categoryList = data.list
+        console.log(this.categoryList)
+      } else {
+        this.$q.notify({
+          message: message
+        })
+      }
     }
     // signOrSet() {
     //   if (this.isLogIn) {
@@ -1014,6 +1032,7 @@ export default {
     if (this.getIsLogIn) {
       this.$store.dispatch('getCartList')
     }
+    this.getCategory(10, 1)
   },
   destroyed() {}
 }

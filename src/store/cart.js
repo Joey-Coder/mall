@@ -159,7 +159,7 @@ export default {
         if (temp.id.toString() === id.toString() && temp.quantity > 0) {
           temp.quantity--
           if (temp.quantity === 0) {
-            debugger
+            // debugger
             // const list = state.shoppingCart.map(product => {
             //   if (product.id.toString() !== id.toString()) {
             //     return product

@@ -111,7 +111,7 @@
               label="Existing Password"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val => (val && val.length > 0) || $t('pleaseTypeSomething')
               ]"
             />
 
@@ -121,7 +121,9 @@
               label="New Password"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type something'
+                val =>
+                  (val && val.length > 0 && val !== password) ||
+                  $t('pleaseTypeSomething')
               ]"
             />
             <q-input
@@ -130,9 +132,7 @@
               label="Re-Enter Password"
               lazy-rules
               :rules="[
-                val =>
-                  (val && val.length === newPassword) ||
-                  'Please type same password'
+                val => (val && val === newPassword) || $t('pleaseTypeSomething')
               ]"
             />
 
@@ -153,6 +153,7 @@
 </template>
 
 <script>
+import { changePassword } from '../boot/axios'
 export default {
   name: 'User',
   data() {
@@ -230,7 +231,23 @@ export default {
     }
   },
   methods: {
-    onSubmit() {}
+    async onSubmit() {
+      const { code, data, message } = await changePassword({
+        oldPassword: this.password,
+        newPassword: this.confirmPw
+      })
+      if (code === 200) {
+        console.log(data)
+        this.$q.notify({
+          type: 'positive',
+          message: '密码已重置'
+        })
+      } else {
+        this.$q.notify({
+          message
+        })
+      }
+    }
   },
   components: {},
   props: {

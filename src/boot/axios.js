@@ -209,4 +209,33 @@ export function getHome() {
   })
 }
 
+/**
+ * 获取首页分类
+ * @param {Number} pageSize
+ * @param {Number} pageNum
+ * @returns Object
+ */
+export function getCategory(pageSize, pageNum) {
+  return service({
+    method: 'get',
+    url: '/productCategory/getList',
+    params: {
+      pageSize,
+      pageNum
+    }
+  })
+}
+
+/**
+ * 重置密码
+ * @param {Object} updateForm
+ */
+export function changePassword(updateForm) {
+  return service({
+    method: 'post',
+    url: '/user/updatePassword',
+    data: updateForm
+  })
+}
+
 Vue.prototype.$axios = axios
