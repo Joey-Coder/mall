@@ -114,7 +114,7 @@ export default {
         for (let i = 0; i < state.shoppingCart.length; i++) {
           const temp = state.shoppingCart[i]
           if (temp.productId.toString() === productId.toString()) {
-            console.log(productId)
+            // console.log(productId)
             if (temp.quantity > 0 && temp.quantity <= 10) {
               totalPrice += temp.Hprice * temp.quantity
             } else if (temp.quantity <= 999) {
@@ -192,7 +192,7 @@ export default {
     async getCartList({ commit }) {
       const { data, code, message } = await getCartList()
       if (code === 200) {
-        // console.log(data)
+        console.log(data)
         commit('setCartList', data)
       } else {
         Notify.create({

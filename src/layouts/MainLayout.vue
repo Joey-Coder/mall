@@ -1011,7 +1011,7 @@ export default {
       if (code === 200) {
         // console.log(data)
         this.categoryList = data.list
-        console.log(this.categoryList)
+        // console.log(this.categoryList)
       } else {
         this.$q.notify({
           message: message

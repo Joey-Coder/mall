@@ -233,6 +233,7 @@ export default {
   methods: {
     async onSubmit() {
       const { code, data, message } = await changePassword({
+        type: false,
         oldPassword: this.password,
         newPassword: this.confirmPw
       })

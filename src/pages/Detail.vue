@@ -35,7 +35,8 @@
       </div>
       <div class="buy">
         <h4 class="title">
-          2018 Hot New Tropical Print Button Front Belted Romper
+          <!-- 2018 Hot New Tropical Print Button Front Belted Romper -->
+          {{ title }}
         </h4>
         <div class="price-wrapper row">
           <q-select
@@ -46,16 +47,16 @@
             standout
           />
           <div class="price">
-            <p>${{ Hprice.toFixed(2) }}</p>
-            <p style="color: #aaa; font-size:1rem">1~10</p>
+            <p>${{ Lprice.toFixed(2) }}</p>
+            <p style="color: #aaa; font-size:1rem">{{ Lmin }}~{{ Lmax }}</p>
           </div>
           <div class="price">
             <p>${{ Mprice.toFixed(2) }}</p>
-            <p style="color: #aaa; font-size:1rem">11~999</p>
+            <p style="color: #aaa; font-size:1rem">{{ Mmin }}~{{ Mmax }}</p>
           </div>
           <div class="price">
-            <p>${{ Lprice.toFixed(2) }}</p>
-            <p style="color: #aaa; font-size:1rem">>999</p>
+            <p>${{ Hprice.toFixed(2) }}</p>
+            <p style="color: #aaa; font-size:1rem">>{{ Hmin }}</p>
           </div>
         </div>
         <div class="quantity">
@@ -152,15 +153,23 @@
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import WechatPopup from '../components/WechatPopup'
+import { getProductDetail } from '../boot/axios'
 export default {
   name: 'Detail',
   data() {
     return {
+      title: null,
       slide: 1,
       quantity: 1,
       Hprice: 100.0,
+      Hmax: Number.MAX_SAFE_INTEGER,
+      Hmin: 999,
       Mprice: 90.0,
+      Mmax: 999,
+      Mmin: 10,
       Lprice: 80.0,
+      Lmax: 10,
+      Lmin: 1,
       currentImg: 0,
       carouselOption: [
         '/bu1.jpg',
@@ -195,7 +204,7 @@ export default {
       var inCart = false
       for (let i = 0; i < this.getCart.length; i++) {
         // 商品已经存在
-        if (this.getCart[i].productId === this.id.toString()) {
+        if (this.getCart[i].id.toString() === this.id.toString()) {
           inCart = true
           break
         }
@@ -203,17 +212,22 @@ export default {
       // 商品已经在购物车
       // debugger
       if (inCart) {
-        for (let i = 0; i < this.quantity; i++) {
-          this.addCartQuantity(this.id)
-        }
+        // for (let i = 0; i < this.quantity; i++) {
+        //   this.addCartQuantity(this.id)
+        // }
+        // this.addCartQuantity({ id: this.id, quantity: this.quantity })
+        this.$store.dispatch('addCartQuatity', {
+          id: this.id,
+          quantity: this.quantity
+        })
       } else {
         const p = {
-          id: null, // 购物车id
-          productId: this.id.toString(), // 商品id
+          id: Number(this.id), // 商品id
+          productId: Number(this.id), // 商品id
           productName:
             'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
           productPic: '', // 商品图片
-          price: this.Hprice, // 商品价格
+          price: this.getProductPrice, // 商品价格
           Hprice: this.Hprice,
           Mprice: this.Mprice,
           Lprice: this.Lprice,
@@ -228,6 +242,43 @@ export default {
       setTimeout(() => {
         this.inDetailWechatIcon = false
       }, 600)
+    },
+    async getProductDetail() {
+      const { data, code, message } = await getProductDetail(this.id)
+      if (code === 200) {
+        // console.log(data)
+        const { product, productDisList } = data
+        this.title = product.name
+        productDisList.forEach((val, index) => {
+          switch (index) {
+            case 0:
+              ;[this.Lprice, this.Lmax, this.Lmin] = [
+                val.price,
+                val.max,
+                val.min
+              ]
+              break
+            case 1:
+              ;[this.Mprice, this.Mmax, this.Mmin] = [
+                val.price,
+                val.max,
+                val.min
+              ]
+              break
+            case 2:
+              ;[this.Hprice, this.Hmax, this.Hmin] = [
+                val.price,
+                val.max,
+                val.min
+              ]
+              break
+          }
+        })
+      } else {
+        this.$q.notify({
+          message
+        })
+      }
     }
   },
   props: {
@@ -236,12 +287,13 @@ export default {
     }
   },
   created() {
-    if (this.getProductById(this.id)) {
-      console.log('sdfsd')
-      this.Hprice = this.getProductById(this.id).Hprice
-      this.Mprice = this.getProductById(this.id).Mprice
-      this.Lprice = this.getProductById(this.id).Lprice
-    }
+    // if (this.getProductById(this.id)) {
+    //   console.log('sdfsd')
+    //   this.Hprice = this.getProductById(this.id).Hprice
+    //   this.Mprice = this.getProductById(this.id).Mprice
+    //   this.Lprice = this.getProductById(this.id).Lprice
+    // }
+    this.getProductDetail()
   },
   mounted() {},
   computed: {
@@ -272,6 +324,19 @@ export default {
     // },
     carouselNum() {
       return this.carouselOption.length
+    },
+    /**
+     * 根据商品数量获取最终总价
+     */
+    getProductPrice() {
+      if (this.quantity < 10) {
+        console.log(this.Lprice)
+        return this.quantity * this.Lprice.toFixed(2)
+      } else if (this.quantity < 1000) {
+        return this.quantity * this.Mprice.toFixed(2)
+      } else {
+        return this.quantity * this.Hprice.toFixed(2)
+      }
     }
   },
   watched: {},

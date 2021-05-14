@@ -264,7 +264,7 @@ export default {
      * 重置密码
      */
     async resetPassword() {
-      const { data, code } = await updatePassword({
+      const { code, message } = await updatePassword({
         // phone: this.phoneCountry + '-' + this.phone,
         phone: this.phone,
         code: this.code,
@@ -280,12 +280,15 @@ export default {
       } else {
         this.$q.notify({
           type: 'danger',
-          message: data.message
+          message: message
         })
       }
     },
     async sendCode() {
-      const { code, data, message } = await getAuthCode(this.phone)
+      const { code, data, message } = await getAuthCode({
+        phone: this.phone,
+        code: '86'
+      })
       if (code === 200) {
         this.$q.notify({
           type: 'positive',

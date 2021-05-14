@@ -88,11 +88,11 @@ service.interceptors.response.use(
  * 获取手机验证码
  * @param {String|Number} phone
  */
-export function getAuthCode(phone) {
+export function getAuthCode(phoneInfo) {
   return service({
     method: 'get',
     url: '/user/getAuthCode',
-    params: { name: phone }
+    params: phoneInfo
   })
 }
 
@@ -235,6 +235,19 @@ export function changePassword(updateForm) {
     method: 'post',
     url: '/user/updatePassword',
     data: updateForm
+  })
+}
+
+/**
+ * 根据id获取商品详情
+ * @param {Number} id
+ * @returns
+ */
+export function getProductDetail(id) {
+  return service({
+    method: 'get',
+    url: '/product/detail',
+    params: { id }
   })
 }
 
