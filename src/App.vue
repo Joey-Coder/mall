@@ -1,6 +1,8 @@
 <template>
   <div id="q-app">
-    <router-view v-if="isRouterAlive" />
+    <keep-alive>
+      <router-view v-if="isRouterAlive" :key="$route.fullPath" />
+    </keep-alive>
   </div>
 </template>
 <script>
