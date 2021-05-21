@@ -7,7 +7,9 @@
       <div class="product" v-for="i in 20" :key="i">
         <div class="product-image">
           <a href="javascript:void(0)" @click="goTo('detail', i)"
-            ><img src="../assets/productImg.jpg" alt="product"
+            ><img
+              :src="'/' + (Math.floor(Math.random() * 5) + 4) + '.jpg'"
+              alt="product"
           /></a>
         </div>
         <h5 class="product-desc">

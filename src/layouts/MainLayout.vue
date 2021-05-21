@@ -900,7 +900,10 @@ export default {
       overviewVisiable: false,
       helpVisiable: false,
       isLogIn: false,
-      categoryList: []
+      categoryList: [
+        { id: 1, name: 'category1' },
+        { id: 2, name: 'category2' }
+      ]
     }
   },
   components: {
@@ -1032,7 +1035,7 @@ export default {
     if (this.getIsLogIn) {
       this.$store.dispatch('getCartList')
     }
-    this.getCategory(10, 1)
+    // this.getCategory(10, 1)
   },
   destroyed() {}
 }

@@ -268,8 +268,39 @@ export default {
       slide: 1,
       autoplay: true,
       scrollReveal: ScrollReveal(),
-      postcards: [],
-      products: [],
+      postcards: ['/1.jpg', '/2.jpg', '/3.jpg', '/4.jpg'],
+      products: [
+        {
+          pic: '/5.jpg',
+          name:
+            'modelo de lichi de Color sólido bufanda bolsa hombro Diagonal bolso'
+        },
+        {
+          pic: '/6.jpg',
+          name:
+            'modelo de lichi de Color sólido bufanda bolsa hombro Diagonal bolso'
+        },
+        {
+          pic: '/7.jpg',
+          name:
+            'modelo de lichi de Color sólido bufanda bolsa hombro Diagonal bolso'
+        },
+        {
+          pic: '/8.jpg',
+          name:
+            'modelo de lichi de Color sólido bufanda bolsa hombro Diagonal bolso'
+        },
+        {
+          pic: '/5.jpg',
+          name:
+            'modelo de lichi de Color sólido bufanda bolsa hombro Diagonal bolso'
+        },
+        {
+          pic: '/6.jpg',
+          name:
+            'modelo de lichi de Color sólido bufanda bolsa hombro Diagonal bolso'
+        }
+      ],
       bu2: '/bu2.jpg'
     }
   },
@@ -307,7 +338,7 @@ export default {
   },
   components: {},
   created() {
-    this.getHome()
+    // this.getHome()
   },
   mounted() {
     const scrollOptions = {

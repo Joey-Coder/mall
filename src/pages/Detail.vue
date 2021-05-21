@@ -171,13 +171,7 @@ export default {
       Lmax: 10,
       Lmin: 1,
       currentImg: 0,
-      carouselOption: [
-        '/bu1.jpg',
-        '/bu2.jpg',
-        '/bu3.jpg',
-        '/bu4.jpg',
-        '/bu5.jpg'
-      ],
+      carouselOption: ['/5.jpg', '/6.jpg', '/7.jpg', '/8.jpg', '/1.jpg'],
       currency: 'USD',
       currencyOptions: ['USD'],
       inDetailWechatIcon: false
