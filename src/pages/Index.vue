@@ -51,10 +51,10 @@
         :key="index"
       >
         <q-img :src="url || bu2" class="q-mr-xl">
-          <div class="flex flex-center absolute-full bg-transparent column">
+          <!-- <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
             <q-btn color="black">{{ $t('showThisFabric') }}-></q-btn>
-          </div>
+          </div> -->
         </q-img>
       </div>
       <!-- <div class="postcard-item col-12">
