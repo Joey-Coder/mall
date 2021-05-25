@@ -87,7 +87,7 @@
         <div class="product-image">
           <a href="javascript:void(0)" @click="goTo('detail', '1')"
             ><img
-              src="/1.jpg"
+              src="/loading.webp"
               alt="product"
               :data-src="item.pic || bu2"
               class="lazyImage"
