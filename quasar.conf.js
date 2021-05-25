@@ -7,8 +7,8 @@
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
-const { resolve } = require('path')
-const path = require('path')
+// const { resolve } = require('path')
+// const path = require('path')
 // const webpack = require('webpack')
 // const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -76,7 +76,7 @@ module.exports = function(/* ctx */) {
         // 添加plugins
         cfg.plugins.push(
           new HardSourceWebpackPlugin() // 节省2次构建时间,效果显著
-          // new webpack.DllReferencePlugin({
+          // new webpack.DllReferencePlugin({ // dll分割
           //   manifest: resolve(__dirname, 'dist',  'dll', 'manifest.json')
           // }),
           // new AddAssetHtmlWebpackPlugin({

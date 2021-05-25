@@ -50,12 +50,11 @@
         v-for="(url, index) in postcards"
         :key="index"
       >
-        <q-img :src="url || bu2" class="q-mr-xl">
-          <!-- <div class="flex flex-center absolute-full bg-transparent column">
+        <q-img class="mr-xl lazyImage" :data-src="url || bu2" />
+        <!-- <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
             <q-btn color="black">{{ $t('showThisFabric') }}-></q-btn>
           </div> -->
-        </q-img>
       </div>
       <!-- <div class="postcard-item col-12">
         <q-img src="../assets/bu2.jpg" class="q-mr-xl">
@@ -87,7 +86,11 @@
       <div class="product" v-for="item in products" :key="item.id">
         <div class="product-image">
           <a href="javascript:void(0)" @click="goTo('detail', '1')"
-            ><img :src="item.pic || bu2" alt="product"
+            ><img
+              src="/1.jpg"
+              alt="product"
+              :data-src="item.pic || bu2"
+              class="lazyImage"
           /></a>
           <div class="buy-icon">
             <q-btn unelevated round padding="md">
@@ -261,6 +264,7 @@
 // import LazyImg from '../components/LazyImg'
 import ScrollReveal from 'scrollreveal'
 import { getHome } from '../boot/axios'
+import LazyImage from 'boot/lazyImg'
 export default {
   name: 'Index',
   data() {
@@ -355,6 +359,8 @@ export default {
       ...scrollOptions
     })
     this.scrollReveal.reveal('.product', { ...scrollOptions })
+    const l = new LazyImage('.lazyImage')
+    console.log(l)
   }
 }
 </script>
