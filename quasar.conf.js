@@ -6,6 +6,12 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const { resolve } = require('path')
+const path = require('path')
+// const webpack = require('webpack')
+// const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = function(/* ctx */) {
   return {
@@ -49,9 +55,9 @@ module.exports = function(/* ctx */) {
       // transpileDependencies: [],
 
       // rtl: false, // https://quasar.dev/options/rtl-support
-      // preloadChunks: true,
-      // showProgress: false,
-      // gzip: true,
+      preloadChunks: true,
+      showProgress: true,
+      gzip: true,
       // analyze: true,
 
       // Options below are automatically set depending on the env, set them if you want to override
@@ -59,12 +65,27 @@ module.exports = function(/* ctx */) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       extendWebpack(cfg) {
+        // 添加loaders
         cfg.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /node_modules/
         })
+
+        // 添加plugins
+        cfg.plugins.push(
+          new HardSourceWebpackPlugin() // 节省2次构建时间,效果显著
+          // new webpack.DllReferencePlugin({
+          //   manifest: resolve(__dirname, 'dist',  'dll', 'manifest.json')
+          // }),
+          // new AddAssetHtmlWebpackPlugin({
+          //   filepath: resolve(__dirname, 'dist',  'dll/vue.dll.js')
+          // }),
+          // new CleanWebpackPlugin({
+          //   cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**'] //不删除dll目录
+          // })
+        )
       }
     },
 
