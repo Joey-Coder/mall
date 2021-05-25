@@ -249,7 +249,7 @@
             </q-card>
           </q-dialog>
           <a href="javascript:void(0)" @click="goTo('index', '')"
-            ><img src="../assets/logo.png" alt=""
+            ><img src="/logo.png" alt=""
           /></a>
           <nav>
             <a
@@ -284,7 +284,7 @@
 
         <a href="#" class="logo"
           ><img
-            src="../assets/logo.png"
+            src="/logo.png"
             alt=""
             style="width: 4rem; height: 4rem"
         /></a>
@@ -789,19 +789,39 @@
       <!-- 合作伙伴 -->
       <div class="partners row justify-center q-gutter-x-lg q-py-xl">
         <a href="http://www.baidu.com" class="partners-item text-primary">
-          <img src="../assets/paypal.png" alt="" />
+          <img
+            src="../assets/paypal.png"
+            alt=""
+            style="height: 33px; width: 130px"
+          />
         </a>
         <a href="http://www.baidu.com" class="partners-item text-primary">
-          <img src="../assets/fedex.png" alt="" />
+          <img
+            src="../assets/fedex.png"
+            alt=""
+            style="height: 33px; width: 114px"
+          />
         </a>
         <a href="http://www.baidu.com" class="partners-item text-primary">
-          <img src="../assets/dhl.png" alt="" />
+          <img
+            src="../assets/dhl.png"
+            alt=""
+            style="height: 33px; width: 200px"
+          />
         </a>
         <a href="http://www.baidu.com" class="partners-item text-primary">
-          <img src="../assets/ups.png" alt="" />
+          <img
+            src="../assets/ups.png"
+            alt=""
+            style="height: 33px; width: 33px"
+          />
         </a>
         <a href="http://www.baidu.com" class="partners-item text-primary">
-          <img src="../assets/ems.png" alt="" />
+          <img
+            src="../assets/ems.png"
+            alt=""
+            style="height: 33px; width: 125px"
+          />
         </a>
       </div>
       <!-- 联系方式和付款方式 -->

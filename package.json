@@ -19,12 +19,12 @@
     "scrollreveal": "^4.0.7",
     "vue-country-intl": "^1.0.29",
     "vue-i18n": "^8.24.1",
-    "vue-smoothscroll": "^0.2.0",
     "vue2-smooth-scroll": "^1.5.0"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-loader": "^3.0.3",

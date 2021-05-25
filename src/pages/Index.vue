@@ -50,7 +50,10 @@
         v-for="(url, index) in postcards"
         :key="index"
       >
-        <q-img class="mr-xl lazyImage" :data-src="url || bu2" />
+        <q-img
+          class="mr-xl lazyImage"
+          :data-src="url || bu2"
+        />
         <!-- <div class="flex flex-center absolute-full bg-transparent column">
             <h4>THE BEST CHOICE</h4>
             <q-btn color="black">{{ $t('showThisFabric') }}-></q-btn>
