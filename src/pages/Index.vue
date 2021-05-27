@@ -87,7 +87,7 @@
         <div class="product-image">
           <a href="javascript:void(0)" @click="goTo('detail', '1')"
             ><img
-              src="/loading.webp"
+              src="/loading.jpeg"
               alt="product"
               :data-src="item.pic || bu2"
               class="lazyImage"
@@ -305,7 +305,7 @@ export default {
             'modelo de lichi de Color sólido bufanda bolsa hombro Diagonal bolso'
         }
       ],
-      bu2: '/bu2.jpg'
+      bu2: '/bu3.jpg'
     }
   },
   computed: {

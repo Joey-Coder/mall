@@ -4,7 +4,7 @@ export default class LazyImage {
     this.imageElements = Array.prototype.slice.call(
       document.querySelectorAll(selector)
     )
-    console.log(this.imageElements)
+    // console.log(this.imageElements)
     this.init()
   }
 

@@ -13,7 +13,7 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 // const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-module.exports = function(/* ctx */) {
+module.exports = function(ctx) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
@@ -62,11 +62,16 @@ module.exports = function(/* ctx */) {
 
       // Options below are automatically set depending on the env, set them if you want to override
       // extractCSS: false,
-
-      publicPath: process.env.NODE_ENV === 'production' ? '/mall/' : '/',
+      publicPath: ctx.dev ? '/' : '/mall/',
 
       // https://quasar.dev/quasar-cli/handling-webpack
       extendWebpack(cfg) {
+        // 添加alias
+        // console.log('sdfsdf', cfg.resolve.alias)
+        cfg.resolve.alias = {
+          ...cfg.resolve.alias
+        }
+
         // 添加loaders
         cfg.module.rules.push(
           {
