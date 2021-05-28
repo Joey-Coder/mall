@@ -4,10 +4,7 @@ import { getToken } from './auth.js'
 
 const service = axios.create({
   // baseURL: 'http://8.135.102.77:8060/',
-  baseURL:
-    process.env.NODE_ENV === 'prodoction'
-      ? 'http://8.135.102.77:8060/'
-      : 'api/',
+  baseURL: process.env.DEV ? 'api/' : 'http://8.135.102.77:8060/',
   headers: {
     get: {
       'content-Type': 'application/x-www-form-urlencoded;charset=utf-9'

@@ -210,7 +210,7 @@ export default {
         //   this.addCartQuantity(this.id)
         // }
         // this.addCartQuantity({ id: this.id, quantity: this.quantity })
-        this.$store.dispatch('addCartQuatity', {
+        this.$store.dispatch('addCartQuantity', {
           id: this.id,
           quantity: this.quantity
         })

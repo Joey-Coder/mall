@@ -1,76 +1,76 @@
 // import { state } from 'src/boot/country'
 import {
-  getCartList,
-  updateQuantity,
-  addCartItem,
-  deleteCartItem
+  getCartList
+  // updateQuantity,
+  // addCartItem
+  // deleteCartItem
 } from '../boot/axios'
 import { Notify } from 'quasar'
 export default {
   state: {
-    shoppingCart: []
-    // shoppingCart: [
-    //   {
-    //     id: '', // 购物车id
-    //     productId: '1', // 商品id
-    //     productName:
-    //       'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-    //     productPic: '/bu1.jpg', // 商品图片
-    //     Hprice: 25.5, // 商品价格
-    //     Mprice: 25.0,
-    //     Lprice: 24.5,
-    //     quantity: 1, // 商品数量
-    //     maxquantity: 1000000 // 商品限购数量
-    //   },
-    //   {
-    //     id: '', // 购物车id
-    //     productId: '2', // 商品id
-    //     productName:
-    //       'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-    //     productPic: '/bu2.jpg', // 商品图片
-    //     Hprice: 28.0, // 商品价格
-    //     Mprice: 27.5,
-    //     Lprice: 27.0,
-    //     quantity: 3, // 商品数量
-    //     maxquantity: 1000000 // 商品限购数量
-    //   },
-    //   {
-    //     id: '', // 购物车id
-    //     productId: '3', // 商品id
-    //     productName:
-    //       'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-    //     productPic: '/bu3.jpg', // 商品图片
-    //     Hprice: 28.0, // 商品价格
-    //     Mprice: 27.5,
-    //     Lprice: 27.0,
-    //     quantity: 3, // 商品数量
-    //     maxquantity: 1000000 // 商品限购数量
-    //   },
-    //   {
-    //     id: '', // 购物车id
-    //     productId: '4', // 商品id
-    //     productName:
-    //       'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-    //     productPic: '/bu4.jpg', // 商品图片
-    //     Hprice: 28.0, // 商品价格
-    //     Mprice: 27.5,
-    //     Lprice: 27.0,
-    //     quantity: 3, // 商品数量
-    //     maxquantity: 1000000 // 商品限购数量
-    //   },
-    //   {
-    //     id: '', // 购物车id
-    //     productId: '5', // 商品id
-    //     productName:
-    //       'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
-    //     productPic: '/bu5.jpg', // 商品图片
-    //     Hprice: 28.0, // 商品价格
-    //     Mprice: 27.5,
-    //     Lprice: 27.0,
-    //     quantity: 3, // 商品数量
-    //     maxquantity: 1000000 // 商品限购数量
-    //   }
-    // ]
+    // shoppingCart: []
+    shoppingCart: [
+      {
+        id: '1', // 购物车id
+        productId: '1', // 商品id
+        productName:
+          'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
+        productPic: '/5.jpg', // 商品图片
+        Hprice: 25.5, // 商品价格
+        Mprice: 25.0,
+        Lprice: 24.5,
+        quantity: 1, // 商品数量
+        maxquantity: 1000000 // 商品限购数量
+      },
+      {
+        id: '2', // 购物车id
+        productId: '2', // 商品id
+        productName:
+          'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
+        productPic: '/6.jpg', // 商品图片
+        Hprice: 28.0, // 商品价格
+        Mprice: 27.5,
+        Lprice: 27.0,
+        quantity: 3, // 商品数量
+        maxquantity: 1000000 // 商品限购数量
+      },
+      {
+        id: '3', // 购物车id
+        productId: '3', // 商品id
+        productName:
+          'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
+        productPic: '/bu3.jpg', // 商品图片
+        Hprice: 28.0, // 商品价格
+        Mprice: 27.5,
+        Lprice: 27.0,
+        quantity: 3, // 商品数量
+        maxquantity: 1000000 // 商品限购数量
+      },
+      {
+        id: '4', // 购物车id
+        productId: '4', // 商品id
+        productName:
+          'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
+        productPic: '/bu4.jpg', // 商品图片
+        Hprice: 28.0, // 商品价格
+        Mprice: 27.5,
+        Lprice: 27.0,
+        quantity: 3, // 商品数量
+        maxquantity: 1000000 // 商品限购数量
+      },
+      {
+        id: '5', // 购物车id
+        productId: '5', // 商品id
+        productName:
+          'modelo de lichi de Color sólido bufanda bolsa hombroDiagonal bolso', // 商品名称
+        productPic: '/bu5.jpg', // 商品图片
+        Hprice: 28.0, // 商品价格
+        Mprice: 27.5,
+        Lprice: 27.0,
+        quantity: 3, // 商品数量
+        maxquantity: 1000000 // 商品限购数量
+      }
+    ]
   },
   getters: {
     getCart(state) {
@@ -203,51 +203,59 @@ export default {
     },
     async addCartQuantity({ commit }, productInfo) {
       if (productInfo.quantity < 0) return
-      const { code, message } = await updateQuantity(productInfo)
-      if (code === 200) {
+      setTimeout(() => {
         commit('addCartQuantity', productInfo.id)
-      } else {
-        Notify.create({
-          type: 'danger',
-          message: message
-        })
-      }
+      }, 10)
+      // const { code, message } = await updateQuantity(productInfo)
+      // if (code === 200) {
+      //   commit('addCartQuantity', productInfo.id)
+      // } else {
+      //   Notify.create({
+      //     type: 'danger',
+      //     message: message
+      //   })
+      // }
     },
     async removeCartQuantity({ commit }, productInfo) {
-      // debugger
       if (productInfo.quantity < 0) return
-      if (productInfo.quantity === 0) {
-        const { code, message } = await deleteCartItem(productInfo.id)
-        if (code === 200) {
-          commit('removeCartQuantity', productInfo.id)
-        } else {
-          Notify.create({
-            type: 'danger',
-            message: message
-          })
-        }
-      } else {
-        const { code, message } = await updateQuantity(productInfo)
-        if (code === 200) {
-          commit('removeCartQuantity', productInfo.id)
-        } else {
-          Notify.create({
-            type: 'danger',
-            message: message
-          })
-        }
-      }
+      setTimeout(() => {
+        commit('removeCartQuantity', productInfo.id)
+      }, 10)
+      // if (productInfo.quantity === 0) {
+      //   const { code, message } = await deleteCartItem(productInfo.id)
+      //   if (code === 200) {
+      //     commit('removeCartQuantity', productInfo.id)
+      //   } else {
+      //     Notify.create({
+      //       type: 'danger',
+      //       message: message
+      //     })
+      //   }
+      // } else {
+      //   const { code, message } = await updateQuantity(productInfo)
+      //   if (code === 200) {
+      //     commit('removeCartQuantity', productInfo.id)
+      //   } else {
+      //     Notify.create({
+      //       type: 'danger',
+      //       message: message
+      //     })
+      //   }
+      // }
     },
     async insertProduct({ commit }, item) {
-      const { code, data } = await addCartItem(item)
-      if (code === 200) {
+      setTimeout(() => {
         commit('insertProduct', item)
-      } else {
-        Notify.create({
-          type: 'danger',
-          message: data.message
-        })
-      }
+      }, 10)
+      // const { code, data } = await addCartItem(item)
+      // if (code === 200) {
+      //   commit('insertProduct', item)
+      // } else {
+      //   Notify.create({
+      //     type: 'danger',
+      //     message: data.message
+      //   })
+      // }
     }
   }
 }
