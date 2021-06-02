@@ -339,7 +339,7 @@ export default {
     // 滑动指令
     touch: {
       bind: function(el, binding, vnode) {
-        var touchType = binding.arg // 传入的模式 press swipeRight swipeLeft swipeTop swipeDowm Tap
+        var touchType = binding.arg // 传入的模式 press swipeRight swipeLeft swipeTop swipeDown Tap
         var timeOutEvent = 0
         var direction = ''
         // 滑动处理
@@ -387,7 +387,7 @@ export default {
             timeOutEvent = setTimeout(() => {
               timeOutEvent = 0
               if (touchType === 'press') {
-                binding.value()
+                binding.value() // 执行指令绑定的表达式或者函数
               }
             }, 500)
           },
